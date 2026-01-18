@@ -3,6 +3,7 @@ import { Zap, Menu, Sparkles } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { GetStartedWizard } from "./GetStartedWizard";
+import logoImage from "figma:asset/e7a195be77b7bd9401ceaf81778ff37964fec796.png";
 
 interface NavigationRouterProps {
   onMenuOpen: () => void;
@@ -20,11 +21,15 @@ export function NavigationRouter({ onMenuOpen }: NavigationRouterProps) {
     <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/50">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <Zap className="w-6 h-6" style={{ color: "var(--spectral-violet)" }} />
-            <span className="tracking-wider" style={{ letterSpacing: "0.1em" }}>
-              A<span style={{ color: "var(--spectral-violet)" }}>i</span>GENCY
-            </span>
+          <Link to="/" className="flex items-center gap-3">
+            <img 
+              src={logoImage} 
+              alt="AiGENCY - AI Consultant Bournemouth" 
+              className="h-12 w-auto"
+              style={{ 
+                filter: "drop-shadow(0 4px 12px rgba(160, 45, 255, 0.4)) drop-shadow(0 2px 6px rgba(77, 255, 136, 0.3))"
+              }}
+            />
           </Link>
 
           <div className="hidden md:flex items-center gap-8">

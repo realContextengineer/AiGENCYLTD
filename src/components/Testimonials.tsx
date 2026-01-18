@@ -68,10 +68,10 @@ export function Testimonials() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="mb-6 tracking-wide" style={{ letterSpacing: "0.1em" }}>
-            Trusted by Local Businesses
+            AI Training & Integration Reviews
           </h2>
           <p className="opacity-80 max-w-2xl mx-auto text-lg">
-            Hear from real people and small businesses across Bournemouth and Dorset who've made AI work for them.
+            <strong>Bournemouth, Poole & Dorset</strong> - Hear from real people and small businesses who've made AI work for them.
           </p>
         </motion.div>
 

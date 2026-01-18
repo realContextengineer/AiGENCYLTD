@@ -11,35 +11,35 @@ import {
 const faqs = [
   {
     question: "How much does AI integration cost in Bournemouth?",
-    answer: "Our pricing starts from £49 for basic AI setup and consultation. Most Bournemouth businesses choose our Growth package (£249-£749) which includes custom automation, training, and 3 months support. We offer flexible payment plans and guarantee ROI or your money back.",
+    answer: "Our AI training starts from £40/hour for one-to-one sessions. For custom AI integration and automation projects, we provide tailored quotes based on your specific needs. Most Bournemouth businesses invest between £500-£2000 for complete setup including training and ongoing support. We offer flexible payment plans and provide clear ROI projections upfront.",
   },
   {
-    question: "Do I need technical skills to use AI for my business?",
-    answer: "Not at all. We work with plumbers, café owners, therapists, and designers across Dorset—most with zero technical experience. We set everything up for you and provide simple, jargon-free training that anyone can follow.",
+    question: "How do I integrate AI into existing software in Dorset?",
+    answer: "We help Dorset businesses integrate AI into their current systems using APIs, automation tools like Zapier, and custom solutions. Whether it's connecting AI to your Shopify store, CRM, booking system, or accounting software - we handle the technical setup and train your team to use it confidently.",
   },
   {
-    question: "Is AI safe for my customer data? (GDPR)",
-    answer: "Yes. We only recommend GDPR-compliant AI tools and configure everything to UK data protection standards. Your customer data stays secure, and we'll show you exactly how everything works so you're always in control.",
+    question: "Do you offer AI training for employees in Bournemouth?",
+    answer: "Yes! We provide tailored AI training for teams across Bournemouth, Poole, and Dorset. Our sessions cover ChatGPT fundamentals, AI prompt engineering, AI marketing tools, and industry-specific applications. We offer in-person workshops or online training, designed to be practical and neurodivergent-friendly.",
   },
   {
-    question: "How long does AI implementation take?",
-    answer: "Most Bournemouth businesses are up and running within 1-2 weeks. Simple setups (like ChatGPT for quotes) can be done in a single session. Complex automations take 2-4 weeks including training and testing.",
+    question: "Can you set up AI tools for my small business in Poole?",
+    answer: "Absolutely. We specialise in helping small businesses in Poole and across Dorset adopt AI without the overwhelm. We'll assess your needs, recommend the right tools, set everything up for you, and provide training so you're confident using AI daily. From ChatGPT to custom automation - we handle it all.",
   },
   {
-    question: "Can you visit my business in person?",
-    answer: "Yes! We're based in Bournemouth and offer in-person consultations across Poole, Christchurch, and Dorset. Many clients prefer face-to-face training, especially for team setups. Remote support is also available.",
+    question: "Is AI safe for my customer data? (GDPR compliant AI Bournemouth)",
+    answer: "Yes. We only recommend GDPR-compliant AI tools and configure everything to UK data protection standards. Your customer data stays secure, and we'll show you exactly how everything works so you're always in control. We're experienced in ethical, compliant AI integration for Bournemouth businesses.",
   },
   {
-    question: "What if AI doesn't work for my business?",
-    answer: "If you don't see measurable time or cost savings within 3 months, we'll refund your investment. We've helped 50+ Dorset businesses and have never had to do this—AI works when implemented properly.",
+    question: "Do you offer ChatGPT workshops for Dorset small businesses?",
+    answer: "Yes! Our ChatGPT workshops are designed specifically for Dorset small businesses. We teach practical applications - from writing quotes and social media posts to customer service and content creation. Workshops can be one-to-one or small groups, in-person in Bournemouth/Poole, or online.",
   },
   {
-    question: "Do you offer ongoing support after setup?",
-    answer: "Yes. All packages include support (1-3 months depending on tier), and you can add monthly support plans afterwards. We're local, so you can always reach us quickly when you need help.",
+    question: "Can you help with AI automation for my Bournemouth business?",
+    answer: "Definitely. We help Bournemouth businesses automate repetitive tasks like customer follow-ups, appointment reminders, data entry, social media posting, and invoice processing. We use tools like Zapier, Make.com, and custom AI agents to save you hours every week.",
   },
   {
-    question: "What makes AIGENCY different from other AI consultants?",
-    answer: "We're Bournemouth-based, trauma-informed, and human-centred. We don't just drop tools and leave—we train you, support you, and ensure AI amplifies your work rather than replacing the human touch that makes your business special.",
+    question: "What makes you different from other AI consultants in Bournemouth?",
+    answer: "We're Bournemouth-based, trauma-informed, and human-centred. We don't just drop tools and leave - we train you, support you, and ensure AI amplifies your work rather than replacing the human touch that makes your business special. Plus, we're neurodivergent-led and understand different learning styles.",
   },
 ];
 
@@ -69,10 +69,10 @@ export function FAQ() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="mb-6 tracking-wide" style={{ letterSpacing: "0.1em" }}>
-            Frequently Asked Questions
+            AI Consultant FAQs
           </h2>
-          <p className="opacity-80 text-lg">
-            Clear answers to common questions about our approach and offerings.
+          <p className="text-xl opacity-80">
+            <strong>Bournemouth, Poole & Dorset</strong>
           </p>
         </motion.div>
 

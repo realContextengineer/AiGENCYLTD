@@ -103,11 +103,11 @@ export function Newsletter() {
             </div>
 
             <h2 className="mb-4 tracking-wide" style={{ letterSpacing: "0.1em" }}>
-              Bring AI to Life in Your Business.
+              AI Tips for Dorset Small Businesses
             </h2>
             
             <p className="opacity-90 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
-              Quick insights, simple tools, no jargon — straight to your inbox.
+              Quick AI insights for small businesses in Bournemouth, Poole and Dorset - plain English, no hype, straight to your inbox.
             </p>
 
             {!isSubmitted ? (

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
+import { Zap } from "lucide-react";
 
 interface HeroProps {
   scrollToSection: (id: string) => void;
@@ -84,6 +85,39 @@ export function Hero({ scrollToSection }: HeroProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
+        {/* Animated Lightning Icon */}
+        <motion.div
+          className="flex justify-center mb-4"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.div
+            className="relative"
+            animate={{
+              filter: [
+                "drop-shadow(0 0 10px rgba(255, 200, 0, 0.6))",
+                "drop-shadow(0 0 30px rgba(255, 200, 0, 1)) drop-shadow(0 0 60px rgba(255, 200, 0, 0.8))",
+                "drop-shadow(0 0 10px rgba(255, 200, 0, 0.6))",
+              ],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              times: [0, 0.1, 0.2],
+              repeatDelay: 3,
+            }}
+          >
+            <Zap 
+              className="w-20 h-20" 
+              style={{ 
+                color: "#ffc800",
+                fill: "#ffc800",
+              }} 
+            />
+          </motion.div>
+        </motion.div>
+
         <motion.h1
           className="tracking-wide"
           style={{
@@ -95,45 +129,80 @@ export function Hero({ scrollToSection }: HeroProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Human Agency in the Age of AI
+          Don't Get Left Behind.{" "}
+          <motion.span
+            style={{
+              background: "linear-gradient(135deg, #a02dff 0%, #2da8ff 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+            animate={{
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          >
+            Take Back Your Agency.
+          </motion.span>
         </motion.h1>
 
-        <motion.p
-          className="max-w-3xl mx-auto opacity-90"
+        <motion.div
+          className="max-w-4xl mx-auto opacity-90 space-y-4"
           style={{
-            fontSize: "clamp(1.2rem, 2.2vw, 1.5rem)",
+            fontSize: "clamp(1.1rem, 2vw, 1.4rem)",
             lineHeight: "1.6",
           }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          AI integration, design and training for small businesses across Bournemouth, Poole, Dorset and Hampshire. We help you adopt AI tools, build beautiful digital products and automate your workflows with local, hands-on support.
+          <p>
+            <strong>AI consultant Bournemouth</strong> providing <strong>AI training</strong>, <strong>integration</strong> and <strong>design from £40/hour</strong>. We help small businesses across Poole, Christchurch and Dorset adopt AI tools without the overwhelm - in plain English, no hype.
+          </p>
+          <p className="text-xl font-semibold" style={{ color: "var(--spectral-orange)" }}>
+            The AI train is about to leave the station.
+          </p>
+        </motion.div>
+
+        <motion.p
+          className="flex flex-wrap items-center justify-center gap-2 text-base md:text-lg opacity-80 pt-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.35 }}
+        >
+          <span className="text-2xl">📍</span>
+          <span className="text-center">
+            <strong>Local AI expert Dorset</strong> | In-person AI training Bournemouth | Freelance AI consultant Poole | Online or face-to-face
+          </span>
         </motion.p>
 
         {/* Social Proof Stats */}
         <motion.div
-          className="flex flex-wrap items-center justify-center gap-6 pt-2 opacity-80"
+          className="flex flex-wrap items-center justify-center gap-6 pt-4 opacity-80"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "var(--spectral-green)" }} />
-            <span className="text-sm">50+ Dorset Businesses Helped</span>
+            <span className="text-sm">✅ 1000+ Hours Saved Across Dorset</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "var(--spectral-blue)" }} />
-            <span className="text-sm">1000+ Hours Saved</span>
+            <span className="text-sm">✅ GDPR Compliant AI Integration</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "var(--spectral-violet)" }} />
-            <span className="text-sm">GDPR Compliant</span>
+            <span className="text-sm">✅ Neurodivergent-Friendly Training</span>
           </div>
         </motion.div>
 
         <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -156,24 +225,24 @@ export function Hero({ scrollToSection }: HeroProps) {
                   animation: "shimmer 2s infinite",
                 }}
               />
-              <span className="relative z-10">Start Your Free AI Health Check</span>
+              <span className="relative z-10">Free AI Health Check Bournemouth</span>
             </Button>
           </Link>
 
-          <Link to="/solutions" className="w-full sm:w-auto">
+          <Link to="/training" className="w-full sm:w-auto">
             <Button
               className="px-8 py-6 rounded-xl glass border border-border/50 transition-all duration-300 w-full"
               variant="outline"
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "var(--spectral-blue)";
-                e.currentTarget.style.boxShadow = "0 0 20px rgba(45, 168, 255, 0.2)";
+                e.currentTarget.style.borderColor = "var(--spectral-violet)";
+                e.currentTarget.style.boxShadow = "0 0 20px rgba(160, 45, 255, 0.2)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.borderColor = "var(--border)";
                 e.currentTarget.style.boxShadow = "none";
               }}
             >
-              Explore Our Solutions
+              AI Training & Integration Packages
             </Button>
           </Link>
         </motion.div>

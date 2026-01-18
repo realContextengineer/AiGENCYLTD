@@ -9,8 +9,8 @@ interface SEOHeadProps {
 }
 
 export function SEOHead({
-  title = "AI Consultants Bournemouth | Local AI Integration & Training from £49 | Aigency Ltd",
-  description = "Bournemouth's trusted AI consultants. AI integration, training & design for Dorset businesses from £49. Helped 50+ local businesses save 1000+ hours. GDPR compliant. Book free consultation today.",
+  title = "AI Consultants Bournemouth | Local AI Integration & Training from £40 | Aigency Ltd",
+  description = "Bournemouth's trusted AI consultants. AI training from £40/hour + custom integration for Dorset businesses. Helped 50+ local businesses save 1000+ hours. GDPR compliant. Book free consultation today.",
   keywords = "AI consultants Bournemouth, AI integration Bournemouth, AI training Dorset, ChatGPT setup Poole, AI for small business Christchurch, AI automation Dorset, business automation Bournemouth, AI consultant near me, affordable AI services, AI help Bournemouth, AI expert Dorset, learn AI Bournemouth, AI workflow automation, GDPR AI consultant",
   ogImage = "https://aigency.limited/og-image.png",
   url = "https://aigency.limited",

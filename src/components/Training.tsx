@@ -79,6 +79,76 @@ function HeroSection() {
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
         transition={{ duration: 0.8 }}
       >
+        {/* Animated Icon Centerpiece - Lightbulb */}
+        <motion.div
+          className="flex justify-center mb-6"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <div className="relative">
+            <div
+              className="w-28 h-28 rounded-3xl flex items-center justify-center relative overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, rgba(160, 45, 255, 0.2), rgba(45, 168, 255, 0.2))",
+                boxShadow: "0 8px 40px rgba(160, 45, 255, 0.4)",
+              }}
+            >
+              {/* Lightbulb with floating animation */}
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center"
+                animate={{
+                  y: [0, -8, 0],
+                  rotate: [-5, 5, -5],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <Lightbulb 
+                  className="w-14 h-14" 
+                  style={{ 
+                    color: "#a02dff",
+                    filter: "drop-shadow(0 0 16px rgba(160, 45, 255, 0.8))",
+                    strokeWidth: 2,
+                  }} 
+                />
+              </motion.div>
+            </div>
+            
+            {/* Pulsing rings */}
+            <motion.div
+              className="absolute inset-0 rounded-3xl border-2"
+              style={{ borderColor: "#a02dff" }}
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.6, 0, 0.6],
+              }}
+              transition={{
+                duration: 2.5,
+                repeat: Infinity,
+                ease: "easeOut",
+              }}
+            />
+            <motion.div
+              className="absolute inset-0 rounded-3xl border-2"
+              style={{ borderColor: "#2da8ff" }}
+              animate={{
+                scale: [1, 1.4, 1],
+                opacity: [0.5, 0, 0.5],
+              }}
+              transition={{
+                duration: 2.5,
+                repeat: Infinity,
+                ease: "easeOut",
+                delay: 0.5,
+              }}
+            />
+          </div>
+        </motion.div>
+
         <motion.h1
           className="tracking-wide"
           style={{

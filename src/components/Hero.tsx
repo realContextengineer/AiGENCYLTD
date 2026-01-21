@@ -85,37 +85,74 @@ export function Hero({ scrollToSection }: HeroProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        {/* Animated Lightning Icon */}
+        {/* Animated Lightning Icon Centerpiece */}
         <motion.div
-          className="flex justify-center mb-4"
-          initial={{ opacity: 0, scale: 0.5 }}
+          className="flex justify-center mb-6"
+          initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <motion.div
-            className="relative"
-            animate={{
-              filter: [
-                "drop-shadow(0 0 10px rgba(255, 200, 0, 0.6))",
-                "drop-shadow(0 0 30px rgba(255, 200, 0, 1)) drop-shadow(0 0 60px rgba(255, 200, 0, 0.8))",
-                "drop-shadow(0 0 10px rgba(255, 200, 0, 0.6))",
-              ],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              times: [0, 0.1, 0.2],
-              repeatDelay: 3,
-            }}
-          >
-            <Zap 
-              className="w-20 h-20" 
-              style={{ 
-                color: "#ffc800",
-                fill: "#ffc800",
-              }} 
+          <div className="relative">
+            <div
+              className="w-28 h-28 rounded-3xl flex items-center justify-center relative overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, rgba(255, 200, 0, 0.2), rgba(255, 200, 0, 0.1))",
+                boxShadow: "0 8px 40px rgba(255, 200, 0, 0.5)",
+              }}
+            >
+              {/* Lightning bolt with floating animation */}
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center"
+                animate={{
+                  y: [0, -8, 0],
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <Zap 
+                  className="w-14 h-14" 
+                  style={{ 
+                    color: "#ffc800",
+                    fill: "#ffc800",
+                    filter: "drop-shadow(0 0 16px rgba(255, 200, 0, 0.8))",
+                    strokeWidth: 2,
+                  }} 
+                />
+              </motion.div>
+            </div>
+            
+            {/* Pulsing rings - Lightning yellow */}
+            <motion.div
+              className="absolute inset-0 rounded-3xl border-2"
+              style={{ borderColor: "#ffc800" }}
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.6, 0, 0.6],
+              }}
+              transition={{
+                duration: 2.5,
+                repeat: Infinity,
+                ease: "easeOut",
+              }}
             />
-          </motion.div>
+            <motion.div
+              className="absolute inset-0 rounded-3xl border-2"
+              style={{ borderColor: "#ffc800" }}
+              animate={{
+                scale: [1, 1.4, 1],
+                opacity: [0.5, 0, 0.5],
+              }}
+              transition={{
+                duration: 2.5,
+                repeat: Infinity,
+                ease: "easeOut",
+                delay: 0.5,
+              }}
+            />
+          </div>
         </motion.div>
 
         <motion.h1
@@ -127,7 +164,7 @@ export function Hero({ scrollToSection }: HeroProps) {
           }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
         >
           Don't Get Left Behind.{" "}
           <motion.span
@@ -158,7 +195,7 @@ export function Hero({ scrollToSection }: HeroProps) {
           }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
           <p>
             <strong>AI consultant Bournemouth</strong> providing <strong>AI training</strong>, <strong>integration</strong> and <strong>design from £40/hour</strong>. We help small businesses across Poole, Christchurch and Dorset adopt AI tools without the overwhelm - in plain English, no hype.
@@ -172,7 +209,7 @@ export function Hero({ scrollToSection }: HeroProps) {
           className="flex flex-wrap items-center justify-center gap-2 text-base md:text-lg opacity-80 pt-2"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.35 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
         >
           <span className="text-2xl">📍</span>
           <span className="text-center">
@@ -185,7 +222,7 @@ export function Hero({ scrollToSection }: HeroProps) {
           className="flex flex-wrap items-center justify-center gap-6 pt-4 opacity-80"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
         >
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "var(--spectral-green)" }} />
@@ -205,7 +242,7 @@ export function Hero({ scrollToSection }: HeroProps) {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
         >
           <Link to="/ai-health-check" className="w-full sm:w-auto">
             <Button

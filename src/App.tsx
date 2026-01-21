@@ -14,7 +14,6 @@ import { Analytics } from "./components/Analytics";
 import { CookieConsent } from "./components/CookieConsent";
 import { LiveChat } from "./components/LiveChat";
 import { AnnouncementBanner } from "./components/AnnouncementBanner";
-import { ExitIntentPopup } from "./components/ExitIntentPopup";
 import { WhatsAppButton } from "./components/WhatsAppButton";
 import { SafeComponent } from "./components/SafeComponent";
 
@@ -110,10 +109,6 @@ function AppContent() {
         
         <SafeComponent componentName="LiveChat">
           <LiveChat />
-        </SafeComponent>
-        
-        <SafeComponent componentName="ExitIntentPopup">
-          <ExitIntentPopup />
         </SafeComponent>
         
         <CookieConsent />

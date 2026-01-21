@@ -123,7 +123,6 @@
     --ease-out: cubic-bezier(0, 0, .2, 1);
     --ease-in-out: cubic-bezier(.4, 0, .2, 1);
     --animate-pulse: pulse 2s cubic-bezier(.4, 0, .6, 1) infinite;
-    --animate-bounce: bounce 1s infinite;
     --blur-sm: 8px;
     --blur-2xl: 40px;
     --blur-3xl: 64px;
@@ -2389,18 +2388,6 @@
   }
 
   @media (hover: hover) {
-    .group-hover\:animate-bounce:is(:where(.group):hover *) {
-      animation: var(--animate-bounce);
-    }
-  }
-
-  @media (hover: hover) {
-    .group-hover\:text-red-500:is(:where(.group):hover *) {
-      color: var(--color-red-500);
-    }
-  }
-
-  @media (hover: hover) {
     .group-hover\:opacity-40:is(:where(.group):hover *) {
       opacity: .4;
     }
@@ -2569,12 +2556,6 @@
       .hover\:border-purple-500\/50:hover {
         border-color: color-mix(in oklab, var(--color-purple-500) 50%, transparent);
       }
-    }
-  }
-
-  @media (hover: hover) {
-    .hover\:border-red-500:hover {
-      border-color: var(--color-red-500);
     }
   }
 
@@ -3887,18 +3868,6 @@ html {
 @keyframes pulse {
   50% {
     opacity: .5;
-  }
-}
-
-@keyframes bounce {
-  0%, 100% {
-    animation-timing-function: cubic-bezier(.8, 0, 1, 1);
-    transform: translateY(-25%);
-  }
-
-  50% {
-    animation-timing-function: cubic-bezier(0, 0, .2, 1);
-    transform: none;
   }
 }
 

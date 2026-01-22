@@ -34,6 +34,7 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import { BlogPage } from "./pages/BlogPage";
 import { BlogPostPage } from "./pages/BlogPostPage";
 import { HACRPage } from "./pages/HACRPage";
+import { NeuroInclusivePage } from "./pages/NeuroInclusivePage";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -94,6 +95,7 @@ function AppContent() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/legal" element={<LegalPage />} />
             <Route path="/ai-health-check" element={<AIHealthCheckPage />} />
+            <Route path="/neuro-inclusive" element={<NeuroInclusivePage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<BlogPostPage />} />
           </Routes>
@@ -102,15 +104,15 @@ function AppContent() {
         <TrustAuthority />
         <FooterRouter />
         <BackToTop />
-        
-        <SafeComponent componentName="WhatsAppButton">
-          <WhatsAppButton />
-        </SafeComponent>
-        
+
         <SafeComponent componentName="LiveChat">
           <LiveChat />
         </SafeComponent>
-        
+
+        <SafeComponent componentName="WhatsAppButton">
+          <WhatsAppButton />
+        </SafeComponent>
+
         <CookieConsent />
         
         <Toaster />

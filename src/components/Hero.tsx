@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
-import { Zap } from "lucide-react";
+import logoImage from "../assets/aigency-logo-new.png";
 
 interface HeroProps {
   scrollToSection: (id: string) => void;
@@ -85,74 +85,140 @@ export function Hero({ scrollToSection }: HeroProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        {/* Animated Lightning Icon Centerpiece */}
+        {/* Animated Logo Centerpiece */}
         <motion.div
-          className="flex justify-center mb-6"
+          className="flex flex-col items-center mb-6"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="relative">
+          <div className="relative mb-3">
             <div
-              className="w-28 h-28 rounded-3xl flex items-center justify-center relative overflow-hidden"
+              className="rounded-3xl flex items-center justify-center relative overflow-hidden"
               style={{
-                background: "linear-gradient(135deg, rgba(255, 200, 0, 0.2), rgba(255, 200, 0, 0.1))",
-                boxShadow: "0 8px 40px rgba(255, 200, 0, 0.5)",
+                width: "216px",
+                height: "158px",
+                background: "linear-gradient(135deg, rgba(160, 45, 255, 0.15), rgba(77, 255, 136, 0.15))",
+                boxShadow: "0 8px 40px rgba(160, 45, 255, 0.4), 0 8px 40px rgba(77, 255, 136, 0.4)",
               }}
             >
-              {/* Lightning bolt with floating animation */}
+              {/* Logo with floating animation */}
               <motion.div
-                className="absolute inset-0 flex items-center justify-center"
+                className="absolute inset-0 flex items-center justify-center p-3"
                 animate={{
-                  y: [0, -8, 0],
+                  y: [0, -12, 0],
                 }}
                 transition={{
-                  duration: 2.5,
+                  duration: 3,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
               >
-                <Zap 
-                  className="w-14 h-14" 
-                  style={{ 
-                    color: "#ffc800",
-                    fill: "#ffc800",
-                    filter: "drop-shadow(0 0 16px rgba(255, 200, 0, 0.8))",
-                    strokeWidth: 2,
-                  }} 
+                <motion.img
+                  src={logoImage}
+                  alt="AIGENCY Logo"
+                  className="w-full h-full object-contain"
+                  style={{
+                    filter: "drop-shadow(0 0 20px rgba(160, 45, 255, 0.6)) drop-shadow(0 0 20px rgba(77, 255, 136, 0.6))",
+                  }}
+                  animate={{
+                    filter: [
+                      "drop-shadow(0 0 20px rgba(160, 45, 255, 0.6)) drop-shadow(0 0 20px rgba(77, 255, 136, 0.6))",
+                      "drop-shadow(0 0 30px rgba(160, 45, 255, 0.8)) drop-shadow(0 0 30px rgba(77, 255, 136, 0.8))",
+                      "drop-shadow(0 0 20px rgba(160, 45, 255, 0.6)) drop-shadow(0 0 20px rgba(77, 255, 136, 0.6))",
+                    ],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 />
               </motion.div>
             </div>
-            
-            {/* Pulsing rings - Lightning yellow */}
+
+            {/* Pulsing rings - Purple and Green */}
             <motion.div
               className="absolute inset-0 rounded-3xl border-2"
-              style={{ borderColor: "#ffc800" }}
+              style={{
+                borderImage: "linear-gradient(135deg, var(--spectral-violet), var(--spectral-green)) 1",
+              }}
               animate={{
-                scale: [1, 1.3, 1],
+                scale: [1, 1.25, 1],
                 opacity: [0.6, 0, 0.6],
               }}
               transition={{
-                duration: 2.5,
+                duration: 3,
                 repeat: Infinity,
                 ease: "easeOut",
               }}
             />
             <motion.div
               className="absolute inset-0 rounded-3xl border-2"
-              style={{ borderColor: "#ffc800" }}
+              style={{
+                borderImage: "linear-gradient(135deg, var(--spectral-green), var(--spectral-violet)) 1",
+              }}
               animate={{
-                scale: [1, 1.4, 1],
+                scale: [1, 1.35, 1],
                 opacity: [0.5, 0, 0.5],
               }}
               transition={{
-                duration: 2.5,
+                duration: 3,
                 repeat: Infinity,
                 ease: "easeOut",
                 delay: 0.5,
               }}
             />
+            <motion.div
+              className="absolute inset-0 rounded-3xl border-2"
+              style={{
+                borderImage: "linear-gradient(135deg, var(--spectral-blue), var(--spectral-violet)) 1",
+              }}
+              animate={{
+                scale: [1, 1.45, 1],
+                opacity: [0.4, 0, 0.4],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeOut",
+                delay: 1,
+              }}
+            />
           </div>
+
+          {/* AiGENCY LTD Text Below Logo */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+          >
+            <motion.p
+              className="text-sm font-black tracking-wider whitespace-nowrap"
+              style={{
+                fontFamily: "'Orbitron', 'Rajdhani', 'Exo 2', sans-serif",
+                background: "linear-gradient(135deg, var(--spectral-violet) 0%, var(--spectral-green) 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                letterSpacing: "0.2em",
+              }}
+              animate={{
+                textShadow: [
+                  "0 0 20px rgba(160, 45, 255, 0.8), 0 0 20px rgba(77, 255, 136, 0.8)",
+                  "0 0 30px rgba(160, 45, 255, 1), 0 0 30px rgba(77, 255, 136, 1)",
+                  "0 0 20px rgba(160, 45, 255, 0.8), 0 0 20px rgba(77, 255, 136, 0.8)",
+                ],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              AiGENCY LTD
+            </motion.p>
+          </motion.div>
         </motion.div>
 
         <motion.h1
@@ -166,21 +232,24 @@ export function Hero({ scrollToSection }: HeroProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          Don't Get Left Behind.{" "}
           <motion.span
             style={{
-              background: "linear-gradient(135deg, #a02dff 0%, #2da8ff 100%)",
+              background: "linear-gradient(135deg, var(--spectral-violet) 0%, var(--spectral-green) 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
+              textShadow: "0 0 40px rgba(160, 45, 255, 0.3)",
             }}
-            animate={{
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "linear",
+          >
+            Don't Get Left Behind.{" "}
+          </motion.span>
+          <motion.span
+            style={{
+              background: "linear-gradient(135deg, var(--spectral-green) 0%, var(--spectral-violet) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              textShadow: "0 0 40px rgba(77, 255, 136, 0.3)",
             }}
           >
             Take Back Your Agency.

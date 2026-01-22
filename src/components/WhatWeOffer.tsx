@@ -1,4 +1,4 @@
-import { Bot, Palette, Lightbulb } from "lucide-react";
+import { Bot, Palette, Lightbulb, Brain } from "lucide-react";
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
@@ -64,6 +64,26 @@ const offerings = [
     glassClass: "glass-green",
     link: "/design",
   },
+  {
+    icon: Brain,
+    emoji: "🧠",
+    title: "Neuro-Inclusive AI & Safeguarded Systems",
+    badge: null,
+    price: "Custom pricing",
+    description: "AI systems designed for neurodivergent users and environments where safeguarding, clarity, and accountability matter. Suitable for councils, care providers, supported employment programmes, charities, and organisations supporting neurodivergent people.",
+    bullets: [
+      "Reduced cognitive load design",
+      "Predictable system behaviour",
+      "Clear human oversight",
+      "Autism and ADHD-aware systems",
+      "Safeguarding-appropriate design",
+      "UK GDPR compliant",
+    ],
+    perfect: "Councils, social care providers, charities, and employers supporting neurodivergent individuals",
+    color: "#ff6b6b",
+    glassClass: "glass-red",
+    link: "/neuro-inclusive",
+  },
 ];
 
 export function WhatWeOffer() {
@@ -99,7 +119,7 @@ export function WhatWeOffer() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
           {offerings.map((offering, index) => {
             const Icon = offering.icon;
             return (

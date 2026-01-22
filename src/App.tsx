@@ -104,15 +104,15 @@ function AppContent() {
         <TrustAuthority />
         <FooterRouter />
         <BackToTop />
-        
-        <SafeComponent componentName="WhatsAppButton">
-          <WhatsAppButton />
-        </SafeComponent>
-        
+
         <SafeComponent componentName="LiveChat">
           <LiveChat />
         </SafeComponent>
-        
+
+        <SafeComponent componentName="WhatsAppButton">
+          <WhatsAppButton />
+        </SafeComponent>
+
         <CookieConsent />
         
         <Toaster />

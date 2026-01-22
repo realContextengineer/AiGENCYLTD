@@ -294,83 +294,166 @@ function AIAgentsSection() {
           </div>
         </motion.div>
 
-        {/* Pricing tile */}
+        {/* Cost comparison callout */}
         <motion.div
-          className="glass p-10 rounded-3xl max-w-2xl mx-auto"
+          className="glass p-8 rounded-3xl max-w-4xl mx-auto mb-12 border-2"
+          style={{ borderColor: "rgba(77, 255, 136, 0.3)" }}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <div className="flex items-start gap-6 mb-6">
-            <div
-              className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0"
-              style={{
-                background: "rgba(160, 45, 255, 0.2)",
-                boxShadow: "0 4px 20px rgba(160, 45, 255, 0.3)",
-              }}
-            >
-              <Bot className="w-8 h-8" style={{ color: "#a02dff" }} />
+          <h3 className="text-2xl mb-6 text-center" style={{ color: "#4dff88" }}>
+            AI Agent vs. Human Receptionist
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="text-center p-6 rounded-2xl" style={{ background: "rgba(255, 255, 255, 0.05)" }}>
+              <p className="text-sm opacity-70 mb-2">Traditional Receptionist</p>
+              <p className="text-3xl mb-2" style={{ color: "#ff6b6b" }}>£24,000+</p>
+              <p className="text-xs opacity-60">per year (salary + benefits)</p>
             </div>
-            <div className="flex-1">
-              <h3 className="mb-2" style={{ color: "#a02dff", letterSpacing: "0.02em" }}>
-                Custom AI Agent
-              </h3>
-              <p className="text-3xl mb-4" style={{ color: "#4dff88" }}>
-                from £799
-              </p>
+            <div className="text-center p-6 rounded-2xl" style={{ background: "rgba(77, 255, 136, 0.1)" }}>
+              <p className="text-sm opacity-70 mb-2">AI Agent Subscription</p>
+              <p className="text-3xl mb-2" style={{ color: "#4dff88" }}>from £99</p>
+              <p className="text-xs opacity-60">per month (24/7 availability)</p>
             </div>
           </div>
-
-          <ul className="space-y-3 mb-8">
-            {[
-              "Onboarding call to understand your workflow",
-              "ICE-based training for grounded responses",
-              "Optional monthly tuning & optimization",
-              "Add-on: Hosting & maintenance from £29/month",
-            ].map((feature, idx) => (
-              <li key={idx} className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: "#4dff88" }} />
-                <span className="opacity-90 leading-relaxed">{feature}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div className="flex gap-4">
-            <Link to="/lab" className="flex-1">
-              <Button
-                className="w-full px-6 py-4 rounded-xl transition-all duration-300"
-                style={{
-                  background: "rgba(160, 45, 255, 0.15)",
-                  border: "2px solid #a02dff",
-                  color: "#a02dff",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "#a02dff";
-                  e.currentTarget.style.color = "#fff";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "rgba(160, 45, 255, 0.15)";
-                  e.currentTarget.style.color = "#a02dff";
-                }}
-              >
-                Learn More
-              </Button>
-            </Link>
-            <Link to="/contact" className="flex-1">
-              <Button
-                className="w-full px-6 py-4 rounded-xl transition-all duration-300"
-                style={{
-                  background: "#a02dff",
-                  border: "2px solid #a02dff",
-                  color: "#fff",
-                  boxShadow: "0 8px 32px rgba(160, 45, 255, 0.4)",
-                }}
-              >
-                Enquire
-              </Button>
-            </Link>
-          </div>
+          <p className="text-center mt-6 text-sm opacity-80">
+            Save up to 95% on reception costs while providing 24/7 service
+          </p>
         </motion.div>
+
+        {/* Pricing tiers */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {[
+            {
+              name: "Basic Agent",
+              price: "£99",
+              period: "/month",
+              setup: "£499 setup",
+              color: "#2da8ff",
+              features: [
+                "Pre-built workflows",
+                "FAQ responses",
+                "Basic appointment scheduling",
+                "Email notifications",
+                "Standard business hours support"
+              ]
+            },
+            {
+              name: "Advanced Agent",
+              price: "£199",
+              period: "/month",
+              setup: "£799 setup",
+              color: "#a02dff",
+              featured: true,
+              features: [
+                "Custom training on your business",
+                "CRM integration",
+                "Advanced scheduling & bookings",
+                "Multi-channel support (web, SMS)",
+                "ICE-framework grounding",
+                "Priority support"
+              ]
+            },
+            {
+              name: "Custom Enterprise",
+              price: "POA",
+              period: "",
+              setup: "from £1,500",
+              color: "#4dff88",
+              features: [
+                "Fully bespoke workflows",
+                "Multi-language support",
+                "API integrations",
+                "Dedicated account manager",
+                "White-label options",
+                "SLA guarantee"
+              ]
+            }
+          ].map((plan, idx) => (
+            <motion.div
+              key={idx}
+              className={`glass p-8 rounded-3xl transition-all duration-500 hover:scale-105 ${
+                plan.featured ? "md:scale-105 border-2" : ""
+              }`}
+              style={plan.featured ? { borderColor: `${plan.color}50` } : {}}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.5, delay: 0.8 + idx * 0.1 }}
+            >
+              {plan.featured && (
+                <div
+                  className="absolute top-0 right-0 px-4 py-2 rounded-bl-2xl text-sm"
+                  style={{
+                    backgroundColor: `${plan.color}20`,
+                    color: plan.color,
+                  }}
+                >
+                  Most Popular
+                </div>
+              )}
+
+              <div
+                className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
+                style={{
+                  background: `${plan.color}20`,
+                  boxShadow: `0 4px 20px ${plan.color}30`,
+                }}
+              >
+                <Bot className="w-7 h-7" style={{ color: plan.color }} />
+              </div>
+
+              <h3 className="mb-3" style={{ color: plan.color, letterSpacing: "0.02em" }}>
+                {plan.name}
+              </h3>
+
+              <div className="mb-2">
+                <span className="text-3xl" style={{ color: plan.color }}>
+                  {plan.price}
+                </span>
+                <span className="text-lg opacity-70">{plan.period}</span>
+              </div>
+              <p className="text-sm opacity-60 mb-6">{plan.setup}</p>
+
+              <ul className="space-y-3 mb-8">
+                {plan.features.map((feature, fIdx) => (
+                  <li key={fIdx} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: plan.color }} />
+                    <span className="opacity-90 leading-relaxed text-sm">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <Link to="/contact">
+                <Button
+                  className="w-full px-6 py-4 rounded-xl transition-all duration-300"
+                  style={{
+                    background: plan.featured ? plan.color : `${plan.color}15`,
+                    border: `2px solid ${plan.color}`,
+                    color: plan.featured ? "#fff" : plan.color,
+                    boxShadow: plan.featured ? `0 8px 32px ${plan.color}40` : "none",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!plan.featured) {
+                      e.currentTarget.style.backgroundColor = plan.color;
+                      e.currentTarget.style.color = "#fff";
+                    }
+                    e.currentTarget.style.boxShadow = `0 8px 32px ${plan.color}60`;
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!plan.featured) {
+                      e.currentTarget.style.backgroundColor = `${plan.color}15`;
+                      e.currentTarget.style.color = plan.color;
+                    }
+                    e.currentTarget.style.boxShadow = plan.featured ? `0 8px 32px ${plan.color}40` : "none";
+                  }}
+                >
+                  {plan.price === "POA" ? "Request Quote" : "Get Started"}
+                </Button>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -384,7 +467,7 @@ function WebDesignSection() {
     {
       name: "Starter Site",
       description: "3-page responsive site using WordPress or Framer. Perfect for individuals or small studios.",
-      price: "from £299",
+      price: "from £1,000",
       color: "#2da8ff",
       cta: "Start Project",
       ctaLink: "/contact",
@@ -392,7 +475,7 @@ function WebDesignSection() {
     {
       name: "Professional Site",
       description: "5–8 page site with custom integrations, SEO setup, and light automation.",
-      price: "from £499",
+      price: "from £2,500",
       color: "#a02dff",
       featured: true,
       cta: "Book Discovery Call",
@@ -401,7 +484,7 @@ function WebDesignSection() {
     {
       name: "E-Commerce / WooCommerce",
       description: "Scalable online stores with AI-driven product descriptions and chat support.",
-      price: "from £699",
+      price: "from £3,500",
       color: "#4dff88",
       cta: "Get Quote",
       ctaLink: "/contact",
@@ -604,7 +687,7 @@ function WebAppsSection() {
                   Web App Development
                 </h3>
                 <p className="text-3xl mb-4" style={{ color: "#4dff88" }}>
-                  from £499
+                  from £1,000
                 </p>
               </div>
             </div>

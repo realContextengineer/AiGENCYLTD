@@ -91,7 +91,7 @@ export function LiveChat() {
       {/* Chat Button */}
       <motion.button
         onClick={handleToggle}
-        className="fixed bottom-6 right-6 z-50 p-4 rounded-full border-2 border-purple-500 hover:scale-110 transition-transform duration-300 brutalist-shadow-lg group"
+        className="fixed bottom-6 left-6 z-50 p-4 rounded-full border-2 border-purple-500 hover:scale-110 transition-transform duration-300 brutalist-shadow-lg group"
         style={{
           backdropFilter: "blur(20px) saturate(180%)",
           WebkitBackdropFilter: "blur(20px) saturate(180%)",
@@ -144,7 +144,7 @@ export function LiveChat() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed bottom-24 right-6 z-50 w-[90vw] sm:w-96 h-[500px] rounded-3xl border-2 border-cyan-500 brutalist-shadow-lg overflow-hidden flex flex-col"
+            className="fixed bottom-24 left-6 z-50 w-[90vw] sm:w-96 h-[500px] rounded-3xl border-2 border-cyan-500 brutalist-shadow-lg overflow-hidden flex flex-col"
             style={{
               backdropFilter: "blur(24px) saturate(200%)",
               WebkitBackdropFilter: "blur(24px) saturate(200%)",

@@ -192,9 +192,10 @@ export function Hero({ scrollToSection }: HeroProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
+            className="mt-4"
           >
             <motion.p
-              className="text-sm font-black tracking-wider whitespace-nowrap"
+              className="text-2xl md:text-3xl font-black tracking-wider whitespace-nowrap"
               style={{
                 fontFamily: "'Orbitron', 'Rajdhani', 'Exo 2', sans-serif",
                 background: "linear-gradient(135deg, var(--spectral-violet) 0%, var(--spectral-green) 100%)",
@@ -219,6 +220,22 @@ export function Hero({ scrollToSection }: HeroProps) {
               AiGENCY LTD
             </motion.p>
           </motion.div>
+        </motion.div>
+
+        {/* Subtle divider line */}
+        <motion.div
+          className="flex justify-center my-8"
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          <div
+            style={{
+              width: "100px",
+              height: "1px",
+              background: "linear-gradient(90deg, transparent, rgba(160, 45, 255, 0.5), rgba(77, 255, 136, 0.5), transparent)",
+            }}
+          />
         </motion.div>
 
         <motion.h1
@@ -256,6 +273,22 @@ export function Hero({ scrollToSection }: HeroProps) {
           </motion.span>
         </motion.h1>
 
+        {/* Longer divider line after hero text */}
+        <motion.div
+          className="flex justify-center my-8"
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <div
+            style={{
+              width: "200px",
+              height: "1px",
+              background: "linear-gradient(90deg, transparent, rgba(160, 45, 255, 0.6), rgba(77, 255, 136, 0.6), transparent)",
+            }}
+          />
+        </motion.div>
+
         <motion.div
           className="max-w-4xl mx-auto opacity-90 space-y-4"
           style={{
@@ -285,6 +318,22 @@ export function Hero({ scrollToSection }: HeroProps) {
             <strong>Local AI expert Dorset</strong> | In-person AI training Bournemouth | Freelance AI consultant Poole | Online or face-to-face
           </span>
         </motion.p>
+
+        {/* Divider line after location */}
+        <motion.div
+          className="flex justify-center my-6"
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+        >
+          <div
+            style={{
+              width: "150px",
+              height: "1px",
+              background: "linear-gradient(90deg, transparent, rgba(45, 168, 255, 0.5), rgba(160, 45, 255, 0.5), transparent)",
+            }}
+          />
+        </motion.div>
 
         {/* Social Proof Stats */}
         <motion.div
@@ -351,6 +400,22 @@ export function Hero({ scrollToSection }: HeroProps) {
               AI Training & Integration Packages
             </Button>
           </Link>
+        </motion.div>
+
+        {/* Divider line after CTA buttons */}
+        <motion.div
+          className="flex justify-center -mt-2 -mb-6"
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+        >
+          <div
+            style={{
+              width: "180px",
+              height: "1px",
+              background: "linear-gradient(90deg, transparent, rgba(77, 255, 136, 0.6), rgba(45, 168, 255, 0.6), transparent)",
+            }}
+          />
         </motion.div>
       </motion.div>
 

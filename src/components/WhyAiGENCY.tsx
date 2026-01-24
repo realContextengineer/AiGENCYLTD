@@ -6,7 +6,7 @@ export function WhyAiGENCY() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section className="relative py-24 px-6">
+    <section className="relative pt-8 pb-24 px-6">
       <div className="max-w-5xl mx-auto text-center">
         <motion.div
           ref={ref}
@@ -34,18 +34,6 @@ export function WhyAiGENCY() {
               Bournemouth | Poole | Christchurch | Dorset
             </span>
           </h2>
-
-          <h3
-            className="text-3xl md:text-4xl mb-8"
-            style={{
-              background: "linear-gradient(135deg, #a02dff 0%, #2da8ff 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            AI + Agency = AiGENCY
-          </h3>
 
           <div className="glass border-2 border-border/50 rounded-2xl p-8 md:p-12 text-left">
             <p className="text-lg md:text-xl leading-relaxed opacity-90 mb-6">

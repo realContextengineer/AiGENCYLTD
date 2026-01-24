@@ -73,7 +73,7 @@ export function GetStartedWizard({ isOpen, onClose }: GetStartedWizardProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose} modal={true}>
-      <DialogContent className="sm:max-w-3xl glass-strong border-2 border-white/10" aria-describedby="wizard-description">
+      <DialogContent className="sm:max-w-3xl border-2 border-white/10" style={{ background: "rgba(0, 0, 0, 0.85)", backdropFilter: "blur(16px)" }} aria-describedby="wizard-description">
         <DialogHeader>
           <div className="flex items-center justify-center gap-3 mb-2">
             <div

@@ -3904,3 +3904,9 @@ html {
     height: 0;
   }
 }
+
+/* Calendly Popup Overlay - Make background less transparent */
+.calendly-overlay {
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(8px) !important;
+}

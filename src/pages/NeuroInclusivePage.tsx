@@ -11,10 +11,10 @@ export function NeuroInclusivePage() {
   return (
     <>
       <SEOHead
-        title="Neuro-Inclusive AI & Safeguarded Systems | AIGENCY LTD"
-        description="AI systems designed for neurodivergent users and environments where safeguarding, clarity, and accountability matter. Suitable for councils, care providers, and organisations supporting neurodivergent people."
-        keywords="neuro-inclusive AI, autism-aware AI systems, ADHD AI support, safeguarding AI, neurodivergent technology, AI for councils, AI for care providers, supported employment AI, accessible AI systems, cognitive load reduction"
-        url="https://aigency.limited/neuro-inclusive"
+        title="AI Apps for Autism & ADHD Support Dorset | Neurodivergent AI Tools Bournemouth | AiGENCY"
+        description="AI tools for autism & ADHD support in Bournemouth, Poole & Dorset. Free AI planners for dyslexic adults, text-to-speech software, AI note-taking aids for neurodivergent students. Suitable for councils, schools & care providers."
+        keywords="AI apps for autism support Dorset, AI tool for ADHD students Bournemouth, text-to-speech software neurodiversity Poole, AI note-taking aid Christchurch, free AI planner for dyslexic adults Dorset, neurodivergent AI tools, ADHD AI support, autism-aware AI Bournemouth, AI for special needs Dorset, accessible AI Poole, cognitive support tools, AI for care providers Bournemouth, AI for councils Dorset, safeguarding AI Christchurch"
+        url="https://www.aigency.ltd/neuro-inclusive"
       />
 
       <div className="min-h-screen py-24 px-6" ref={ref}>

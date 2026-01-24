@@ -2,7 +2,7 @@ import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { Button } from "../components/ui/button";
 import { Link } from "react-router-dom";
-import { 
+import {
   Bot,
   Zap,
   Globe,
@@ -16,19 +16,28 @@ import {
   Users
 } from "lucide-react";
 import { Testimonials } from "../components/Testimonials";
+import { SEOHead } from "../components/SEOHead";
 
 export function DesignPage() {
   return (
-    <div className="min-h-screen">
-      <HeroSection />
-      <AIAgentsSection />
-      <WebDesignSection />
-      <WebAppsSection />
-      <HostingSection />
-      <BespokeSection />
-      <TestimonialsModernSection />
-      <FinalCTASection />
-    </div>
+    <>
+      <SEOHead
+        title="AI Web Design & AI Agents Bournemouth | AI Apps & Automation Dorset | AiGENCY"
+        description="AI-powered web design, custom AI agents & web apps for Bournemouth businesses. AI chatbots, receptionist agents from £99/month. Website design from £1,000. Serving Poole, Christchurch & Dorset."
+        keywords="AI web design Bournemouth, AI agents Dorset, AI chatbot Poole, AI receptionist Christchurch, web app development Bournemouth, AI automation Dorset, custom AI agents, AI customer service Bournemouth, bespoke web design Poole, AI integration Christchurch, AI graphic design Bournemouth, AI logo generator Dorset, Midjourney training Dorset, AI brand strategy Poole, AI video editing Christchurch"
+        url="https://www.aigency.ltd/design"
+      />
+      <div className="min-h-screen">
+        <HeroSection />
+        <AIAgentsSection />
+        <WebDesignSection />
+        <WebAppsSection />
+        <HostingSection />
+        <BespokeSection />
+        <TestimonialsModernSection />
+        <FinalCTASection />
+      </div>
+    </>
   );
 }
 

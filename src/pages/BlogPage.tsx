@@ -88,10 +88,10 @@ export function BlogPage() {
   return (
     <>
       <SEOHead
-        title="AI Insights & Local Stories | AIGENCY Blog - Bournemouth AI Agency"
-        description="Practical AI insights for Bournemouth & Dorset businesses. Learn about AI integration, tools, and success stories from local companies. No jargon, just real-world advice."
-        keywords="AI blog Bournemouth, AI insights Dorset, AI business tips, AI tools guide, AI success stories, Bournemouth business AI, AI education, local AI stories"
-        url="https://aigency.limited/blog"
+        title="AI Blog Bournemouth | Web Apps, Agents & Design Insights | Poole Dorset AI Tips"
+        description="AI web design, agents & apps blog for Bournemouth businesses. Free AI tools, ChatGPT guides, automation tips for Poole & Dorset SMEs. Real case studies from local companies."
+        keywords="AI blog Bournemouth, AI web design tips Poole, AI agents guide Dorset, free AI tools for small business, ChatGPT tutorials Bournemouth, AI automation case studies Dorset, AI for Bournemouth businesses, web app development blog Poole, AI marketing Christchurch, AI insights Dorset, Bournemouth AI meet-up, Dorset AI community, AI business tips BCP"
+        url="https://www.aigency.ltd/blog"
       />
       
       <div className="min-h-screen pt-24 pb-20">

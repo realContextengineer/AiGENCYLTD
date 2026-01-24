@@ -10,10 +10,10 @@ export function LabPage() {
   return (
     <>
       <SEOHead
-        title="The Lab - Learning Hub | AiGENCY.LIMITED"
-        description="Learn, build, and experiment with human-centered AI tools. Access ICE-trained agents, download resources, and join a community grounded in Integrative Context Engineering."
-        keywords="AI learning, AI tools, ICE framework, AI membership, ethical AI, AI consulting, Bournemouth AI, AI community"
-        canonicalUrl="https://aigency.limited/lab"
+        title="AI Tools & Agents Marketplace Bournemouth | Free AI Resources Dorset | AiGENCY Lab"
+        description="Download free AI agents, tools & resources for Bournemouth businesses. AI apps marketplace, ready-made AI workflows, ChatGPT templates. Join Dorset AI community & meetups."
+        keywords="free AI tools Bournemouth, AI agents marketplace Dorset, download AI apps Poole, AI resources Christchurch, AI community Bournemouth, AI meetup Dorset, free ChatGPT templates, AI workflow downloads, AI tools for small business Bournemouth, Bournemouth AI user group, Dorset AI mastermind, AI peer group Poole"
+        url="https://www.aigency.ltd/lab"
       />
       <Lab />
     </>

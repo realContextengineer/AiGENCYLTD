@@ -16,10 +16,10 @@ export function HomePage({ scrollToSection }: HomePageProps) {
   return (
     <>
       <SEOHead
-        title="AI Consultant Bournemouth £40/hr | AI Training, Integration & Design Poole Dorset"
-        description="Local AI consultant Bournemouth. AI training for employees, integrate AI into existing software, ChatGPT workshops for Dorset small business. In-person or online from £40/hour. Plain English, no hype."
-        keywords="AI consultant Bournemouth, AI consultant Poole, freelance AI consultant Dorset, AI advisor small business, local AI expert Dorset, integrate AI into existing software, AI automation Bournemouth, AI chatbot restaurant booking, Zapier AI expert Poole, AI training employees, ChatGPT workshop Dorset, AI prompt engineering training, AI marketing training, AI content writing, AI integration service near me, AI support hourly rate"
-        url="https://aigency.limited"
+        title="AI Web Apps & Design Bournemouth | AI Agents & Websites Poole Dorset | From £40/hr"
+        description="Bournemouth AI web design, custom AI agents & web apps. AI chatbots from £99/mo, websites from £1,000, AI training £40/hr. Serving Poole, Christchurch & Dorset. Free AI tools for small business."
+        keywords="AI web design Bournemouth, web app development Poole, AI agents Dorset, AI chatbot Christchurch, custom AI agents Bournemouth UK, AI website design Poole, bespoke web apps Dorset, AI automation Bournemouth, AI integration consultant Bournemouth, AI plug-in for Shopify Bournemouth, connect AI to QuickBooks Christchurch, Zapier AI automation Poole, Dorset AI agency for SMEs, AI graphic design course Bournemouth, AI logo generator for Dorset start-ups, AI brand strategy workshop Poole, AI video editing Christchurch agency, Midjourney training Dorset designer, AI consultancy Bournemouth face-to-face, Dorset AI company no-code solutions, AI freelancer Poole onsite"
+        url="https://www.aigency.ltd"
       />
       <SafeComponent componentName="Hero">
         <Hero scrollToSection={scrollToSection} />

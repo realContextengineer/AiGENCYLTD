@@ -9,11 +9,11 @@ interface SEOHeadProps {
 }
 
 export function SEOHead({
-  title = "AI Consultants Bournemouth | Local AI Integration & Training from £40 | Aigency Ltd",
-  description = "Bournemouth's trusted AI consultants. AI training from £40/hour + custom integration for Dorset businesses. Helped 50+ local businesses save 1000+ hours. GDPR compliant. Book free consultation today.",
-  keywords = "AI consultants Bournemouth, AI integration Bournemouth, AI training Dorset, ChatGPT setup Poole, AI for small business Christchurch, AI automation Dorset, business automation Bournemouth, AI consultant near me, affordable AI services, AI help Bournemouth, AI expert Dorset, learn AI Bournemouth, AI workflow automation, GDPR AI consultant",
-  ogImage = "https://aigency.limited/og-image.png",
-  url = "https://aigency.limited",
+  title = "AI Consultant Bournemouth | Freelance AI Expert Dorset & Poole | AiGENCY",
+  description = "Local AI consultant in Bournemouth offering AI training, integration & automation for businesses across Dorset, Poole & Christchurch. Expert AI support for SMEs.",
+  keywords = "AI consultant Bournemouth, AI expert Dorset, AI training Poole, AI consultant near me, freelance AI consultant, AI integration, AI automation, business AI consultant Christchurch, local AI expert, AI consultant Hampshire, in-person AI training Bournemouth",
+  ogImage = "https://www.aigency.ltd/og-image.jpg",
+  url = "https://www.aigency.ltd",
 }: SEOHeadProps) {
   useEffect(() => {
     // Set document title

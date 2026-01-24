@@ -251,14 +251,10 @@ export function Hero({ scrollToSection }: HeroProps) {
         >
           <motion.span
             style={{
-              background: "linear-gradient(135deg, var(--spectral-violet) 0%, var(--spectral-green) 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              textShadow: "0 0 40px rgba(160, 45, 255, 0.3)",
+              color: "#ffffff",
             }}
           >
-            Don't Get Left Behind.{" "}
+            AI Feels Overwhelming?{" "}
           </motion.span>
           <motion.span
             style={{
@@ -269,7 +265,7 @@ export function Hero({ scrollToSection }: HeroProps) {
               textShadow: "0 0 40px rgba(77, 255, 136, 0.3)",
             }}
           >
-            Take Back Your Agency.
+            We Teach It in Plain English
           </motion.span>
         </motion.h1>
 
@@ -300,22 +296,22 @@ export function Hero({ scrollToSection }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <p>
-            <strong>AI consultant Bournemouth</strong> providing <strong>AI training</strong>, <strong>integration</strong> and <strong>design from £40/hour</strong>. We help small businesses across Poole, Christchurch and Dorset adopt AI tools without the overwhelm - in plain English, no hype.
+            AI training for neurodivergent people & small businesses · We also build AI chatbots, websites & integrate AI into your existing systems
           </p>
-          <p className="text-xl font-semibold" style={{ color: "var(--spectral-orange)" }}>
-            The AI train is about to leave the station.
+          <p className="text-lg opacity-80">
+            Training <strong>£40/hr</strong> · AI chatbots <strong>£99/mo</strong> · Websites <strong>£1,000</strong> · Bournemouth, Poole & Christchurch
           </p>
         </motion.div>
 
         <motion.p
-          className="flex flex-wrap items-center justify-center gap-2 text-base md:text-lg opacity-80 pt-2"
+          className="flex flex-wrap items-center justify-center gap-2 text-base md:text-lg opacity-80 pt-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
           <span className="text-2xl">📍</span>
           <span className="text-center">
-            <strong>Local AI expert Dorset</strong> | In-person AI training Bournemouth | Freelance AI consultant Poole | Online or face-to-face
+            Bournemouth, Poole & Christchurch | Face-to-face or online
           </span>
         </motion.p>
 

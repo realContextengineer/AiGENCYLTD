@@ -7,12 +7,13 @@
 - **Repository:** https://github.com/realContextengineer/aigency-website
 - **Location:** Bournemouth, Poole, Christchurch, Dorset, United Kingdom
 - **Coordinates:** 50.7192, -1.8808
-- **Phone:** +44-1202-000000
+- **Phone:** +44 7460 685448
+- **Email:** sync@aigency.ltd
 - **Hours:** Monday-Friday 09:00-17:30
 
 ## Pricing
 
-- **Hourly Rate:** From £40/hour
+- **Pricing:** Flexible, scope-based support for individuals, charities and small businesses
 - **Packages:** Flexible, zero-retainer support packages
 - **Areas served:** Bournemouth, Poole, Christchurch, Dorset, Hampshire
 
@@ -20,7 +21,9 @@
 
 - **AI Automation Setup:** Email, enquiry and follow-up automation; CRM, booking, spreadsheet and website workflows; Zapier, Make, API and no-code automation support.
 - **Custom AI Agents:** Customer enquiry and FAQ assistants; internal knowledge-base agents; sales, onboarding and admin support agents.
-- **ChatGPT & AI Training:** ChatGPT, Claude and everyday AI workflows; prompting for emails, quotes, content and planning; team sessions in Bournemouth or online.
+- **One-to-One AI Support:** ChatGPT, Claude and everyday AI workflows; prompting for emails, quotes, content and planning; calm Zoom support for individuals, charities and small organisations.
+- **Charity & Community Support:** Neuro-friendly AI consultancy and digital safety support for charities and community organisations.
+- **Focus:** Sole traders, small businesses, individuals and charities. AiGENCY is not currently offering large corporate training programmes or office-based presentations.
 - **Ongoing AI Support:** Review automations and fix friction; improve prompts and agent behaviour; support staff as habits change.
 - **AI Business Audit:** Map admin bottlenecks and repeated tasks; spot safe automation opportunities; prioritise quick wins; plain-English recommendations.
 
@@ -28,7 +31,7 @@
 
 - **Experience:** 25+ years in applied psychology, computing, and design.
 - **Education:** Master of Arts in Sound Design for the Moving Image from Bournemouth Media School.
-- **Recognition:** Top-ranked local AI Consultant on Google Business Pages for Bournemouth.
+- **Recognition:** Local Bournemouth AI consultancy; verify current search positions independently.
 
 ## Community
 

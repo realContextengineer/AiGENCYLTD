@@ -521,6 +521,38 @@ a:hover, a:focus-visible {
   color: #CBD5E1;
 }
 
+/* AI transparency tile: a distinct blue-green glass surface for trust and safety. */
+.bento-card.transparency-theme {
+  background:
+    radial-gradient(circle at 86% 12%, rgba(104, 170, 157, 0.2), transparent 42%),
+    linear-gradient(145deg, rgba(31, 69, 76, 0.62), rgba(14, 28, 47, 0.82));
+  border-color: rgba(126, 184, 178, 0.48);
+}
+
+.bento-card.transparency-theme h3 {
+  color: #c4ddd5;
+}
+
+.bento-card.transparency-theme p {
+  color: #b7c8ce;
+}
+
+.bento-card.transparency-theme:hover {
+  border-color: rgba(166, 216, 195, 0.74);
+  box-shadow: inset 0 1px 1px rgba(225, 246, 238, 0.08), 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 26px rgba(82, 157, 139, 0.14);
+}
+
+.bento-card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.bento-card-link:hover,
+.bento-card-link:focus-visible {
+  color: inherit;
+  outline: none;
+}
+
 /* Hero Video Background */
 .hero-video-wrapper {
   position: absolute;
@@ -1332,14 +1364,29 @@ a:hover, a:focus-visible {
 
 .footer-links {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.35rem 0.8rem;
   margin: 1.25rem 0;
+  width: 100%;
 }
 
 .footer-links a {
   margin: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .footer-links {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 0.15rem 0.25rem 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
 }
 
 .footer-meta {
@@ -1390,4 +1437,28 @@ a:hover, a:focus-visible {
 :focus-visible {
   outline: 2px solid var(--color-electric-cyan);
   outline-offset: 2px;
+}
+.reviews-section {
+  margin-top: 2rem;
+}
+
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 230px;
+}
+
+.testimonial-card blockquote {
+  margin: 0;
+  color: rgba(238, 232, 221, 0.92);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.testimonial-card figcaption {
+  margin-top: 1.5rem;
+  color: var(--color-bronze-light, #d9b58f);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
 }

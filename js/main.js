@@ -10,12 +10,37 @@
   const navToggle = document.querySelector('.nav-toggle');
   const navMobile = document.querySelector('.nav-mobile');
 
+  // ========== PRIMARY SITE NAVIGATION ==========
+  // Keep the top-level journey consistent across every static page.
+  const primaryNav = [
+    ['index.html', 'Home', 'home'],
+    ['services.html', 'Services', 'services'],
+    ['creative-design.html', 'Design', 'design'],
+    ['about.html', 'About', 'about'],
+    ['ai-transparency.html', 'Responsible AI', 'transparency'],
+    ['training.html', 'Training', 'training'],
+    ['https://hermes-agents.com', 'Hermes Agents', null]
+  ];
+
+  document.querySelectorAll('.nav-desktop, .nav-mobile').forEach(function(list) {
+    const isMobile = list.classList.contains('nav-mobile');
+    list.innerHTML = primaryNav.map(function(item) {
+      const external = item[0].indexOf('http') === 0;
+      const attrs = external ? ' target="_blank" rel="noopener"' : '';
+      const className = external ? ' class="nav-cta"' : '';
+      const dataNav = item[2] ? ' data-nav="' + item[2] + '"' : '';
+      return '<li><a href="' + item[0] + '"' + dataNav + className + attrs + '>' + item[1] + '</a></li>';
+    }).join('');
+  });
+
   // ========== CURRENT NAVIGATION STATE ==========
   const navPath = window.location.pathname.split('/').pop() || 'index.html';
   const navKey = window.location.hash === '#training'
     ? 'training'
     : navPath === 'creative-design.html'
       ? 'design'
+      : navPath === 'ai-transparency.html'
+        ? 'transparency'
       : navPath === 'about.html'
         ? 'about'
         : navPath === 'index.html'

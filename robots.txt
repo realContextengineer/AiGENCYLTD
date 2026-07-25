@@ -11,4 +11,6 @@ User-agent: PerplexityBot
 Allow: /
 
 User-agent: *
-Disallow:
+Allow: /
+
+Sitemap: https://aigency.ltd/sitemap.xml

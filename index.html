@@ -54,14 +54,15 @@
 <body>
   <header class="header" role="banner">
     <a href="index.html" class="logo" aria-label="AIGENCY.LTD Home">
-      <img src="assets/video/logo etc/logo.png" alt="AIGENCY.LTD" class="logo-img">
+      <img src="assets/video : logo etc/Screenshot_2026-07-25_at_13.46.47-removebg-preview.png" alt="AIGENCY.LTD" class="logo-img">
     </a>
     <nav aria-label="Main navigation">
       <ul class="nav-desktop">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="creative-design.html">Creative Design</a></li>
-        <li><a href="about.html">About & Psychology</a></li>
-        <li><a href="about.html#training">Neuro-Inclusive Training</a></li>
+        <li><a href="index.html" data-nav="home">Home</a></li>
+        <li><a href="creative-design.html" data-nav="design">Design</a></li>
+        <li><a href="about.html" data-nav="about">About</a></li>
+        <li><a href="about.html#training" data-nav="training">Neuro-Inclusive Training</a></li>
+        <li><a href="https://hermes-agents.com" class="nav-cta" target="_blank" rel="noopener">Hermes Agents</a></li>
       </ul>
       <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
         <span></span>
@@ -72,10 +73,11 @@
   </header>
 
   <ul class="nav-mobile" aria-label="Mobile navigation">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="creative-design.html">Creative Design</a></li>
-    <li><a href="about.html">About & Psychology</a></li>
-    <li><a href="about.html#training">Neuro-Inclusive Training</a></li>
+    <li><a href="index.html" data-nav="home">Home</a></li>
+    <li><a href="creative-design.html" data-nav="design">Design</a></li>
+    <li><a href="about.html" data-nav="about">About</a></li>
+    <li><a href="about.html#training" data-nav="training">Neuro-Inclusive Training</a></li>
+    <li><a href="https://hermes-agents.com" class="nav-cta" target="_blank" rel="noopener">Hermes Agents</a></li>
   </ul>
 
   <main class="main" role="main">
@@ -88,20 +90,20 @@
             <p class="hero-subheadline">Practical AI help for people, sole traders and small businesses who want less admin, clearer workflows and tools that actually fit the way they work.</p>
             <p style="margin: 1rem 0; color: var(--color-silver);">AI audits, automation setup, custom AI agents, ChatGPT training and ongoing support across Bournemouth, Poole and Christchurch.</p>
             <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
-              <a href="#ai-health-check" class="btn-primary">Start the Free AI Health Check</a>
+              <a href="#ai-health-check" class="btn-primary btn-bronze">Start the Free AI Health Check</a>
               <a href="contact.html" class="btn-primary" style="background: transparent; color: var(--color-electric-cyan); border: 1px solid var(--color-electric-cyan);">Book a Free AI Consultation</a>
             </div>
           </div>
           <div class="hero-video-full">
             <video autoplay loop muted playsinline preload="auto" class="hero-bg-video">
-              <source src="assets/video/logo etc/AiGency Hermes.mp4" type="video/mp4">
+              <source src="assets/video : logo etc/new vid.mp4" type="video/mp4">
             </video>
           </div>
         </div>
       </div>
 
       <!-- Card B: AI Health Check Quiz -->
-      <div id="ai-health-check" class="bento-card span-8 hero-theme" style="grid-row: span 2;">
+      <div id="ai-health-check" class="bento-card span-8 hero-theme bronze-theme" style="grid-row: span 2;">
         <div class="quiz-container" style="min-height: 420px;">
           <div class="quiz-screen active" id="screen-intro">
             <h2 class="quiz-title">AI Health Check</h2>
@@ -302,6 +304,6 @@
     <p style="margin-top: 1rem;"><a href="index.html">Home</a> | <a href="creative-design.html">Creative Design</a> | <a href="about.html">About</a> | <a href="contact.html">Contact</a></p>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script src="js/main.js?v=nav-bronze" defer></script>
 </body>
 </html>

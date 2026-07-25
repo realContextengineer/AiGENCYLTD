@@ -10,6 +10,27 @@
   const navToggle = document.querySelector('.nav-toggle');
   const navMobile = document.querySelector('.nav-mobile');
 
+  // ========== CURRENT NAVIGATION STATE ==========
+  const navPath = window.location.pathname.split('/').pop() || 'index.html';
+  const navKey = window.location.hash === '#training'
+    ? 'training'
+    : navPath === 'creative-design.html'
+      ? 'design'
+      : navPath === 'about.html'
+        ? 'about'
+        : navPath === 'index.html'
+          ? 'home'
+          : null;
+
+  if (navKey) {
+    document.querySelectorAll('[data-nav]').forEach(function(link) {
+      if (link.getAttribute('data-nav') === navKey) {
+        link.classList.add('is-active');
+        link.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+
   if (navToggle && navMobile) {
     navToggle.addEventListener('click', function() {
       const isExpanded = this.getAttribute('aria-expanded') === 'true';

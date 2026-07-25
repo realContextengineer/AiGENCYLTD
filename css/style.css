@@ -97,8 +97,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-headline);
   color: var(--color-silver);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
   font-weight: 600;
 }
 
@@ -323,9 +323,10 @@ a:hover, a:focus-visible {
   background: var(--color-deep-slate);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-card);
   padding: clamp(1.5rem, 3vw, 2.5rem);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.03), 0 8px 32px rgba(0, 0, 0, 0.2);
   transition: transform var(--transition-medium), border-color var(--transition-medium), box-shadow var(--transition-medium);
   display: flex;
   flex-direction: column;
@@ -335,8 +336,8 @@ a:hover, a:focus-visible {
 
 .bento-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-color: rgba(159, 198, 170, 0.28);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.04), 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(111, 159, 131, 0.02);
 }
 
 .bento-card h3 {
@@ -486,8 +487,8 @@ a:hover, a:focus-visible {
 }
 
 .bento-card.hero-theme:hover {
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-color: rgba(159, 198, 170, 0.28);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.04), 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(111, 159, 131, 0.02);
 }
 
 /* Bronze counterpoint for the primary health-check journey */
@@ -498,7 +499,26 @@ a:hover, a:focus-visible {
 
 .bento-card.bronze-theme:hover {
   border-color: rgba(197, 155, 122, 0.55);
-  box-shadow: 0 8px 32px rgba(143, 106, 82, 0.12);
+  box-shadow: inset 0 1px 1px rgba(255, 232, 206, 0.04), 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(143, 106, 82, 0.04);
+}
+
+/* ---------- BRONZE ACCENT CARD VARIANT ---------- */
+.bento-card.bronze-accent {
+  background: rgba(33, 31, 16, 0.35);
+  border-color: rgba(180, 160, 110, 0.22);
+}
+
+.bento-card.bronze-accent:hover {
+  border-color: rgba(180, 160, 110, 0.42);
+  box-shadow: inset 0 1px 1px rgba(255, 232, 206, 0.04), 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(180, 160, 110, 0.03);
+}
+
+.bento-card.bronze-accent h3 {
+  color: #F8FAFC;
+}
+
+.bento-card.bronze-accent p {
+  color: #CBD5E1;
 }
 
 /* Hero Video Background */
@@ -525,7 +545,11 @@ a:hover, a:focus-visible {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(11, 15, 25, 0.1) 0%, rgba(11, 15, 25, 0.7) 100%);
+  background: linear-gradient(180deg, rgba(11, 15, 25, 0.12) 0%, rgba(11, 15, 25, 0.72) 100%);
+}
+
+.hero-theme > .hero-video-wrapper .hero-bg-video {
+  opacity: 0.07;
 }
 
 .bento-card.hero-theme > *:not(.hero-video-wrapper) {

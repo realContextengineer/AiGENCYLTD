@@ -31,6 +31,11 @@
   --color-community-border: rgba(245, 158, 11, 0.15);
   --color-community-accent: #F59E0B;
 
+  /* Warm Earth Complementary Theme */
+  --color-warm-bg: rgba(33, 31, 16, 0.5);
+  --color-warm-border: rgba(245, 158, 11, 0.2);
+  --color-warm-accent: #F59E0B;
+
   /* Gradients */
   --gradient-hermes: linear-gradient(135deg, var(--color-electric-cyan), var(--color-digital-teal));
   --gradient-outbound: linear-gradient(135deg, #00F2FE, #4169E1);
@@ -363,6 +368,26 @@ a:hover, a:focus-visible {
 .bento-card.hero-theme:hover {
   border-color: rgba(255, 255, 255, 0.12);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* G. Warm Earth Complementary Theme */
+.bento-card.warm-theme {
+  background: var(--color-warm-bg);
+  border-color: var(--color-warm-border);
+}
+
+.bento-card.warm-theme:hover {
+  border-color: rgba(245, 158, 11, 0.35);
+  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.1);
+}
+
+.bento-card.warm-theme .icon {
+  stroke: var(--color-warm-accent);
+}
+
+.bento-card.warm-theme h3,
+.bento-card.warm-theme h4 {
+  color: var(--color-silver);
 }
 
 /* F. Hermes Outbound Gateway */

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AIGENCY.LTD - Neuro-Inclusive Creative Technology Agency. Practical, GDPR-aware AI automation for Dorset and Hampshire sole traders, freelancers, and small businesses.">
+  <meta name="theme-color" content="#0B0F19">
+  <title>AIGENCY.LTD | AI Readiness & Creative Technology Agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header" role="banner">
+    <a href="index.html" class="logo" aria-label="AIGENCY.LTD Home">A i G E N C Y</a>
+    <nav aria-label="Main navigation">
+      <ul class="nav-desktop">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="creative-design.html">Creative Design</a></li>
+        <li><a href="about.html">About & Psychology</a></li>
+        <li><a href="contact.html">Neuro-Inclusive Training</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <ul class="nav-mobile" aria-label="Mobile navigation">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="creative-design.html">Creative Design</a></li>
+    <li><a href="about.html">About & Psychology</a></li>
+    <li><a href="contact.html">Neuro-Inclusive Training</a></li>
+  </ul>
+
+  <main class="main" role="main">
+    <div class="bento-grid">
+      <!-- Card A: Hero -->
+      <div class="bento-card span-8 hero-theme" style="grid-row: span 1;">
+        <h1>Are you AI ready?</h1>
+        <p class="hero-subheadline">Practical, GDPR-aware AI automation for Dorset and Hampshire sole traders, freelancers, and small businesses. We map your administrative bottlenecks and build tools that fit your actual daily workflows.</p>
+        <a href="#ai-health-check" class="btn-primary">Start AI Health Check</a>
+        <p class="hero-badge">Bournemouth Based | Fast Response across Poole & Christchurch</p>
+      </div>
+
+      <!-- Card C: Pricing Indicator -->
+      <div class="bento-card pricing-card span-4">
+        <h3>Plain-English AI Help</h3>
+        <p>From £40/hour. Flexible, zero-retainer support packages designed for real local businesses.</p>
+      </div>
+
+      <!-- Card B: AI Health Check Quiz -->
+      <div id="ai-health-check" class="bento-card span-8 hero-theme" style="grid-row: span 2;">
+        <div class="quiz-container">
+          <div class="quiz-screen active" id="screen-intro">
+            <h2 class="quiz-title">AI Health Check</h2>
+            <p class="quiz-question">Which best describes you?</p>
+            <div class="quiz-options">
+              <label class="quiz-option">
+                <input type="radio" name="path" value="personal">
+                <label>I'm doing this for myself</label>
+              </label>
+              <label class="quiz-option">
+                <input type="radio" name="path" value="business">
+                <label>I'm doing this for my business</label>
+              </label>
+            </div>
+            <div class="quiz-nav">
+              <span></span>
+              <button class="btn-primary quiz-start">Start My Check</button>
+            </div>
+          </div>
+
+          <div class="quiz-screen" id="screen-1">
+            <div class="quiz-progress">
+              <div class="quiz-progress-dot active"></div>
+              <div class="quiz-progress-dot"></div>
+              <div class="quiz-progress-dot"></div>
+            </div>
+            <h3 class="quiz-title">AI Search & Local Visibility</h3>
+            <div class="quiz-options">
+              <label class="quiz-option">
+                <input type="radio" name="q1" value="yes">
+                <label>Clients find my business easily on Google Maps or local searches in Bournemouth, Poole, or Christchurch</label>
+              </label>
+              <label class="quiz-option">
+                <input type="radio" name="q1" value="unsure">
+                <label>Unsure / Sometimes</label>
+              </label>
+              <label class="quiz-option">
+                <input type="radio" name="q1" value="no">
+                <label>No</label>
+              </label>
+            </div>
+            <div class="quiz-nav">
+              <button class="btn-primary quiz-prev" disabled>Back</button>
+              <button class="btn-primary quiz-next">Next</button>
+            </div>
+          </div>
+
+          <div class="quiz-screen" id="screen-2">
+            <div class="quiz-progress">
+              <div class="quiz-progress-dot active"></div>
+              <div class="quiz-progress-dot active"></div>
+              <div class="quiz-progress-dot"></div>
+            </div>
+            <h3 class="quiz-title">Workflow Automation & Time-Saving</h3>
+            <div class="quiz-question">Do you spend more than 2 hours daily on repetitive admin tasks?</div>
+            <div class="quiz-options">
+              <label class="quiz-option">
+                <input type="radio" name="q2" value="yes">
+                <label>Yes</label>
+              </label>
+              <label class="quiz-option">
+                <input type="radio" name="q2" value="unsure">
+                <label>Unsure / Sometimes</label>
+              </label>
+              <label class="quiz-option">
+                <input type="radio" name="q2" value="no">
+                <label>No</label>
+              </label>
+            </div>
+            <div class="quiz-nav">
+              <button class="btn-primary quiz-prev">Back</button>
+              <button class="btn-primary quiz-next">Next</button>
+            </div>
+          </div>
+
+          <div class="quiz-screen" id="screen-3">
+            <div class="quiz-progress">
+              <div class="quiz-progress-dot active"></div>
+              <div class="quiz-progress-dot active"></div>
+              <div class="quiz-progress-dot active"></div>
+            </div>
+            <h3 class="quiz-title">Digital Trust & GDPR Safety</h3>
+            <p class="quiz-question">Is your website text clean, well-spaced, and easy to read for people who find cluttered screens overwhelming?</p>
+            <div class="quiz-options">
+              <label class="quiz-option">
+                <input type="radio" name="q3" value="yes">
+                <label>Yes</label>
+              </label>
+              <label class="quiz-option">
+                <input type="radio" name="q3" value="unsure">
+                <label>Unsure / Sometimes</label>
+              </label>
+              <label class="quiz-option">
+                <input type="radio" name="q3" value="no">
+                <label>No</label>
+              </label>
+            </div>
+            <div class="quiz-nav">
+              <button class="btn-primary quiz-prev">Back</button>
+              <button class="btn-primary quiz-next">See Results</button>
+            </div>
+          </div>
+
+          <div class="results-container" id="quiz-results">
+            <h3 class="quiz-title">Your AI Health Check Results</h3>
+            <div class="results-ring">
+              <svg viewBox="0 0 200 200">
+                <defs>
+                  <linearGradient id="hermesGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#00F2FE"/>
+                    <stop offset="100%" stop-color="#4FACFE"/>
+                  </linearGradient>
+                </defs>
+                <circle class="results-ring-bg" cx="100" cy="100" r="90"/>
+                <circle class="results-ring-fill" id="results-fill" cx="100" cy="100" r="90"/>
+              </svg>
+              <div class="results-score">
+                <div class="results-score-value" id="results-total">0%</div>
+                <div class="results-score-label">Overall Score</div>
+              </div>
+            </div>
+            <div class="results-grid">
+              <div class="results-item">
+                <div class="results-item-value" id="score-local">0%</div>
+                <div class="results-item-label">Local Visibility</div>
+              </div>
+              <div class="results-item">
+                <div class="results-item-value" id="score-admin">0%</div>
+                <div class="results-item-label">Admin Time-Loss</div>
+              </div>
+              <div class="results-item">
+                <div class="results-item-value" id="score-trust">0%</div>
+                <div class="results-item-label">Digital Trust & Safety</div>
+              </div>
+            </div>
+            <a href="contact.html" class="btn-primary">Book a Free Discovery Session</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card D: Dorset Search Anchor -->
+      <div class="bento-card span-4 hero-theme">
+        <h3>Dorset's AI Consultancy</h3>
+        <p>Top-ranked local AI consultancy keeping you visible, connected, and compliant across Bournemouth, Poole, Christchurch, and Dorset.</p>
+      </div>
+
+      <!-- Card E: Hermes Outbound Gateway -->
+      <div class="bento-card span-4 outbound-theme">
+        <h3>Step Into the Future</h3>
+        <p>Looking for our high-end 3D agent ecosystem? Explore automated business infrastructure.</p>
+        <a href="https://hermes-agents.com" class="btn-primary" target="_blank" rel="noopener">Visit Hermes Agents</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

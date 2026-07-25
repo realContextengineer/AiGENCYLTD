@@ -35,6 +35,7 @@
   --color-warm-bg: rgba(33, 31, 16, 0.5);
   --color-warm-border: rgba(245, 158, 11, 0.2);
   --color-warm-accent: #F59E0B;
+  --color-warm-text: #CBD5E1;
 
   /* Gradients */
   --gradient-hermes: linear-gradient(135deg, var(--color-electric-cyan), var(--color-digital-teal));
@@ -388,6 +389,10 @@ a:hover, a:focus-visible {
 .bento-card.warm-theme h3,
 .bento-card.warm-theme h4 {
   color: var(--color-silver);
+}
+
+.bento-card.warm-theme p {
+  color: var(--color-warm-text);
 }
 
 /* F. Hermes Outbound Gateway */

@@ -405,7 +405,7 @@ a:hover, a:focus-visible {
   z-index: 2;
 }
 
-/* Hero Layout: text left, video right on desktop; stacked on mobile */
+/* Hero Layout: text left, sidebar right with video + pricing */
 .hero-layout {
   display: flex;
   gap: 1.5rem;
@@ -414,14 +414,22 @@ a:hover, a:focus-visible {
 }
 
 .hero-content {
-  flex: 1 1 60%;
+  flex: 1 1 65%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
+.hero-sidebar {
+  flex: 1 1 35%;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: stretch;
+}
+
 .hero-video {
-  flex: 1 1 40%;
+  flex: 1 1 auto;
   display: flex;
   align-items: stretch;
   border-radius: var(--radius-card);
@@ -436,13 +444,47 @@ a:hover, a:focus-visible {
   opacity: 0.35;
 }
 
+.pricing-card {
+  flex: 0 0 260px;
+  max-width: 260px;
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(79, 172, 254, 0.15));
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  border-radius: var(--radius-card);
+  padding: 1.25rem;
+  color: var(--color-silver);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pricing-card h3 {
+  color: var(--color-electric-cyan);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.pricing-card p {
+  color: var(--color-silver);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
 @media (max-width: 768px) {
   .hero-layout {
     flex-direction: column;
   }
 
+  .hero-sidebar {
+    flex-direction: column;
+  }
+
   .hero-video {
-    max-height: 320px;
+    min-height: 280px;
+  }
+
+  .pricing-card {
+    max-width: 100%;
+    flex: 1 1 auto;
   }
 }
 

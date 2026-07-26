@@ -1,172 +1,132 @@
-# AiGENCY website handoff
+# AiGENCY Website Handoff
 
-Date: 2026-07-25
-Workspace: `/Users/aigencyltd/Desktop/software builds/main website`
-Repository: `https://github.com/realContextengineer/aigency-website.git`
-Current local branch: `main`
+Date: 25 July 2026
+Repository: https://github.com/realContextengineer/aigency-website
+Local project: `/Users/aigencyltd/Desktop/software builds/main website`
 
-## Immediate instruction
+## Current position
 
-Do not continue styling from the current green implementation without first correcting it.
+The site is a static HTML/CSS/JavaScript website for AiGENCY Ltd. The current public offer is:
 
-The current green gateway treatment is too saturated and too flat for the intended design. The user does **not** want a large bright green tile. They want the visual language shown in the supplied reference images:
+- One-to-one, neuro-friendly AI support on Zoom
+- Practical AI integration for sole traders and small businesses
+- AI safety and responsible-use support for charities and community organisations
+- Technical design and development for websites, interfaces, workflows and AI-agent systems
+- Hermes Agents as the separate advanced agent platform
 
-- deep midnight navy as the base;
-- translucent, smoked-glass tiles;
-- muted digital brass / copper cog-like accents;
-- soft, diffused emerald green used as atmospheric light and occasional detail;
-- blue-grey navy surfaces;
-- subtle borders, bevels, glow, blur and depth;
-- no loud neon green, no flat green blocks, and no generic cyan UI treatment.
+The homepage animation remains on the homepage only. Do not add global background animation without an explicit decision.
 
-The reference is closer to “translucent digital brass machinery” or “smoked glass over a digital mechanical system” than a conventional green gradient card.
+## Navigation
 
-The screenshot at `/Users/aigencyltd/Desktop/Screenshot 2026-07-25 at 18.23.55.png` is especially important: it shows a dark navy tile with a faint green atmospheric glow rising from the lower-right. The content remains readable and restrained. Recreate that relationship, not the current solid green-heavy card.
+The shared primary navigation is normalised by `js/main.js`:
 
-## User’s design direction
+1. Home
+2. Services
+3. Design
+4. About
+5. Responsible AI
+6. Training
+7. Hermes Agents (external link)
 
-The user strongly likes the original hero video in the assets folder: its muted navy, blue, green and brass/copper colours, translucent surfaces, softly lit edges and cog imagery. They want the website tiles to feel related to that video.
+Blog and Contact remain available in the footer. Hermes Agents links to `https://hermes-agents.com`.
 
-The desired hierarchy is:
+## Main pages
 
-1. Midnight navy / near-black blue: page background and large surfaces.
-2. Muted brass / copper: brand, structural borders, cog language and primary CTAs.
-3. Translucent emerald: selective glow, status, diagnostic and interaction accents.
-4. Blue-grey: secondary text and cool surface variation.
+- `index.html` — homepage, hero video, AI Health Check, service cards, testimonials, FAQ and contact routes.
+- `services.html` — audits, workflow automation, custom agents, one-to-one support and charity/community support.
+- `creative-design.html` — web development, mobile interfaces, design systems, hosting/VPS readiness, agent interfaces, integrations and handover.
+- `about.html` — experience, psychology/HCI background, Dorset community programme and AI Act & Ethics Audits.
+- `ai-transparency.html` — GDPR-aware AI, AI Act transparency, human oversight and practical data boundaries.
+- `training.html` — one-to-one AI and ChatGPT support, charity AI safety, small-business integration, agent concepts and persistent memory.
+- `how-it-works.html` — the support and engagement process.
+- `ai-health-check.html` — standalone ten-question AI readiness check.
+- `chatgpt.html` — plain-English ChatGPT guide.
+- `blog.html` — blog index with staggered 2026 posts and earlier archive.
+- `contact.html` — contact route with phone `07460 685448` and email `sync@aigency.ltd`.
+- `legal.html` — privacy and website information.
 
-The user has not asked for red. Avoid adding red unless they explicitly request it.
+## Blog content
 
-Do not flatten the design into a generic SaaS dashboard. Keep the bento/tile layout, depth, atmosphere and mechanical identity.
+The blog includes the migrated evergreen posts and the four-week strategy series:
 
-## Current logo
+- AI Act and chatbot transparency
+- GDPR-aware AI workflows
+- AI content and search quality
+- AI agents and website readiness
+- Small-business AI
+- Human oversight
+- Ethical agents
 
-The current header logo is the exact supplied image:
+Article schemas include authorship, dates and canonical `mainEntityOfPage` URLs.
 
-`assets/video : logo etc/d5ccc9d2-23a8-48d6-8a06-eba3beb6a4c4.png`
+## SEO and crawler readiness
 
-It is a transparent RGBA PNG, 1536 x 1024. It is referenced by the visible header in all nine HTML pages. The current logo CSS is:
+Completed:
 
-```css
-.logo-img {
-  width: 250px;
-  height: auto;
-  object-fit: contain;
-  transform: translateY(4px);
-}
-```
+- Unique page titles and meta descriptions across the HTML pages
+- Canonical URLs on core pages
+- LocalBusiness schema with Bournemouth/Dorset address, coordinates, phone, email and GitHub `sameAs`
+- WebSite, AboutPage, WebPage, CollectionPage and Article JSON-LD
+- `sitemap.xml` containing the public pages
+- `robots.txt` linking to the sitemap
+- GPTBot, ChatGPT-User, ClaudeBot and PerplexityBot allowed
+- Static pre-rendered HTML for crawler access
+- Semantic `main`, `section`, `article`, `nav`, `header` and `footer` structures
+- Accessible labels and native controls for the AI Health Check
 
-The large transparent canvas means the CSS image box is tall (approximately 250 x 167px). The user accepted the larger appearance for now. Do not recolour, brighten, filter or replace this logo without asking.
+Checks performed:
 
-Other logo candidates remain in the assets folder. Do not delete them:
+- JSON-LD parsed successfully across all HTML pages
+- No `git diff --check` errors at the last validation point
+- Sitemap and robots configuration present
 
-- `AiGENCY (2)-Photoroom.png`
-- `AiGENCY Roman transparent.png`
-- `FCpHc-removebg-preview.png`
-- `UUDaH-removebg-preview.png`
-- `new logo !!!.png`
-- `logo.png`
+SEO still requiring external work:
 
-## Current video
+- Verify the production domain is serving the latest GitHub version
+- Submit and inspect the site in Google Search Console and Bing Webmaster Tools
+- Maintain Google Business Profile activity
+- Add genuine case studies, project links and local authority/backlinks
+- Test real production Core Web Vitals
 
-The homepage hero currently uses:
+## Git status and publishing
 
-`assets/video : logo etc/new vid.mp4`
+The last pushed commit is:
 
-In `index.html` it is the right-hand hero video in the two-column hero section. Do not swap it back to `AI VID.mp4` or another candidate unless explicitly asked.
+`3890b34 Strengthen technical SEO and structured data`
 
-Other videos are present for reference:
+Remote:
 
-- `AI VID.mp4`
-- `AiGency Hermes.mp4`
-- `My Movie.mp4`
+`https://github.com/realContextengineer/aigency-website.git`
 
-## Current site structure
+There are currently three local, unpushed files changed after that commit:
 
-Static multi-page site using shared CSS and JavaScript:
+- `index.html` — homepage hero/service-grid refinement and the quick-start card that fills the empty four-column space beside the Health Check.
+- `creative-design.html` — expanded technical Design page and seven inline SVG service icons.
+- `css/style.css` — homepage service-card rules and Design-page compact card/icon rules.
 
-- `index.html` — homepage and hero
-- `about.html`
-- `creative-design.html`
-- `services.html`
-- `contact.html`
-- `chatgpt.html`
-- `blog.html`
-- `blog-chatgpt-business.html`
-- `ai-health-check.html`
-- `css/style.css` — shared design system and layout
-- `js/main.js` — shared interactions/navigation
+These local changes have not been pushed. Review them in the local preview before committing.
 
-The site is currently previewed locally on port 8794 with:
+## Important design decisions
 
-```bash
-python3 -m http.server 8794
-```
+- Preserve the bento-card system. It is being used for scanability and neuro-friendly content chunking.
+- Do not flatten the site into a conventional long page.
+- Keep the homepage animation on the homepage only.
+- Do not add fake client work. The Design page’s sample portfolio is explicitly labelled placeholder content until genuine project links and screenshots are supplied.
+- Do not imply large corporate training, office presentations or on-site team programmes. The current offer is one-to-one Zoom support, charities and small-business integration.
+- Keep Hermes Agents as the advanced external platform rather than merging its product identity into the approachable AiGENCY front door.
 
-Preview URL:
+## Recommended next steps
 
-`http://127.0.0.1:8794/index.html`
+1. Review the current local homepage and Design page in the browser.
+2. Decide whether the latest local homepage and Design-page changes should be committed and pushed.
+3. Replace the Design page sample concepts with six to twelve genuine projects, screenshots or live links.
+4. Verify the production domain, then submit the sitemap to search tools.
+5. Add real case studies and local proof before adding more generic copy.
 
-## Current CSS state that needs attention
+## Local preview
 
-`css/style.css` currently contains the recent attempted palette update:
+The current preview has been served at:
 
-```css
---color-obsidian: #0B0F21;
---color-video-green: #10B981;
---color-video-green-light: #8fc7a8;
---gradient-hermes: linear-gradient(135deg, #101221 0%, #0B1F12 58%, #10B981 100%);
---gradient-outbound: linear-gradient(135deg, #101221 0%, #0B1F12 58%, #10B981 100%);
-```
+`http://127.0.0.1:8795/index.html`
 
-There is also an appended `VIDEO PALETTE ACCENTS` block that overrides the outbound gateway, quiz controls, pricing card, footer and form accents with emerald.
-
-That is the part the user has rejected visually. It should be revised toward translucent glass and atmospheric lighting. Preserve the green token as a possible subtle accent, but remove the impression of an emerald-filled card.
-
-Recommended direction for the next pass:
-
-- use dark navy / smoked-glass backgrounds with low alpha;
-- use a faint emerald radial glow in the lower-right of selected tiles;
-- use muted brass borders or thin brass highlights around cog/structure-related tiles;
-- use emerald only for small icons, status lines, hover edge light and selected diagnostic states;
-- use `backdrop-filter: blur(...)`, inset highlights and very soft shadows;
-- keep text contrast high; the supplied screenshot’s dark text is too low-contrast to copy literally;
-- keep primary health-check CTA brass, not green;
-- keep Hermes outbound CTA dark navy with a restrained brass or pale green label, not a bright green panel.
-
-## Existing design decisions to preserve
-
-- Logo is top-left and aligned with the navigation.
-- Navigation includes: Home, Design, About, Neuro-Inclusive Training, Hermes Agents.
-- Hermes Agents is an outbound CTA.
-- Hero is text on the left and video on the right.
-- The site uses a bento/tile layout.
-- Primary CTA is the free AI health check.
-- Bronze/brass has a subtle left-to-right gradient.
-- The user values the original video’s cog and translucent-material feel.
-- SEO content and local Bournemouth positioning matter; do not remove page copy, metadata, headings or internal links while styling.
-
-## Git state and safety
-
-There are substantial uncommitted changes from the ongoing website build. Do not reset, clean, commit or push automatically.
-
-Before editing:
-
-```bash
-git status --short
-git diff -- css/style.css index.html
-```
-
-The user asked for a handoff, not a commit or push. Leave the current worktree intact.
-
-## Next chat’s first task
-
-1. Read this file.
-2. Inspect `css/style.css` and the supplied reference screenshot.
-3. Revert or replace the saturated green tile treatment.
-4. Implement one restrained glass/brass/emerald tile treatment.
-5. Preview the homepage at port 8794.
-6. Check desktop and mobile before making further broad changes.
-7. Do not change the logo or video while doing the palette repair.
-
-The acceptance test is visual: the site should look like the original video’s muted, translucent navy/brass/emerald mechanical world, not like a page containing a bright green gradient card.
-
+Other useful routes include `/creative-design.html`, `/training.html`, `/blog.html`, `/ai-transparency.html` and `/contact.html`.

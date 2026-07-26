@@ -110,17 +110,43 @@
       { title: 'Team Confidence & Capabilities', prompt: 'Has your team received structured, practical and jargon-free training to use ChatGPT and other advanced AI tools safely?', options: [['Yes, our staff use AI tools confidently and consistently.', 10], ['Unsure — some people use it, but there is no shared approach.', 5], ['No, our team has had no formal AI upskilling.', 0]] },
       { title: 'Agent-Friendly Accessibility', prompt: 'Is your website structured with semantic elements and clear metadata so modern search and AI agents can understand your details?', options: [['Yes, the site is built for human and machine readability.', 10], ['Unsure — we have focused mainly on visual visitors.', 5], ['No, the site is difficult for modern scrapers to interpret.', 0]] }
     ];
+    const categories = [
+      { key: 'foundations', label: 'Foundations', indices: [0, 3, 8], description: 'Confidence, safe data boundaries and a shared way of working.' },
+      { key: 'workflows', label: 'Workflows', indices: [1, 4, 6], description: 'The practical systems that return time and reduce repeated admin.' },
+      { key: 'trust', label: 'Trust & visibility', indices: [2, 5, 7, 9], description: 'How clearly people and modern AI systems can understand your work.' }
+    ];
+    const categoryForIndex = ['foundations', 'workflows', 'trust', 'foundations', 'workflows', 'trust', 'workflows', 'trust', 'foundations', 'trust'];
     const state = { index: -1, answers: Array(questions.length).fill(null) };
     const encouragements = ['That gives us a useful starting point.', 'Good — we are building a clearer picture.', 'Useful signal. Keep going.', 'That is exactly the kind of detail this check is for.'];
 
-    quizHost.innerHTML = `<div class="quiz-intro-screen"><p class="eyebrow">10 QUESTIONS · 3 MINUTES · NO SIGN-UP</p><h2 class="quiz-title">Your AI Health Check — How Ready Are You?</h2><p class="quiz-question">This is not a test. It is a quick map of where AI could reduce friction, improve visibility and support your team.</p><div class="quiz-options"><label class="quiz-option"><input type="radio" name="path" value="myself"><span><strong>I'm doing this for myself</strong><small>Freelancer, sole trader or exploring AI for personal upskilling.</small></span></label><label class="quiz-option"><input type="radio" name="path" value="business"><span><strong>I'm doing this for my business</strong><small>Owner, tradesperson or team lead looking to work smarter.</small></span></label></div><div class="quiz-nav"><span></span><button class="btn-primary btn-bronze quiz-start-btn">Start My Check</button></div></div>` + questions.map(function(question, index) {
-      return '<section class="quiz-screen" data-screen="' + index + '"><div class="quiz-progress"><div class="quiz-progress-head"><span class="quiz-progress-label">Question ' + (index + 1) + ' of ' + questions.length + '</span><span class="quiz-progress-percent">' + Math.round((index / questions.length) * 100) + '% mapped</span></div><div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:' + ((index / questions.length) * 100) + '%"></div></div></div><p class="eyebrow">AI HEALTH CHECK · ' + String(index + 1).padStart(2, '0') + '</p><h3 class="quiz-title">' + question.title + '</h3><p class="quiz-question">' + question.prompt + '</p><div class="quiz-options">' + question.options.map(function(option, optionIndex) { return '<label class="quiz-option"><input type="radio" name="q' + index + '" value="' + option[1] + '"><span>' + option[0] + '</span><span class="quiz-option-mark" aria-hidden="true">✓</span></label>'; }).join('') + '</div><p class="quiz-reward" aria-live="polite"></p><div class="quiz-nav"><button class="btn-primary quiz-prev" type="button">Back</button><button class="btn-primary btn-bronze quiz-next" type="button" disabled>' + (index === questions.length - 1 ? 'See My Readiness Map' : 'Next question') + '</button></div></section>';
-    }).join('') + '<section class="results-container" id="quiz-results"><p class="eyebrow">YOUR READINESS MAP</p><h2 class="quiz-title">You have a useful starting point.</h2><p class="quiz-question" id="quiz-result-message">Your answers show where practical support could make the biggest difference.</p><div class="results-ring"><svg viewBox="0 0 200 200"><circle class="results-ring-bg" cx="100" cy="100" r="90"></circle><circle class="results-ring-fill" id="results-fill" cx="100" cy="100" r="90"></circle></svg><div class="results-score"><div class="results-score-value" id="results-total">0%</div><div class="results-score-label">AI readiness</div></div></div><div class="results-grid"><div class="results-item"><div class="results-item-value" id="score-foundations">0%</div><div class="results-item-label">Foundations</div></div><div class="results-item"><div class="results-item-value" id="score-workflows">0%</div><div class="results-item-label">Workflows</div></div><div class="results-item"><div class="results-item-value" id="score-trust">0%</div><div class="results-item-label">Trust & visibility</div></div></div><a href="contact.html" class="btn-primary btn-bronze">Talk through my map</a></section>';
+    const progressRail = questions.map(function(question, index) {
+      return '<li class="quiz-rail-step" data-rail-step="' + index + '"><span>' + String(index + 1).padStart(2, '0') + '</span><strong>' + question.title + '</strong></li>';
+    }).join('');
+    const questionScreens = questions.map(function(question, index) {
+      return '<section class="quiz-screen" data-screen="' + index + '" data-category="' + categoryForIndex[index] + '"><div class="quiz-progress"><div class="quiz-progress-head"><span class="quiz-progress-label">Question ' + (index + 1) + ' of ' + questions.length + '</span><span class="quiz-progress-percent">' + Math.round((index / questions.length) * 100) + '% mapped</span></div><div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:' + ((index / questions.length) * 100) + '%"></div></div></div><p class="eyebrow">AI HEALTH CHECK · ' + String(index + 1).padStart(2, '0') + '</p><h3 class="quiz-title">' + question.title + '</h3><p class="quiz-question">' + question.prompt + '</p><div class="quiz-options">' + question.options.map(function(option) { return '<label class="quiz-option"><input type="radio" name="q' + index + '" value="' + option[1] + '"><span>' + option[0] + '</span><span class="quiz-option-mark" aria-hidden="true">✓</span></label>'; }).join('') + '</div><p class="quiz-reward" aria-live="polite"></p><div class="quiz-nav"><button class="btn-primary quiz-prev" type="button">Back</button><button class="btn-primary btn-bronze quiz-next" type="button" disabled>' + (index === questions.length - 1 ? 'See My Readiness Map' : 'Next question') + '</button></div></section>';
+    }).join('');
+    const categoryResults = categories.map(function(category) {
+      return '<article class="results-item" data-result-category="' + category.key + '"><div class="results-item-head"><div class="results-item-value" id="score-' + category.key + '">0%</div><div class="results-item-label">' + category.label + '</div></div><div class="results-item-meter"><span id="meter-' + category.key + '"></span></div><p id="outcome-' + category.key + '" class="results-item-outcome">' + category.description + '</p></article>';
+    }).join('');
+    quizHost.innerHTML = `<div class="quiz-instrument"><aside class="quiz-rail" aria-label="Health Check progress"><p class="eyebrow">YOUR STARTING POINT</p><ol>` + progressRail + `</ol><p class="quiz-rail-note">A calm ten-question map of where useful AI support could begin.</p></aside><div class="quiz-stage"><div class="quiz-intro-screen"><p class="eyebrow">10 QUESTIONS · 3 MINUTES · NO SIGN-UP</p><h2 class="quiz-title">Your AI Health Check — How Ready Are You?</h2><p class="quiz-question">This is not a test. It is a quick map of where AI could reduce friction, improve visibility and support your team.</p><div class="quiz-options"><label class="quiz-option"><input type="radio" name="path" value="myself"><span><strong>I'm doing this for myself</strong><small>Freelancer, sole trader or exploring AI for personal upskilling.</small></span></label><label class="quiz-option"><input type="radio" name="path" value="business"><span><strong>I'm doing this for my business</strong><small>Owner, tradesperson or team lead looking to work smarter.</small></span></label></div><div class="quiz-nav"><span></span><button class="btn-primary btn-bronze quiz-start-btn">Start My Check</button></div></div>` + questionScreens + `<section class="results-container" id="quiz-results"><p class="eyebrow">YOUR READINESS MAP</p><h2 class="quiz-title">A useful starting point, made visible.</h2><p class="quiz-question" id="quiz-result-message">Your answers show where practical support could make the biggest difference.</p><div class="results-overview"><div class="results-ring"><svg viewBox="0 0 200 200"><circle class="results-ring-bg" cx="100" cy="100" r="90"></circle><circle class="results-ring-fill" id="results-fill" cx="100" cy="100" r="90"></circle></svg><div class="results-score"><div class="results-score-value" id="results-total">0%</div><div class="results-score-label">AI readiness</div></div></div><div class="results-summary-copy"><p class="eyebrow">THREE SIGNALS TO WORK FROM</p><p>Use this map as a conversation starter, not a verdict. The strongest next step is usually one small, visible improvement.</p></div></div><div class="results-grid">` + categoryResults + `</div><div class="results-actions"><button type="button" class="btn-primary btn-bronze quiz-share">Share my starting point</button><button type="button" class="btn-primary quiz-download">Download summary</button></div><p class="quiz-share-status" aria-live="polite"></p><a href="contact.html" class="btn-primary btn-bronze">Talk through my map</a></section></div></div>`;
 
     const intro = quizHost.querySelector('.quiz-intro-screen');
+    intro.classList.add('active');
     const screens = Array.from(quizHost.querySelectorAll('.quiz-screen'));
     const results = quizHost.querySelector('#quiz-results');
     const start = quizHost.querySelector('.quiz-start-btn');
+    const railSteps = Array.from(quizHost.querySelectorAll('.quiz-rail-step'));
+    const shareStatus = quizHost.querySelector('.quiz-share-status');
+    let resultData = null;
+    function updateRail(index) {
+      railSteps.forEach(function(step, stepIndex) {
+        const complete = stepIndex < index || state.answers[stepIndex] !== null;
+        step.classList.toggle('is-complete', complete);
+        step.classList.toggle('is-current', stepIndex === index);
+        if (stepIndex === index) step.setAttribute('aria-current', 'step');
+        else step.removeAttribute('aria-current');
+      });
+    }
     function updateProgress(index) {
       const screen = screens[index];
       if (!screen) return;
@@ -134,6 +160,7 @@
       results.classList.remove('active');
       screens.forEach(function(screen, screenIndex) { screen.classList.toggle('active', screenIndex === index); });
       updateProgress(index);
+      updateRail(index);
       const selected = screens[index].querySelector('input:checked');
       const next = screens[index].querySelector('.quiz-next');
       next.disabled = !selected;
@@ -142,15 +169,32 @@
     function finish() {
       const total = state.answers.reduce(function(sum, value) { return sum + (value || 0); }, 0);
       const percent = Math.round((total / (questions.length * 10)) * 100);
+      const scores = {};
+      categories.forEach(function(category) {
+        scores[category.key] = Math.round((category.indices.reduce(function(sum, index) { return sum + state.answers[index]; }, 0) / (category.indices.length * 10)) * 100);
+      });
+      function categoryOutcome(category, score) {
+        if (category.key === 'foundations') return score < 40 ? 'Start with safe data boundaries and one shared AI habit.' : score < 75 ? 'Your base is forming; make the safe approach visible to everyone.' : 'A strong base. Document it so confidence survives change.';
+        if (category.key === 'workflows') return score < 40 ? 'Choose one repeated admin task and make its next step obvious.' : score < 75 ? 'There are useful connections to make between the tools you already use.' : 'Your workflows are ready for careful optimisation and human checks.';
+        return score < 40 ? 'Clarify how people find, read and trust your digital presence.' : score < 75 ? 'Improve the signals that help people and AI systems understand you.' : 'You have a strong platform for visible, human-supervised growth.';
+      }
       quizHost.querySelector('#results-total').textContent = percent + '%';
-      quizHost.querySelector('#score-foundations').textContent = Math.round(((state.answers[0] + state.answers[3] + state.answers[8]) / 30) * 100) + '%';
-      quizHost.querySelector('#score-workflows').textContent = Math.round(((state.answers[1] + state.answers[4] + state.answers[6]) / 30) * 100) + '%';
-      quizHost.querySelector('#score-trust').textContent = Math.round(((state.answers[2] + state.answers[5] + state.answers[7] + state.answers[9]) / 40) * 100) + '%';
+      categories.forEach(function(category) {
+        quizHost.querySelector('#score-' + category.key).textContent = scores[category.key] + '%';
+        quizHost.querySelector('#outcome-' + category.key).textContent = categoryOutcome(category, scores[category.key]);
+      });
       quizHost.querySelector('#quiz-result-message').textContent = percent < 40 ? 'You have clear opportunities to reduce admin and build safe foundations. Start with one workflow, not ten tools.' : percent < 75 ? 'You have useful foundations. The next gains are likely to come from connecting workflows and giving your team a shared approach.' : 'You have a strong base. The next step is making the systems more joined-up, visible and genuinely useful to the people using them.';
+      resultData = { percent: percent, scores: scores };
       screens.forEach(function(screen) { screen.classList.remove('active'); });
       results.classList.add('active');
+      updateRail(questions.length);
       const fill = quizHost.querySelector('#results-fill');
-      requestAnimationFrame(function() { fill.style.strokeDashoffset = 565 - (percent / 100) * 565; });
+      requestAnimationFrame(function() {
+        fill.style.strokeDashoffset = 565 - (percent / 100) * 565;
+        categories.forEach(function(category) {
+          quizHost.querySelector('#meter-' + category.key).style.width = scores[category.key] + '%';
+        });
+      });
     }
     start.addEventListener('click', function() { showQuestion(0); });
     quizHost.addEventListener('change', function(event) {
@@ -172,6 +216,36 @@
       const prev = event.target.closest('.quiz-prev');
       if (next && !next.disabled) state.index === questions.length - 1 ? finish() : showQuestion(state.index + 1);
       if (prev && state.index > 0) showQuestion(state.index - 1);
+    });
+    function summaryText() {
+      if (!resultData) return '';
+      return 'AiGENCY AI Health Check\nOverall readiness: ' + resultData.percent + '%\n\n' + categories.map(function(category) {
+        return category.label + ': ' + resultData.scores[category.key] + '%';
+      }).join('\n') + '\n\nA practical starting point for human-supervised AI support.\nhttps://aigency.ltd/ai-health-check.html';
+    }
+    quizHost.querySelector('.quiz-share').addEventListener('click', function() {
+      const text = summaryText();
+      if (!text) return;
+      const button = this;
+      const done = function(message) { shareStatus.textContent = message; button.textContent = 'Copied to clipboard'; setTimeout(function() { button.textContent = 'Share my starting point'; }, 2200); };
+      if (navigator.share) {
+        navigator.share({ title: 'My AiGENCY AI Health Check', text: text }).then(function() { done('Share sheet opened.'); }).catch(function() {});
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function() { done('Your starting point is ready to paste.'); });
+      }
+    });
+    quizHost.querySelector('.quiz-download').addEventListener('click', function() {
+      const text = summaryText();
+      if (!text) return;
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'aigency-ai-health-check-starting-point.txt';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(link.href);
+      shareStatus.textContent = 'Your starting-point summary has downloaded.';
     });
   }
 
@@ -209,30 +283,46 @@
   // Show cookie bar after short delay
   setTimeout(showCookieBar, 1000);
 
-  // ========== INTERSECTION OBSERVER (Reduced Motion Aware) ==========
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px 0px -50px 0px',
-      threshold: 0.1
-    };
-
+  // ========== SCROLL-LED BENTO CHOREOGRAPHY (Reduced Motion Aware) ==========
+  // Reveal labels first, then bring cards in three-at-a-time waves. The classes
+  // are added by JavaScript so a failed script never leaves content invisible.
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
         }
       });
-    }, observerOptions);
+    }, {
+      root: null,
+      rootMargin: '0px 0px -8% 0px',
+      threshold: 0.12
+    });
 
-    const bentoCards = document.querySelectorAll('.bento-card');
-    bentoCards.forEach(function(card, index) {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      card.style.transitionDelay = (index * 0.1) + 's';
-      observer.observe(card);
+    function registerReveal(target, delay) {
+      target.classList.add('motion-reveal');
+      target.style.setProperty('--motion-delay', delay + 'ms');
+      observer.observe(target);
+    }
+
+    document.querySelectorAll('.page-intro, .homepage-section-heading').forEach(function(label) {
+      registerReveal(label, 0);
+    });
+
+    document.querySelectorAll('.bento-grid, .homepage-service-grid').forEach(function(grid) {
+      Array.from(grid.children).filter(function(child) {
+        return child.classList.contains('bento-card');
+      }).forEach(function(card, index) {
+        registerReveal(card, (index % 3) * 90);
+
+        const label = card.querySelector(':scope > .eyebrow');
+        if (label) label.classList.add('motion-label');
+
+        card.querySelectorAll(':scope > svg.icon, :scope > svg.service-icon').forEach(function(icon) {
+          icon.classList.add('motion-icon');
+        });
+      });
     });
   }
 

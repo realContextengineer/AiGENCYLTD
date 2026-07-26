@@ -92,25 +92,31 @@
   <main class="main" role="main">
     <div class="bento-grid">
       <!-- Card A: Hero - Full Width -->
-      <div class="bento-card span-12 hero-theme" style="grid-row: span 1;">
+      <div class="bento-card span-12 hero-theme homepage-hero" style="grid-row: span 1;">
         <div class="hero-video-wrapper" aria-hidden="true">
           <video autoplay loop muted playsinline preload="auto" class="hero-bg-video">
+            <source src="assets/new vid.webm" type="video/webm">
             <source src="assets/video : logo etc/new vid.mp4" type="video/mp4">
           </video>
           <div class="video-overlay-gradient"></div>
         </div>
         <div class="hero-layout">
           <div class="hero-content">
+            <p class="hero-kicker">AI SUPPORT · DORSET · HUMAN-SUPERVISED</p>
             <h1 fetchpriority="high">AI Consultant Bournemouth: Automation That Gives You Time Back</h1>
-            <p class="hero-subheadline">Practical AI help for people, sole traders and small businesses who want less admin, clearer workflows and tools that actually fit the way they work.</p>
-      <p style="margin: 1rem 0; color: var(--color-silver);">Neuro-friendly AI audits, automation setup, custom AI agents and calm Zoom support for individuals, charities and small organisations across Bournemouth, Poole and Christchurch.</p>
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+            <p class="hero-subheadline">Neuro-friendly AI support for people, charities and small businesses who want less admin, clearer workflows and tools that actually fit the way they work.</p>
+            <p class="hero-detail">One-to-one Zoom guidance, practical integration and a safe route from everyday ChatGPT use toward custom AI agents when you are ready.</p>
+            <div class="hero-actions">
               <a href="#ai-health-check" class="btn-primary btn-bronze">Start the Free AI Health Check</a>
               <a href="contact.html" class="btn-primary btn-secondary">Book a Free AI Consultation</a>
+            </div>
+            <div class="hero-proof" aria-label="AiGENCY service focus">
+              <span>One-to-one</span><span>Charity-safe</span><span>Small-business focused</span>
             </div>
           </div>
           <div class="hero-video-full">
             <video autoplay loop muted playsinline preload="auto" class="hero-bg-video">
+              <source src="assets/new vid.webm" type="video/webm">
               <source src="assets/video : logo etc/new vid.mp4" type="video/mp4">
             </video>
           </div>
@@ -118,7 +124,7 @@
       </div>
 
       <!-- Card B: AI Health Check Quiz -->
-      <div id="ai-health-check" class="bento-card span-8 hero-theme bronze-theme" style="grid-row: span 2;">
+      <div id="ai-health-check" class="bento-card span-8 hero-theme bronze-theme">
         <div class="quiz-container quiz-container-10" data-quiz="health-check" style="min-height: 420px;">
           <div class="quiz-screen active" id="screen-intro">
             <h2 class="quiz-title">AI Health Check</h2>
@@ -259,26 +265,62 @@
         </div>
       </div>
 
-      <!-- Trust Badges Grid -->
-      <a href="ai-transparency.html" class="bento-card bento-card-link span-4 hero-theme transparency-theme" aria-label="Read about GDPR-aware AI and transparency">
-        <h3>GDPR-Aware AI</h3>
-        <p>Safer AI habits, human oversight and practical data boundaries</p>
-      </a>
+      <aside class="bento-card span-4 homepage-quick-card" aria-labelledby="quick-start-heading">
+        <p class="eyebrow">NOT SURE WHERE TO BEGIN?</p>
+        <h2 id="quick-start-heading">Start with one real problem</h2>
+        <p>Bring the repeated task, confusing tool or data-safety question that is taking up too much headspace. We’ll work through the next useful step together.</p>
+        <a href="contact.html" class="btn-primary btn-bronze">Talk it through</a>
+      </aside>
 
-      <div class="bento-card span-4 hero-theme bronze-accent">
-        <h3>Bournemouth Based AI Consultant</h3>
-        <p>Local AI expert - fast response across Poole, Christchurch, Dorset</p>
-      </div>
+      <!-- Card C: ARIA / Hermes showcase -->
+      <section class="bento-card span-12 aria-showcase motion-reveal" aria-labelledby="aria-showcase-title">
+        <div class="aria-showcase-copy">
+          <p class="eyebrow motion-label">ARIA SYSTEMS · DESIGNED BY KARL</p>
+          <h2 id="aria-showcase-title">Would you like to meet our own AI?</h2>
+          <p class="aria-showcase-lead">Fancy meeting ARIA—a persistent AI agent designed with her own memory, state and continuity?</p>
+          <p>She is built on Hermes and extended with a custom stack: Hermes’ vector retrieval infrastructure alongside her own local semantic cortex, top-down Ambient Associative Retrieval (AAR) and Whisper, a bottom-up Affective Control Layer, lossless context recovery, and a waking envelope that helps her arrive with continuity before she speaks.</p>
+          <p class="aria-showcase-note">This is not a longer prompt or a cosmetic persona. It is a designed system for memory, identity and ongoing development.</p>
+          <div class="hero-actions">
+            <a class="btn-primary btn-bronze" href="https://hermes-agents.com" target="_blank" rel="noopener">Meet ARIA ↗</a>
+            <a class="btn-primary btn-secondary" href="contact.html">Ask for a private demo</a>
+          </div>
+        </div>
+        <div class="aria-stack" aria-label="ARIA architecture layers">
+          <span>AAR · Whisper</span>
+          <span>Hermes vector layer</span>
+          <span>ARIA semantic cortex · LanceDB</span>
+          <span>Lossless continuity</span>
+          <span>Affective state · bottom-up</span>
+        </div>
+      </section>
 
-      <div class="bento-card span-4 hero-theme">
-        <h3>Built Around People</h3>
-        <p>Automation that supports staff, customers and real working rhythms</p>
-      </div>
-
-      <div class="bento-card span-4 hero-theme">
-        <h3>Flexible Support</h3>
-        <p>Practical one-to-one help, charity support and small-business integration</p>
-      </div>
+      <!-- Core Services Grid -->
+      <section class="homepage-services span-12" aria-labelledby="core-services-heading">
+        <div class="homepage-section-heading">
+          <p class="eyebrow">THREE WAYS TO START</p>
+          <h2 id="core-services-heading">Practical support, at the level you need</h2>
+        </div>
+        <div class="homepage-service-grid">
+          <a href="training.html" class="bento-card bento-card-link service-card service-card-personal" aria-label="Explore one-to-one AI support">
+            <span class="service-index">01</span>
+            <h3>One-to-one AI support</h3>
+            <p>Calm, neuro-friendly Zoom sessions for ChatGPT, Claude, AI safety and the real work you want to make easier.</p>
+            <span class="service-link">Explore support <span aria-hidden="true">↗</span></span>
+          </a>
+          <a href="ai-transparency.html" class="bento-card bento-card-link service-card service-card-charity" aria-label="Explore AI safety support for charities">
+            <span class="service-index">02</span>
+            <h3>AI safety for charities</h3>
+            <p>Practical guidance on privacy, human oversight and safe AI habits for charities and community organisations.</p>
+            <span class="service-link">Explore safe practice <span aria-hidden="true">↗</span></span>
+          </a>
+          <a href="services.html" class="bento-card bento-card-link service-card service-card-business" aria-label="Explore small-business AI integration">
+            <span class="service-index">03</span>
+            <h3>Small-business integration</h3>
+            <p>Map repeated admin, connect useful tools and build workflows that save time without adding another system to manage.</p>
+            <span class="service-link">Explore integration <span aria-hidden="true">↗</span></span>
+          </a>
+        </div>
+      </section>
 
       <!-- Intro Positioning Section -->
       <div class="bento-card span-8 hero-theme warm-theme" style="grid-row: span 1;">

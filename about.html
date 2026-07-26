@@ -23,7 +23,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=logo-final">
 </head>
-<body>
+<body class="about-page">
   <header class="header" role="banner">
     <a href="index.html" class="logo" aria-label="AIGENCY.LTD Home">
       <img src="assets/video : logo etc/d5ccc9d2-23a8-48d6-8a06-eba3beb6a4c4.png" alt="AIGENCY.LTD" class="logo-img">
@@ -60,11 +60,8 @@
     <!-- Credibility & Experience Hero -->
     <div class="bento-grid">
       <!-- Column Left: Headshot Frame -->
-      <div class="bento-card span-4" style="min-height: 400px; display: flex; align-items: center; justify-content: center;">
-        <svg viewBox="0 0 200 200" style="width: 200px; height: 200px; opacity: 0.6;">
-          <circle cx="100" cy="70" r="40" fill="none" stroke="#00F2FE" stroke-width="1.5"/>
-          <path d="M 40 180 Q 40 120 100 120 Q 160 120 160 180" fill="none" stroke="#00F2FE" stroke-width="1.5"/>
-        </svg>
+      <div class="bento-card span-4 about-portrait-frame">
+        <img class="about-portrait" src="assets/about-avatar.png" alt="Illustrated portrait of the AiGENCY founder in London">
       </div>
 
       <!-- Column Right: Headline & Bio -->
@@ -87,11 +84,37 @@
         <p>We help Dorset businesses comply with the strict transparency, marking, and labeling rules under Article 50 of the AI Act. We design clear, calming disclosures that protect your customer relationships, eliminate cognitive deception, and build digital trust.</p>
       </div>
 
+      <!-- Connection panel -->
+      <aside class="bento-card span-8 about-connect-card">
+        <div>
+          <p class="eyebrow">KEEP IN TOUCH</p>
+          <h3>One calm place to start a conversation.</h3>
+          <p>For now, the website is the clearest route in. LinkedIn can become the professional proof point; Telegram is useful when you want direct, active support. X, Slack and Linktree are optional layers—not obligations.</p>
+        </div>
+        <div class="about-connect-actions">
+          <a class="about-connect-primary" href="contact.html">Start an enquiry <span aria-hidden="true">↗</span></a>
+          <a class="about-connect-secondary" href="mailto:sync@aigency.ltd">Email AiGENCY</a>
+        </div>
+      </aside>
+
       <!-- Neuro-Inclusive Training Pace Guarantee -->
       <div id="training" class="bento-card span-12 training-theme">
         <h3>Neuro-Friendly AI Support paced for you.</h3>
         <p style="font-size: 1.05rem; margin-top: 1rem;">We know first-hand how overwhelming modern technology can feel. Our one-to-one and Zoom support for ChatGPT, Claude and basic automation is calm, structured and step-by-step, avoiding technical jargon and keeping you entirely in control.</p>
       </div>
+
+      <!-- Social presence strip: URLs can be added as each channel goes live. -->
+      <section class="about-social-strip span-12" aria-label="AiGENCY social channels">
+        <p class="eyebrow">PROFESSIONAL &amp; COMMUNITY CHANNELS</p>
+        <div class="about-social-list">
+          <a class="about-social-mark" href="https://uk.linkedin.com/in/karl-c-002b857?trk=people-guest_people_search-card" target="_blank" rel="noopener"><b aria-hidden="true">in</b><span>LinkedIn</span></a>
+          <a class="about-social-mark" href="https://x.com/aheavylife" target="_blank" rel="noopener"><b aria-hidden="true">𝕏</b><span>X</span></a>
+          <a class="about-social-mark" href="https://t.me/playd3ad" target="_blank" rel="noopener"><b aria-hidden="true">✈</b><span>Telegram</span></a>
+          <a class="about-social-mark" href="https://aigencyltd.slack.com" target="_blank" rel="noopener"><b aria-hidden="true">≡</b><span>Slack</span></a>
+          <a class="about-social-mark" href="https://wa.me/447460685448" target="_blank" rel="noopener"><b aria-hidden="true">☎</b><span>WhatsApp</span></a>
+          <span class="about-social-mark" title="Discord: platind3ad"><svg class="about-social-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.54 5.12A16.5 16.5 0 0 0 15.42 3.8l-.5 1.02a15.2 15.2 0 0 0-5.84 0L8.58 3.8a16.5 16.5 0 0 0-4.12 1.32C1.85 8.94 1.14 12.86 1.5 16.72a16.6 16.6 0 0 0 5.08 2.58l1.23-1.68c-.68-.25-1.33-.56-1.94-.92l.47-.36c3.74 1.73 7.98 1.73 11.67 0l.47.36c-.61.36-1.26.67-1.94.92l1.23 1.68a16.6 16.6 0 0 0 5.08-2.58c.42-4.47-.72-8.35-3.31-11.6ZM8.82 15.18c-1.1 0-2-.99-2-2.2s.88-2.2 2-2.2 2 .99 2 2.2-.9 2.2-2 2.2Zm6.36 0c-1.1 0-2-.99-2-2.2s.88-2.2 2-2.2 2 .99 2 2.2-.9 2.2-2 2.2Z"/></svg><span>Discord</span></span>
+        </div>
+      </section>
     </div>
   </main>
 

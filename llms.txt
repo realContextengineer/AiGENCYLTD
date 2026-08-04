@@ -15,7 +15,7 @@
 
 - **Pricing:** Flexible, scope-based support for individuals, charities and small businesses
 - **Packages:** Flexible, zero-retainer support packages
-- **Areas served:** Bournemouth, Poole, Christchurch, Dorset, Hampshire
+- **Areas served:** Bournemouth, Poole, Christchurch, Dorset, Hampshire, Wiltshire and Devon
 
 ## Services
 
@@ -26,6 +26,7 @@
 - **Focus:** Sole traders, small businesses, individuals and charities. AiGENCY is not currently offering large corporate training programmes or office-based presentations.
 - **Ongoing AI Support:** Review automations and fix friction; improve prompts and agent behaviour; support staff as habits change.
 - **AI Business Audit:** Map admin bottlenecks and repeated tasks; spot safe automation opportunities; prioritise quick wins; plain-English recommendations.
+- **Article 50 AI Transparency Scan:** Public-surface Article 50 transparency signals for AI interaction disclosure, synthetic-content marking and human handover. Evidence-led and not legal advice. Available at https://aigency.ltd/ai-transparency.html.
 
 ## Credentials
 

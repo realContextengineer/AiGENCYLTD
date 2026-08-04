@@ -14,3 +14,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://aigency.ltd/sitemap.xml
+Sitemap: https://aigency.ltd/insights-sitemap.xml

@@ -1,0 +1,4 @@
+/insights/archive/  https://wewucfgrtxpolxlxmitq.supabase.co/functions/v1/public-insights/archive  200
+/insights/archive   /insights/archive/  301
+/insights-sitemap.xml  https://wewucfgrtxpolxlxmitq.supabase.co/functions/v1/public-insights/sitemap  200
+/insights/*  https://wewucfgrtxpolxlxmitq.supabase.co/functions/v1/public-insights/:splat  200

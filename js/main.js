@@ -51,6 +51,21 @@
     'human-centred-ai': 'bronze-theme'
   };
 
+  // The original, still-public AiGENCY articles remain in the library while
+  // Arthur's Supabase collection grows. New database articles lead the page;
+  // these links preserve the existing archive rather than making it disappear.
+  const legacyInsights = [
+    { slug: 'legacy-governance', href: 'blog-us-uk-ai-governance.html', title: "America's AI governance sneeze.", excerpt: 'What US developments in agent security, AI standards and enforcement could mean for UK businesses.', category_slug: 'ai-governance', published_at: '2026-08-04T00:00:00Z' },
+    { slug: 'legacy-ai-act', href: 'blog-ai-act-chatbots.html', title: 'Are your chatbots legal?', excerpt: 'What UK businesses should understand about AI disclosures and customer-facing assistants.', category_slug: 'ai-governance', published_at: '2026-07-23T00:00:00Z' },
+    { slug: 'legacy-gdpr', href: 'blog-gdpr-ai-workflows.html', title: 'Is your team leaking customer records?', excerpt: 'GDPR-aware habits for using AI tools without exposing unnecessary customer information.', category_slug: 'ai-workflows', published_at: '2026-07-16T00:00:00Z' },
+    { slug: 'legacy-content', href: 'blog-ai-content-search.html', title: 'Why commodity AI content fails.', excerpt: 'Why useful experience and clear authorship matter more than generic output.', category_slug: 'ai-search', published_at: '2026-07-09T00:00:00Z' },
+    { slug: 'legacy-web-readiness', href: 'blog-ai-agent-web-readiness.html', title: 'Bots, AI agents and your website.', excerpt: 'What automated traffic means for structured content, accessible forms and a clear robots policy.', category_slug: 'ai-search', published_at: '2026-06-25T00:00:00Z' },
+    { slug: 'legacy-less-ai', href: 'blog-chatgpt-business.html', title: 'Why your small business needs less AI.', excerpt: 'A practical starting point for choosing useful AI over noise.', category_slug: 'human-centred-ai', published_at: '2026-05-28T00:00:00Z' },
+    { slug: 'legacy-bournemouth', href: 'blog-small-business-bournemouth.html', title: 'How AI can help small businesses in Bournemouth.', excerpt: 'Practical opportunities for local businesses without losing the human part.', category_slug: 'ai-workflows', published_at: '2026-05-14T00:00:00Z' },
+    { slug: 'legacy-oversight', href: 'blog-human-oversight.html', title: 'Human in the loop: why oversight keeps AI human.', excerpt: 'The role of review, judgement and accountability in useful AI systems.', category_slug: 'human-centred-ai', published_at: '2026-04-30T00:00:00Z' },
+    { slug: 'legacy-ethical-agents', href: 'blog-ethical-agents.html', title: 'Ethical AI agents: workflows that respect people.', excerpt: 'How to design agent workflows with practical human boundaries.', category_slug: 'human-centred-ai', published_at: '2026-04-16T00:00:00Z' }
+  ];
+
   function insightCategoryLabel(slug) {
     return String(slug || 'AI INSIGHT').replace(/-/g, ' ').toUpperCase();
   }
@@ -69,10 +84,10 @@
   }
 
   function insightLink(slug) {
-    // The local preview has no Netlify rewrite layer; production uses a real,
-    // server-rendered article URL so crawlers receive the article metadata.
+    // Local preview has no Netlify rewrite layer, so it opens the reusable
+    // AiGENCY article view directly. Production keeps the clean article URL.
     if (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost') {
-      return 'blog.html?insight=' + encodeURIComponent(slug);
+      return '/insight.html?slug=' + encodeURIComponent(slug);
     }
     return '/insights/' + encodeURIComponent(slug) + '/';
   }
@@ -84,28 +99,128 @@
     return element;
   }
 
-  function renderInsightCard(card, post, featured) {
-    const theme = insightThemes[post.category_slug] || 'bronze-theme';
-    card.className = 'bento-card ' + (featured ? 'span-8 ' : 'span-6 ') + theme;
+  function insightImage(post) {
+    const candidate = post && (post.cover_image_path || post.featured_image_path || post.cover_image_url);
+    if (!candidate) return null;
+    try {
+      const url = new URL(candidate, window.location.origin);
+      return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function renderInsightCard(card, post, variant) {
+    const isLatest = variant === 'latest';
+    const isFeatured = variant === 'featured';
+    const theme = isFeatured ? 'hero-theme' : isLatest ? 'warm-theme' : (insightThemes[post.category_slug] || 'bronze-theme');
+    const isLibrary = variant === 'library';
+    card.className = 'bento-card ' + (isLibrary ? 'span-3 ' : 'span-6 ') + theme + ' insight-card' + (isLatest || isFeatured ? ' insight-card--lead' : '') + (isLibrary ? ' insight-card--library' : '') + (isLatest ? ' insight-card--latest' : '') + (isFeatured ? ' insight-card--featured' : '');
     card.hidden = false;
-    card.replaceChildren(
-      createInsightElement('p', insightMeta(post), 'eyebrow'),
-      createInsightElement('h2', post.title || 'New AI insight'),
-      createInsightElement('p', post.excerpt || '')
-    );
-    const link = createInsightElement('a', 'Read the post', 'btn-primary' + (theme === 'bronze-theme' ? ' btn-bronze' : ''));
-    link.href = insightLink(post.slug);
-    card.appendChild(link);
+    const body = document.createElement('div');
+    body.className = 'insight-card-body';
+    body.appendChild(createInsightElement('p', (isLatest ? 'LATEST INSIGHT · ' : isFeatured ? 'PINNED RESEARCH · ' : '') + insightMeta(post), 'eyebrow'));
+    body.appendChild(createInsightElement(isLatest || isFeatured ? 'h2' : 'h3', post.title || 'New AI insight'));
+    body.appendChild(createInsightElement('p', post.excerpt || ''));
+    const link = createInsightElement('a', 'Read the Insight', 'btn-primary' + (theme === 'bronze-theme' ? ' btn-bronze' : ''));
+    link.href = post.href || insightLink(post.slug);
+    body.appendChild(link);
+    const imageUrl = insightImage(post);
+    if (imageUrl) {
+      const media = document.createElement('div');
+      media.className = 'insight-card-media';
+      const image = document.createElement('img');
+      image.src = imageUrl;
+      image.alt = post.cover_image_alt || post.title || '';
+      image.loading = isLatest ? 'eager' : 'lazy';
+      media.appendChild(image);
+      card.replaceChildren(media, body);
+    } else {
+      card.replaceChildren(body);
+    }
+  }
+
+  function renderEmptyLeadCard(card, role) {
+    const isFeatured = role === 'featured';
+    card.className = 'bento-card span-6 ' + (isFeatured ? 'hero-theme' : 'warm-theme') + ' insight-card insight-card--lead insight-card--empty';
+    card.hidden = false;
+    const body = document.createElement('div');
+    body.className = 'insight-card-body';
+    body.appendChild(createInsightElement('p', isFeatured ? 'PINNED RESEARCH' : 'LATEST INSIGHT', 'eyebrow'));
+    body.appendChild(createInsightElement('h2', isFeatured ? 'Important research will appear here.' : 'The next published Insight will appear here.'));
+    body.appendChild(createInsightElement('p', isFeatured
+      ? 'Arthur can place an enduring piece of work here by marking it Featured in the Insights desk.'
+      : 'Published Insights are drawn directly from Arthur’s Supabase collection.'));
+    card.replaceChildren(body);
+  }
+
+  function appendInlineMarkdown(container, value, references) {
+    const source = String(value || '');
+    const token = /(\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|\[([^\]]+)\]|`([^`]+)`|\*\*([^*]+)\*\*|__([^_]+)__|\*([^*\n]+)\*|_([^_\n]+)_)/g;
+    let cursor = 0;
+    let match;
+
+    while ((match = token.exec(source))) {
+      if (match.index > cursor) container.appendChild(document.createTextNode(source.slice(cursor, match.index)));
+      if (match[2] && match[3]) {
+        const url = safeExternalUrl(match[3]);
+        if (url) {
+          const link = document.createElement('a');
+          link.href = url;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.textContent = match[2];
+          container.appendChild(link);
+        } else {
+          container.appendChild(document.createTextNode(match[0]));
+        }
+      } else if (match[4]) {
+        const referenceUrl = references.get(match[4].toLowerCase());
+        if (referenceUrl) {
+          const link = document.createElement('a');
+          link.href = referenceUrl;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.textContent = match[4];
+          container.appendChild(link);
+        } else {
+          container.appendChild(document.createTextNode(match[0]));
+        }
+      } else if (match[5]) {
+        const code = document.createElement('code');
+        code.textContent = match[5];
+        container.appendChild(code);
+      } else if (match[6] || match[7]) {
+        const strong = document.createElement('strong');
+        strong.textContent = match[6] || match[7];
+        container.appendChild(strong);
+      } else {
+        const emphasis = document.createElement('em');
+        emphasis.textContent = match[8] || match[9];
+        container.appendChild(emphasis);
+      }
+      cursor = token.lastIndex;
+    }
+    if (cursor < source.length) container.appendChild(document.createTextNode(source.slice(cursor)));
   }
 
   function appendSafeMarkdown(container, markdown) {
-    const lines = String(markdown || '').replace(/\r/g, '').split('\n');
+    const references = new Map();
+    const lines = String(markdown || '').replace(/\r/g, '').split('\n').filter(function(rawLine) {
+      const reference = rawLine.trim().match(/^\[([^\]]+)\]:\s*(https?:\/\/\S+)\s*$/);
+      if (!reference) return true;
+      const url = safeExternalUrl(reference[2]);
+      if (url) references.set(reference[1].toLowerCase(), url);
+      return false;
+    });
     let paragraph = [];
     let list;
 
     function flushParagraph() {
       if (!paragraph.length) return;
-      container.appendChild(createInsightElement('p', paragraph.join(' ')));
+      const copy = document.createElement('p');
+      appendInlineMarkdown(copy, paragraph.join(' '), references);
+      container.appendChild(copy);
       paragraph = [];
     }
     function flushList() {
@@ -123,14 +238,23 @@
       }
       const heading = line.match(/^(#{1,3})\s+(.+)$/);
       const bullet = line.match(/^[-*]\s+(.+)$/);
+      const numbered = line.match(/^\d+\.\s+(.+)$/);
       if (heading) {
         flushParagraph();
         flushList();
-        container.appendChild(createInsightElement(heading[1].length === 1 ? 'h2' : 'h3', heading[2]));
-      } else if (bullet) {
+        const title = document.createElement(heading[1].length === 1 ? 'h2' : 'h3');
+        appendInlineMarkdown(title, heading[2], references);
+        container.appendChild(title);
+      } else if (bullet || numbered) {
         flushParagraph();
-        if (!list) list = document.createElement('ul');
-        list.appendChild(createInsightElement('li', bullet[1]));
+        const listTag = numbered ? 'ol' : 'ul';
+        if (!list || list.tagName.toLowerCase() !== listTag) {
+          flushList();
+          list = document.createElement(listTag);
+        }
+        const item = document.createElement('li');
+        appendInlineMarkdown(item, (bullet || numbered)[1], references);
+        list.appendChild(item);
       } else {
         flushList();
         paragraph.push(line);
@@ -149,28 +273,367 @@
     }
   }
 
-  function renderInsightDetail(post) {
+  function renderPreviousInsights(posts, currentPost) {
+    const list = document.querySelector('[data-insight-previous-list]');
+    const section = document.querySelector('[data-insight-previous-section]');
+    if (!list || !section) return;
+    list.replaceChildren();
+    const currentTime = new Date(currentPost.published_at || 0).getTime();
+    // Keep the live Supabase notes and the established AiGENCY archive together
+    // here. The editorial rail is a chronological way into the whole library,
+    // not just the small number of notes published since the new desk went live.
+    const previous = (Array.isArray(posts) ? posts : []).concat(legacyInsights)
+      .filter(function(post) {
+        if (!post || !post.slug || post.slug === currentPost.slug) return false;
+        const publishedTime = new Date(post.published_at || 0).getTime();
+        return !Number.isNaN(currentTime) && !Number.isNaN(publishedTime) && publishedTime < currentTime;
+      })
+      .sort(function(a, b) { return new Date(b.published_at).getTime() - new Date(a.published_at).getTime(); });
+
+    previous.forEach(function(post) {
+      const tile = document.createElement('a');
+      tile.className = 'bento-card hero-theme insight-previous-tile';
+      tile.href = post.href || insightLink(post.slug);
+      tile.setAttribute('aria-label', 'Read ' + (post.title || 'this Field Note'));
+      tile.append(
+        createInsightElement('span', insightDate(post.published_at), 'insight-previous-date'),
+        createInsightElement('span', post.title || 'Untitled Field Note', 'insight-previous-title'),
+        createInsightElement('span', post.excerpt || 'Open this Field Note for Arthur’s practical guidance.', 'insight-previous-excerpt')
+      );
+      list.appendChild(tile);
+    });
+    section.hidden = previous.length === 0;
+  }
+
+  function mountInsightAudio() {
+    const control = document.querySelector('[data-insight-speak]');
+    const status = document.querySelector('[data-insight-audio-status]');
+    const body = document.querySelector('[data-insight-detail-body]');
+    const title = document.querySelector('[data-insight-detail-title]');
+    if (!control || !body || !title) return;
+    if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) {
+      control.disabled = true;
+      if (status) status.textContent = 'Speech playback is not available in this browser.';
+      return;
+    }
+
+    let speaking = false;
+    function stop() {
+      window.speechSynthesis.cancel();
+      speaking = false;
+      control.setAttribute('aria-pressed', 'false');
+      control.textContent = '🔊 Listen to this Field Note';
+      if (status) status.textContent = 'Uses your browser’s built-in speech playback.';
+    }
+    control.addEventListener('click', function() {
+      if (speaking) {
+        stop();
+        return;
+      }
+      const text = [title.textContent, body.textContent].filter(Boolean).join('. ');
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-GB';
+      utterance.onend = stop;
+      utterance.onerror = stop;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+      speaking = true;
+      control.setAttribute('aria-pressed', 'true');
+      control.textContent = '■ Stop listening';
+      if (status) status.textContent = 'Reading this Field Note aloud.';
+    });
+  }
+
+  function mountInsightChat(post) {
+    const chat = document.querySelector('[data-insight-chat]');
+    if (!chat || chat.dataset.mounted === 'true') return;
+    chat.dataset.mounted = 'true';
+    const messages = chat.querySelector('[data-insight-chat-messages]');
+    const input = chat.querySelector('[data-insight-chat-input]');
+    const send = chat.querySelector('[data-insight-chat-send]');
+    const remaining = chat.querySelector('[data-insight-chat-remaining]');
+    if (!messages || !input || !send) return;
+
+    const keyBase = 'aigency-arthur-light-' + post.slug;
+    const sessionKey = keyBase + '-session';
+    const countKey = keyBase + '-count';
+    let sessionId = window.sessionStorage.getItem(sessionKey) || '';
+    let messageCount = Number(window.sessionStorage.getItem(countKey) || '0');
+    let sending = false;
+
+    function updateLimit() {
+      const left = Math.max(0, 5 - messageCount);
+      if (remaining) remaining.textContent = left + (left === 1 ? ' question left' : ' questions left');
+      if (left === 0) {
+        input.disabled = true;
+        send.disabled = true;
+        input.placeholder = 'Five questions used';
+      }
+    }
+    function appendMessage(text, kind) {
+      const item = document.createElement('div');
+      const messageKind = kind === 'visitor' ? 'visitor' : kind === 'status' ? 'status' : 'agent';
+      item.className = 'ai-talk-message ai-talk-message-' + messageKind;
+      const copy = document.createElement('p');
+      copy.textContent = text;
+      item.appendChild(copy);
+      messages.appendChild(item);
+      messages.scrollTop = messages.scrollHeight;
+      return item;
+    }
+    updateLimit();
+
+    async function sendMessage() {
+      const message = input.value.trim();
+      if (!message || sending || messageCount >= 5) return;
+      sending = true;
+      input.value = '';
+      input.disabled = true;
+      send.disabled = true;
+      appendMessage(message, 'visitor');
+      const waiting = appendMessage('Arthur Light is thinking…', 'status');
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: message,
+            session_id: sessionId || undefined,
+            article_context: {
+              slug: post.slug,
+              title: post.title,
+              excerpt: post.excerpt,
+              body_markdown: String(post.body_markdown || '').slice(0, 9500),
+              sources: Array.isArray(post.sources) ? post.sources.slice(0, 8) : []
+            },
+            insight_slug: post.slug
+          })
+        });
+        const payload = await response.json();
+        waiting.remove();
+        if (!response.ok) throw new Error(payload.error || 'Arthur Light is unavailable.');
+        if (payload.session_id) {
+          sessionId = payload.session_id;
+          window.sessionStorage.setItem(sessionKey, sessionId);
+        }
+        messageCount += 1;
+        window.sessionStorage.setItem(countKey, String(messageCount));
+        appendMessage(payload.reply, 'agent');
+        if (payload.limit_reached) messageCount = 5;
+      } catch (error) {
+        waiting.remove();
+        appendMessage(error.message || 'Arthur Light is unavailable. Please use the human route.', 'agent');
+      } finally {
+        sending = false;
+        updateLimit();
+        if (messageCount < 5) {
+          input.disabled = false;
+          send.disabled = false;
+          input.focus();
+        }
+      }
+    }
+    send.addEventListener('click', sendMessage);
+    input.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        sendMessage();
+      }
+    });
+  }
+
+  function mountInsightsIndexChat() {
+    const chat = document.querySelector('[data-insights-index-chat]');
+    if (!chat || chat.dataset.mounted === 'true') return;
+    chat.dataset.mounted = 'true';
+    const messages = chat.querySelector('[data-insights-index-chat-messages]');
+    const input = chat.querySelector('[data-insights-index-chat-input]');
+    const send = chat.querySelector('[data-insights-index-chat-send]');
+    const remaining = chat.querySelector('[data-insights-index-chat-remaining]');
+    const history = chat.querySelector('[data-insights-chat-history]');
+    const historyList = chat.querySelector('[data-insights-chat-history-list]');
+    if (!messages || !input || !send) return;
+
+    const sessionKey = 'aigency-arthur-light-insights-session';
+    const countKey = 'aigency-arthur-light-insights-count';
+    const historyKey = 'aigency-arthur-light-insights-history';
+    const exampleSummaries = [
+      {
+        question: 'Which Field Note matters most for a small business?',
+        answer: 'Start with the note on AI agents, identities and wallets. It turns a fast-moving change into practical safeguards: clear information, limited permissions and human approval.'
+      },
+      {
+        question: 'Can I ask Arthur about an earlier Field Note?',
+        answer: 'Yes. Arthur can discuss the published Notes together, explain the evidence behind them and connect a question back to the right article.'
+      },
+      {
+        question: 'What should I do after reading a Note?',
+        answer: 'Pick the one closest to your business, ask Arthur what it means in practice, then take the next decision to a person at AiGENCY.'
+      }
+    ];
+    let sessionId = window.sessionStorage.getItem(sessionKey) || '';
+    let messageCount = Number(window.sessionStorage.getItem(countKey) || '0');
+    let sending = false;
+
+    function readHistory() {
+      try {
+        const saved = JSON.parse(window.localStorage.getItem(historyKey) || '[]');
+        return Array.isArray(saved) ? saved.filter(function(item) {
+          return item && typeof item.question === 'string' && typeof item.answer === 'string';
+        }).slice(0, 4) : [];
+      } catch (error) {
+        return [];
+      }
+    }
+    function renderHistory() {
+      if (!history || !historyList) return;
+      const visitorSummaries = readHistory();
+      // Visitor chats always lead. The examples initially fill the empty space,
+      // then naturally move down and disappear as real chats are saved.
+      const summaries = visitorSummaries.concat(exampleSummaries).slice(0, 4);
+      historyList.replaceChildren();
+      summaries.forEach(function(summary, index) {
+        const item = document.createElement('article');
+        const isExample = index >= visitorSummaries.length;
+        item.className = 'insights-chat-history-item' + (isExample ? ' is-example' : '');
+        if (isExample) item.setAttribute('data-example', 'true');
+        const question = createInsightElement('p', summary.question, 'insights-chat-history-question');
+        const answer = createInsightElement('p', summary.answer, 'insights-chat-history-answer');
+        item.append(question, answer);
+        historyList.appendChild(item);
+      });
+      history.hidden = false;
+    }
+    function saveHistory(question, answer) {
+      try {
+        const answerPreview = String(answer || '').replace(/\s+/g, ' ').trim().slice(0, 220);
+        if (!answerPreview) return;
+        const summaries = readHistory().filter(function(item) { return item.question !== question; });
+        summaries.unshift({ question: question.slice(0, 150), answer: answerPreview });
+        window.localStorage.setItem(historyKey, JSON.stringify(summaries.slice(0, 4)));
+        renderHistory();
+      } catch (error) {
+        // The chat remains fully usable if the visitor blocks local storage.
+      }
+    }
+
+    function updateLimit() {
+      const left = Math.max(0, 5 - messageCount);
+      if (remaining) remaining.textContent = left + (left === 1 ? ' question left' : ' questions left');
+      if (left === 0) {
+        input.disabled = true;
+        send.disabled = true;
+        input.placeholder = 'Five questions used';
+      }
+    }
+    function appendMessage(text, kind) {
+      const item = document.createElement('div');
+      item.className = 'ai-talk-message ai-talk-message-' + (kind === 'visitor' ? 'visitor' : kind === 'status' ? 'status' : 'agent');
+      const copy = document.createElement('p');
+      copy.textContent = text;
+      item.appendChild(copy);
+      messages.appendChild(item);
+      messages.scrollTop = messages.scrollHeight;
+      return item;
+    }
+    async function sendMessage() {
+      const message = input.value.trim();
+      if (!message || sending || messageCount >= 5) return;
+      sending = true;
+      input.value = '';
+      input.disabled = true;
+      send.disabled = true;
+      appendMessage(message, 'visitor');
+      const waiting = appendMessage('Arthur Light is thinking…', 'status');
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: message, session_id: sessionId || undefined, insights_context: true })
+        });
+        const payload = await response.json();
+        waiting.remove();
+        if (!response.ok) throw new Error(payload.error || 'Arthur Light is unavailable.');
+        if (payload.session_id) {
+          sessionId = payload.session_id;
+          window.sessionStorage.setItem(sessionKey, sessionId);
+        }
+        messageCount += 1;
+        window.sessionStorage.setItem(countKey, String(messageCount));
+        appendMessage(payload.reply, 'agent');
+        saveHistory(message, payload.reply);
+        if (payload.limit_reached) messageCount = 5;
+      } catch (error) {
+        waiting.remove();
+        appendMessage(error.message || 'Arthur Light is unavailable. Please use the human route.', 'agent');
+      } finally {
+        sending = false;
+        updateLimit();
+        if (messageCount < 5) {
+          input.disabled = false;
+          send.disabled = false;
+          input.focus();
+        }
+      }
+    }
+    renderHistory();
+    updateLimit();
+    send.addEventListener('click', sendMessage);
+    input.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        sendMessage();
+      }
+    });
+  }
+
+  function renderInsightDetail(post, previousPosts) {
     const detailSection = document.querySelector('[data-insight-detail-section]');
     const detail = document.querySelector('[data-insight-detail]');
     const meta = document.querySelector('[data-insight-detail-meta]');
     const title = document.querySelector('[data-insight-detail-title]');
     const excerpt = document.querySelector('[data-insight-detail-excerpt]');
     const body = document.querySelector('[data-insight-detail-body]');
+    const image = document.querySelector('[data-insight-detail-image]');
     const sourcesSection = document.querySelector('[data-insight-detail-sources]');
     const sourcesList = document.querySelector('[data-insight-detail-sources-list]');
+    const author = document.querySelector('[data-insight-detail-author]');
+    const disclosure = document.querySelector('[data-insight-detail-disclosure]');
     if (!detailSection || !detail || !meta || !title || !excerpt || !body || !sourcesSection || !sourcesList) return;
 
-    document.querySelectorAll('[data-insights-page-intro], [data-insights-featured-section], [data-insights-shelf-section], [data-insights-archive-section]').forEach(function(section) {
+    document.querySelectorAll('[data-insights-page-intro], [data-insights-lead-section], [data-insights-library-section]').forEach(function(section) {
       section.hidden = true;
     });
+    document.querySelectorAll('[data-insight-detail]').forEach(function(section) {
+      section.hidden = false;
+    });
+    const loading = document.querySelector('[data-insight-detail-loading]');
+    const error = document.querySelector('[data-insight-detail-error]');
+    if (loading) loading.hidden = true;
+    if (error) error.hidden = true;
     meta.textContent = insightMeta(post);
     title.textContent = post.title || 'AI insight';
     excerpt.textContent = post.excerpt || '';
+    if (author) author.textContent = post.author_name || 'AiGENCY Ltd';
+    if (disclosure) disclosure.textContent = post.ai_disclosure || 'This article was researched and drafted with AI assistance, then checked against its cited sources.';
+    const imageUrl = insightImage(post);
+    if (image && imageUrl) {
+      image.src = imageUrl;
+      image.alt = post.cover_image_alt || post.title || '';
+      image.hidden = false;
+    } else if (image) {
+      image.removeAttribute('src');
+      image.alt = '';
+      image.hidden = true;
+    }
     body.replaceChildren();
-    appendSafeMarkdown(body, post.body_markdown);
+    const structuredSources = Array.isArray(post.sources) ? post.sources : [];
+    const articleMarkdown = structuredSources.length
+      ? String(post.body_markdown || '').replace(/\n{0,2}#{1,3}\s+Sources\s*\n[\s\S]*$/i, '')
+      : post.body_markdown;
+    appendSafeMarkdown(body, articleMarkdown);
     sourcesList.replaceChildren();
-    const sources = Array.isArray(post.sources) ? post.sources : [];
-    sources.forEach(function(source) {
+    structuredSources.forEach(function(source) {
       const url = safeExternalUrl(source && source.url);
       if (!url) return;
       const item = document.createElement('li');
@@ -184,38 +647,310 @@
       sourcesList.appendChild(item);
     });
     sourcesSection.hidden = sourcesList.children.length === 0;
+    renderPreviousInsights(previousPosts, post);
+    mountInsightAudio();
+    mountInsightChat(post);
     detailSection.hidden = false;
-    detail.focus();
     document.title = (post.seo_title || post.title || 'AI insight') + ' | AiGENCY Ltd';
+    const description = document.querySelector('meta[name="description"]');
+    if (description) description.setAttribute('content', post.seo_description || post.excerpt || 'AiGENCY Insight');
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical && post.slug) canonical.setAttribute('href', 'https://aigency.ltd/insights/' + encodeURIComponent(post.slug) + '/');
   }
 
-  async function loadPublishedInsights() {
-    const featuredCard = document.querySelector('[data-insights-featured]');
-    const shelfCards = Array.from(document.querySelectorAll('[data-insights-shelf-slot]'));
-    if (!featuredCard && !shelfCards.length) return;
+  function renderInsightDetailError() {
+    const loading = document.querySelector('[data-insight-detail-loading]');
+    const error = document.querySelector('[data-insight-detail-error]');
+    document.querySelectorAll('[data-insight-detail]').forEach(function(section) {
+      section.hidden = true;
+    });
+    if (loading) loading.hidden = true;
+    if (error) error.hidden = false;
+  }
 
+  async function loadInsightDetail() {
+    if (!document.querySelector('[data-insight-detail-section]')) return;
+    const slug = new URLSearchParams(window.location.search).get('slug');
+    if (!slug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+      renderInsightDetailError();
+      return;
+    }
     try {
-      const posts = await supabaseSelect('insights_page', 'select=*&order=published_at.desc');
-      const visiblePosts = Array.isArray(posts) ? posts : [];
-      const requestedSlug = new URLSearchParams(window.location.search).get('insight');
-      if (requestedSlug) {
-        const requestedPost = visiblePosts.find(function(post) { return post.slug === requestedSlug; });
-        if (requestedPost) renderInsightDetail(requestedPost);
-        return;
-      }
-
-      const featured = visiblePosts.filter(function(post) { return post.display_zone === 'featured'; }).slice(0, 1);
-      const shelf = visiblePosts.filter(function(post) { return post.display_zone === 'shelf'; }).slice(0, 6);
-      if (featured.length && featuredCard) renderInsightCard(featuredCard, featured[0], true);
-      shelf.forEach(function(post, index) {
-        if (shelfCards[index]) renderInsightCard(shelfCards[index], post, false);
-      });
+      const results = await Promise.all([
+        supabaseSelect('insights_page', 'select=slug,title,published_at,category_slug,display_order,excerpt,body_markdown,sources&order=published_at.desc,display_order.asc'),
+        supabaseSelect('insights_page', 'select=*&slug=eq.' + encodeURIComponent(slug) + '&limit=1')
+      ]);
+      const post = Array.isArray(results[1]) ? results[1][0] : null;
+      if (!post) throw new Error('Insight not found');
+      renderInsightDetail(post, results[0]);
     } catch (error) {
-      // The static editorial cards remain as a useful, crawlable fallback.
+      renderInsightDetailError();
     }
   }
 
+  async function loadPublishedInsights() {
+    const latestCard = document.querySelector('[data-insights-latest]');
+    const featuredCard = document.querySelector('[data-insights-featured]');
+    const librarySection = document.querySelector('[data-insights-library-section]');
+    const libraryYears = document.querySelector('[data-insights-library-years]');
+    const libraryGrid = document.querySelector('[data-insights-library-grid]');
+    const libraryEmpty = document.querySelector('[data-insights-library-empty]');
+    const libraryPagination = document.querySelector('[data-insights-library-pagination]');
+    if (!latestCard && !featuredCard && !libraryGrid) return;
+
+    try {
+      const posts = await supabaseSelect('insights_page', 'select=*&order=published_at.desc,display_order.asc');
+      const visiblePosts = Array.isArray(posts) ? posts.filter(function(post) { return post && post.slug; }) : [];
+      const featured = visiblePosts.find(function(post) { return post.display_zone === 'featured'; });
+      const latest = visiblePosts.find(function(post) { return !featured || post.slug !== featured.slug; });
+      if (featured && featuredCard) renderInsightCard(featuredCard, featured, 'featured');
+      else if (featuredCard) renderEmptyLeadCard(featuredCard, 'featured');
+      if (latest && latestCard) renderInsightCard(latestCard, latest, 'latest');
+      else if (latestCard) renderEmptyLeadCard(latestCard, 'latest');
+
+      if (!librarySection || !libraryYears || !libraryGrid || !libraryEmpty || !libraryPagination) return;
+      const leadSlugs = new Set([featured, latest].filter(Boolean).map(function(post) { return post.slug; }));
+      const libraryPosts = visiblePosts.filter(function(post) { return !leadSlugs.has(post.slug); }).concat(legacyInsights);
+      const years = Array.from(new Set(libraryPosts.map(function(post) {
+        const date = new Date(post.published_at);
+        return Number.isNaN(date.getTime()) ? null : String(date.getFullYear());
+      }).filter(Boolean)));
+      const requestedYear = new URLSearchParams(window.location.search).get('year');
+      let activeYear = requestedYear && years.indexOf(requestedYear) !== -1 ? requestedYear : 'all';
+      const requestedPage = Number(new URLSearchParams(window.location.search).get('page') || '1');
+      let currentPage = Number.isInteger(requestedPage) && requestedPage > 0 ? requestedPage : 1;
+      const pageSize = 8;
+
+      function updateLibraryUrl() {
+        const next = new URL(window.location.href);
+        if (activeYear === 'all') next.searchParams.delete('year');
+        else next.searchParams.set('year', activeYear);
+        if (currentPage === 1) next.searchParams.delete('page');
+        else next.searchParams.set('page', String(currentPage));
+        next.hash = 'library';
+        window.history.replaceState({}, '', next);
+      }
+
+      function renderLibrary() {
+        libraryYears.replaceChildren();
+        [['all', 'All years']].concat(years.map(function(year) { return [year, year]; })).forEach(function(entry) {
+          const year = entry[0];
+          const link = document.createElement('a');
+          link.className = 'insights-library-year' + (year === activeYear ? ' is-active' : '');
+          link.href = year === 'all' ? '#library' : '?year=' + encodeURIComponent(year) + '#library';
+          link.textContent = entry[1];
+          link.setAttribute('aria-current', year === activeYear ? 'true' : 'false');
+          link.addEventListener('click', function(event) {
+            event.preventDefault();
+            activeYear = year;
+            currentPage = 1;
+            updateLibraryUrl();
+            renderLibrary();
+          });
+          libraryYears.appendChild(link);
+        });
+        const selectedPosts = activeYear === 'all' ? libraryPosts : libraryPosts.filter(function(post) {
+          return String(new Date(post.published_at).getFullYear()) === activeYear;
+        });
+        const pageCount = Math.max(1, Math.ceil(selectedPosts.length / pageSize));
+        currentPage = Math.min(currentPage, pageCount);
+        const pagePosts = selectedPosts.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+        libraryGrid.replaceChildren();
+        pagePosts.forEach(function(post) {
+          const card = document.createElement('article');
+          renderInsightCard(card, post, 'library');
+          libraryGrid.appendChild(card);
+        });
+        libraryEmpty.hidden = pagePosts.length > 0;
+        libraryPagination.replaceChildren();
+        if (pageCount > 1) {
+          const previous = document.createElement('a');
+          previous.href = '#library';
+          previous.className = 'insights-page-link' + (currentPage === 1 ? ' is-disabled' : '');
+          previous.textContent = '← Newer';
+          previous.setAttribute('aria-disabled', currentPage === 1 ? 'true' : 'false');
+          previous.addEventListener('click', function(event) {
+            event.preventDefault();
+            if (currentPage === 1) return;
+            currentPage -= 1;
+            updateLibraryUrl();
+            renderLibrary();
+          });
+          const status = createInsightElement('p', 'Page ' + currentPage + ' of ' + pageCount, 'insights-page-status');
+          const next = document.createElement('a');
+          next.href = '#library';
+          next.className = 'insights-page-link' + (currentPage === pageCount ? ' is-disabled' : '');
+          next.textContent = 'Older →';
+          next.setAttribute('aria-disabled', currentPage === pageCount ? 'true' : 'false');
+          next.addEventListener('click', function(event) {
+            event.preventDefault();
+            if (currentPage === pageCount) return;
+            currentPage += 1;
+            updateLibraryUrl();
+            renderLibrary();
+          });
+          libraryPagination.append(previous, status, next);
+        }
+      }
+      renderLibrary();
+    } catch (error) {
+      // The lead cards explain the state without exposing database details.
+      if (featuredCard) renderEmptyLeadCard(featuredCard, 'featured');
+      if (latestCard) renderEmptyLeadCard(latestCard, 'latest');
+    }
+  }
+
+  loadInsightDetail();
   loadPublishedInsights();
+  mountInsightsIndexChat();
+
+  // ========== ARTHUR LITE ENTRY POINT ==========
+  // The browser talks only to the local site bridge. Hermes and its credentials
+  // remain behind that boundary, and each visitor keeps only their session ID.
+  function mountAiTalker() {
+    if (document.body.classList.contains('insight-detail-page') || document.body.classList.contains('insights-page')) return;
+    if (document.querySelector('.ai-talker')) return;
+
+    const talker = document.createElement('button');
+    talker.type = 'button';
+    talker.className = 'ai-talker';
+    talker.setAttribute('aria-label', 'Talk to Arthur Light');
+    talker.title = 'Talk to Arthur Light';
+    talker.innerHTML = '<span class="ai-talker-seal" aria-hidden="true"><span class="ai-talker-mark">Ai</span></span><span class="ai-talker-label">Talk to Arthur Light · AI</span>';
+
+    const panel = document.createElement('section');
+    panel.className = 'ai-talk-panel';
+    panel.hidden = true;
+    panel.setAttribute('role', 'dialog');
+    panel.setAttribute('aria-modal', 'false');
+    panel.setAttribute('aria-labelledby', 'ai-talk-title');
+    panel.innerHTML = '<div class="ai-talk-panel-head"><div class="ai-talk-panel-identity"><img class="ai-talk-mini-portrait" src="assets/arthur-ai-intern.png" alt=""><div><p class="ai-talk-kicker">AIGENCY · PERSISTENT AI</p><h2 id="ai-talk-title">Talk to Arthur Light</h2></div></div><button type="button" class="ai-talk-close" aria-label="Close Arthur Light">×</button></div><div class="ai-talk-disclosure"><span class="ai-talk-status-dot" aria-hidden="true"></span><p>Arthur Light is AiGENCY’s managed public website guide. Karl stays in the loop.</p></div><div class="ai-talk-messages" aria-live="polite"><div class="ai-talk-message ai-talk-message-agent"><p>What would you like to know?</p></div></div><div class="ai-talk-composer"><input type="text" placeholder="Ask Arthur Light…" aria-label="Ask Arthur Light" maxlength="1600"><button type="button" class="ai-talk-send" aria-label="Send message">↗</button></div><a class="ai-talk-human" href="contact.html?service=AiGENCY%20AI%20conversation">Talk to a person <span aria-hidden="true">↗</span></a>';
+
+    const closeButton = panel.querySelector('.ai-talk-close');
+    const messages = panel.querySelector('.ai-talk-messages');
+    const input = panel.querySelector('.ai-talk-composer input');
+    const sendButton = panel.querySelector('.ai-talk-send');
+    const sessionStorageKey = 'aigency-arthur-lite-session';
+    let sending = false;
+    let closeTimer = null;
+
+    function appendMessage(text, kind) {
+      const message = document.createElement('div');
+      message.className = 'ai-talk-message ai-talk-message-' + kind;
+      const copy = document.createElement('p');
+      copy.textContent = text;
+      message.appendChild(copy);
+      messages.appendChild(message);
+      messages.scrollTop = messages.scrollHeight;
+      return message;
+    }
+
+    async function sendMessage() {
+      const message = input.value.trim();
+      if (!message || sending) return;
+
+      sending = true;
+      input.value = '';
+      input.disabled = true;
+      sendButton.disabled = true;
+      appendMessage(message, 'visitor');
+      const waiting = appendMessage('Arthur Light is thinking…', 'status');
+
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: message,
+            session_id: window.localStorage.getItem(sessionStorageKey) || undefined
+          })
+        });
+        const payload = await response.json();
+        waiting.remove();
+        if (!response.ok) throw new Error(payload.error || 'Arthur Light is unavailable.');
+        if (payload.session_id) window.localStorage.setItem(sessionStorageKey, payload.session_id);
+        appendMessage(payload.reply, 'agent');
+        if (payload.limit_reached) {
+          input.disabled = true;
+          sendButton.disabled = true;
+          input.placeholder = 'Talk to a person to continue';
+        }
+      } catch (error) {
+        waiting.remove();
+        appendMessage(error.message || 'Arthur Light is unavailable. Please use the human route.', 'agent');
+      } finally {
+        sending = false;
+        if (!input.placeholder.includes('Talk to a person')) {
+          input.disabled = false;
+          sendButton.disabled = false;
+          input.focus();
+        }
+      }
+    }
+
+    function setPanelOpen(open) {
+      window.clearTimeout(closeTimer);
+
+      if (open) {
+        panel.hidden = false;
+        panel.setAttribute('aria-hidden', 'false');
+        panel.classList.remove('is-closing');
+        panel.classList.remove('is-opening');
+        void panel.offsetWidth;
+        panel.classList.add('is-opening');
+        talker.setAttribute('aria-expanded', 'true');
+        talker.classList.add('is-open');
+        input.focus();
+        return;
+      }
+
+      panel.classList.remove('is-opening');
+      panel.classList.add('is-closing');
+      panel.setAttribute('aria-hidden', 'true');
+      talker.setAttribute('aria-expanded', 'false');
+      talker.classList.remove('is-open');
+
+      const finishClose = function() {
+        panel.hidden = true;
+        panel.classList.remove('is-closing');
+        talker.focus();
+      };
+
+      panel.addEventListener('animationend', finishClose, { once: true });
+      closeTimer = window.setTimeout(finishClose, 700);
+    }
+
+    panel.setAttribute('aria-hidden', 'true');
+    talker.setAttribute('aria-expanded', 'false');
+    talker.addEventListener('click', function() {
+      setPanelOpen(panel.hidden);
+    });
+
+    closeButton.addEventListener('click', function() {
+      setPanelOpen(false);
+      talker.focus();
+    });
+
+    sendButton.addEventListener('click', sendMessage);
+    input.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        sendMessage();
+      }
+    });
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape' && !panel.hidden) {
+        setPanelOpen(false);
+        talker.focus();
+      }
+    });
+
+    document.body.appendChild(talker);
+    document.body.appendChild(panel);
+  }
+
+  mountAiTalker();
 
   // ========== MOBILE NAVIGATION ==========
   const navToggle = document.querySelector('.nav-toggle');
@@ -224,12 +959,58 @@
   // ========== PRIMARY SITE NAVIGATION ==========
   // The canonical menu is authored directly in every page's HTML so crawlers,
   // no-JavaScript clients and normal browser loads all receive the same links.
-  // JavaScript only applies current-page state and controls the mobile drawer.
+  // JavaScript enhances the desktop presentation with a compact AI Services dropdown,
+  // applies current-page state and controls the mobile drawer.
+
+  function enhanceAiServicesDropdown() {
+    const desktopNav = document.querySelector('.nav-desktop');
+    if (!desktopNav || desktopNav.querySelector('.nav-dropdown')) return;
+
+    const groupedKeys = ['services', 'transparency', 'search', 'agents'];
+    const items = Array.from(desktopNav.children);
+    const groupedItems = items.filter(function(item) {
+      const link = item.querySelector(':scope > a[data-nav]');
+      return link && groupedKeys.indexOf(link.getAttribute('data-nav')) !== -1;
+    });
+    const firstGroupedItem = groupedItems[0];
+    if (!firstGroupedItem) return;
+
+    const dropdownItem = document.createElement('li');
+    dropdownItem.className = 'nav-dropdown';
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.appendChild(document.createTextNode('AI Services'));
+    const chevron = document.createElement('span');
+    chevron.className = 'nav-dropdown-chevron';
+    chevron.setAttribute('aria-hidden', 'true');
+    chevron.textContent = '⌄';
+    summary.appendChild(chevron);
+
+    const panel = document.createElement('div');
+    panel.className = 'nav-dropdown-panel';
+    panel.setAttribute('aria-label', 'AI Services menu');
+
+    groupedItems.forEach(function(item) {
+      const link = item.querySelector(':scope > a[data-nav]');
+      if (!link) return;
+      link.classList.add('nav-dropdown-link');
+      panel.appendChild(link);
+      item.remove();
+    });
+
+    details.appendChild(summary);
+    details.appendChild(panel);
+    dropdownItem.appendChild(details);
+    const firstGroupedIndex = items.indexOf(firstGroupedItem);
+    desktopNav.insertBefore(dropdownItem, desktopNav.children[firstGroupedIndex] || null);
+  }
+
+  enhanceAiServicesDropdown();
 
   // ========== CURRENT NAVIGATION STATE ==========
   const navPath = window.location.pathname.split('/').pop() || 'index.html';
   const insightPages = [
-    'blog.html',
+    'insights.html',
     'faq.html',
     'chatgpt.html',
     'blog-chatgpt-business.html',
@@ -244,9 +1025,10 @@
   const navKey = navPath === 'index.html'
       ? 'home'
       : navPath === 'services.html'
-      || navPath === 'creative-design.html'
       || navPath === 'how-it-works.html'
       ? 'services'
+      : navPath === 'creative-design.html'
+      ? 'design'
       : navPath === 'training.html'
         ? 'training'
       : navPath === 'ai-transparency.html'
@@ -273,6 +1055,13 @@
       }
     });
   }
+
+  document.querySelectorAll('.nav-dropdown details').forEach(function(details) {
+    if (details.querySelector('[data-nav].is-active')) {
+      details.open = true;
+      details.querySelector('summary').classList.add('is-active');
+    }
+  });
 
   if (navToggle && navMobile) {
     navToggle.addEventListener('click', function() {

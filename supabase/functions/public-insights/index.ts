@@ -58,6 +58,13 @@ function imageFor(post: InsightPost) {
   return safeUrl(post.cover_image_path) ?? defaultImage;
 }
 
+function coverImageHtml(post: InsightPost, className: string) {
+  const image = safeUrl(post.cover_image_path);
+  if (!image) return "";
+  const alt = post.cover_image_alt || post.title || "";
+  return `<img class="${className}" src="${escapeHtml(image)}" alt="${escapeHtml(alt)}">`;
+}
+
 function toDate(value: string | null) {
   const date = value ? new Date(value) : null;
   return date && !Number.isNaN(date.getTime()) ? date : null;
@@ -79,20 +86,58 @@ function sourceRows(value: unknown) {
   return value.filter((source): source is Record<string, unknown> => Boolean(source && typeof source === "object"));
 }
 
+function safeMarkdownLink(label: string, value: string) {
+  const url = safeExternalUrl(value);
+  if (!url) return escapeHtml(label);
+  return `<a href="${escapeHtml(url)}" rel="noopener noreferrer" target="_blank">${escapeHtml(label)}</a>`;
+}
+
+function inlineMarkdownToHtml(value: string, references: Map<string, string>) {
+  const placeholders: string[] = [];
+  const protect = (html: string) => {
+    const token = `\u0000${placeholders.length}\u0000`;
+    placeholders.push(html);
+    return token;
+  };
+
+  let source = String(value || "");
+  source = source.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (_match, label, url) =>
+    protect(safeMarkdownLink(label, url))
+  );
+  source = source.replace(/\[([^\]]+)\]/g, (match, label) => {
+    const url = references.get(String(label).toLowerCase());
+    return url ? protect(safeMarkdownLink(label, url)) : match;
+  });
+  source = source.replace(/`([^`]+)`/g, (_match, code) => protect(`<code>${escapeHtml(code)}</code>`));
+  source = escapeHtml(source)
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/__([^_]+)__/g, "<strong>$1</strong>")
+    .replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g, "<em>$1</em>")
+    .replace(/(?<!_)_([^_\n]+)_(?!_)/g, "<em>$1</em>");
+
+  return source.replace(/\u0000(\d+)\u0000/g, (_match, index) => placeholders[Number(index)] || "");
+}
+
 function markdownToHtml(markdown: string) {
-  const lines = String(markdown || "").replace(/\r/g, "").split("\n");
+  const references = new Map<string, string>();
+  const lines = String(markdown || "").replace(/\r/g, "").split("\n").filter((rawLine) => {
+    const reference = rawLine.trim().match(/^\[([^\]]+)\]:\s*(https?:\/\/\S+)\s*$/);
+    if (!reference) return true;
+    references.set(reference[1].toLowerCase(), reference[2]);
+    return false;
+  });
   const output: string[] = [];
   let paragraph: string[] = [];
   let list: { kind: "ul" | "ol"; items: string[] } | null = null;
 
   const flushParagraph = () => {
     if (!paragraph.length) return;
-    output.push(`<p>${escapeHtml(paragraph.join(" "))}</p>`);
+    output.push(`<p>${inlineMarkdownToHtml(paragraph.join(" "), references)}</p>`);
     paragraph = [];
   };
   const flushList = () => {
     if (!list) return;
-    output.push(`<${list.kind}>${list.items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</${list.kind}>`);
+    output.push(`<${list.kind}>${list.items.map((item) => `<li>${inlineMarkdownToHtml(item, references)}</li>`).join("")}</${list.kind}>`);
     list = null;
   };
 
@@ -110,7 +155,7 @@ function markdownToHtml(markdown: string) {
       flushParagraph();
       flushList();
       const level = heading[1].length === 1 ? "h2" : heading[1].length === 2 ? "h3" : "h4";
-      output.push(`<${level}>${escapeHtml(heading[2])}</${level}>`);
+      output.push(`<${level}>${inlineMarkdownToHtml(heading[2], references)}</${level}>`);
     } else if (bullet || numbered) {
       flushParagraph();
       const kind = numbered ? "ol" : "ul";
@@ -130,11 +175,11 @@ function markdownToHtml(markdown: string) {
 }
 
 function siteHeader() {
-  return `<header class="header" role="banner"><a href="${siteUrl}/" class="logo" aria-label="AiGENCY Ltd home"><img src="${defaultImage}" alt="AiGENCY Ltd" class="logo-img"></a><nav aria-label="Main navigation"><ul class="nav-desktop"><li><a href="${siteUrl}/services.html">Services</a></li><li><a href="${siteUrl}/training.html">Training</a></li><li><a href="${siteUrl}/seo-ai-search-visibility.html">AI Search</a></li><li><a href="${siteUrl}/hermes-agents.html">AI Agents</a></li><li><a href="${siteUrl}/blog.html">Insights</a></li><li><a href="${siteUrl}/about.html">About</a></li><li><a href="${siteUrl}/ai-health-check.html" class="nav-cta">Start Here</a></li></ul></nav></header>`;
+  return `<header class="header" role="banner"><a href="${siteUrl}/" class="logo" aria-label="AiGENCY Ltd home"><img src="${defaultImage}" alt="AiGENCY Ltd" class="logo-img"></a><nav aria-label="Main navigation"><ul class="nav-desktop"><li><a href="${siteUrl}/services.html">Services</a></li><li><a href="${siteUrl}/training.html">Training</a></li><li><a href="${siteUrl}/seo-ai-search-visibility.html">AI Search</a></li><li><a href="${siteUrl}/hermes-agents.html">AI Agents</a></li><li><a href="${siteUrl}/insights.html">Insights</a></li><li><a href="${siteUrl}/about.html">About</a></li><li><a href="${siteUrl}/ai-health-check.html" class="nav-cta">Start Here</a></li></ul></nav></header>`;
 }
 
 function siteFooter() {
-  return `<footer class="footer"><p>AiGENCY Ltd publishes practical AI guidance for businesses across Bournemouth, Poole, Christchurch, Dorset and beyond.</p><nav class="footer-links" aria-label="Secondary navigation"><a href="${siteUrl}/blog.html">Insights</a><a href="${siteUrl}/insights/archive/">Article archive</a><a href="${siteUrl}/services.html">Services</a><a href="${siteUrl}/contact.html">Contact</a></nav></footer>`;
+  return `<footer class="footer"><p>AiGENCY Ltd publishes practical AI guidance for businesses across Bournemouth, Poole, Christchurch, Dorset and beyond.</p><nav class="footer-links" aria-label="Secondary navigation"><a href="${siteUrl}/insights.html">Insights</a><a href="${siteUrl}/insights/archive/">Article archive</a><a href="${siteUrl}/services.html">Services</a><a href="${siteUrl}/contact.html">Contact</a></nav></footer>`;
 }
 
 function documentShell(options: { title: string; description: string; canonical: string; image: string; type: "article" | "website"; schema: Record<string, unknown>; body: string }) {
@@ -184,14 +229,14 @@ function articlePage(post: InsightPost) {
     image,
     citation: sources.map((source) => safeExternalUrl(source.url)).filter(Boolean)
   };
-  const body = `${siteHeader()}<main class="main" role="main"><div class="page-intro"><p class="eyebrow">${escapeHtml(`${dateLabel(post.published_at)} · ${categoryLabel(post.category_slug)}`)}</p><h1>${escapeHtml(post.title)}</h1><p class="subtitle">${escapeHtml(post.excerpt || "")}</p></div><div class="bento-grid"><article class="bento-card span-8 hero-theme article-body">${markdownToHtml(post.body_markdown)}${sourceList ? `<section><h2>Sources</h2><ul>${sourceList}</ul></section>` : ""}</article><aside class="bento-card span-4 bronze-theme"><p class="eyebrow">PUBLISHED BY</p><h2>${escapeHtml(post.author_name || "AiGENCY Ltd")}</h2><p>${escapeHtml(post.ai_disclosure || "This article was researched and drafted with AI assistance, then checked against the cited sources.")}</p><a href="${siteUrl}/insights/archive/" class="btn-primary btn-bronze">Browse all Insights</a></aside></div></main>${siteFooter()}`;
+  const body = `${siteHeader()}<main class="main" role="main"><div class="page-intro"><p class="eyebrow">${escapeHtml(`${dateLabel(post.published_at)} · ${categoryLabel(post.category_slug)}`)}</p><h1>${escapeHtml(post.title)}</h1><p class="subtitle">${escapeHtml(post.excerpt || "")}</p></div><div class="bento-grid"><article class="bento-card span-8 hero-theme article-body">${coverImageHtml(post, "insight-detail-image")}${markdownToHtml(post.body_markdown)}${sourceList ? `<section><h2>Sources</h2><ul>${sourceList}</ul></section>` : ""}</article><aside class="bento-card span-4 bronze-theme"><p class="eyebrow">PUBLISHED BY</p><h2>${escapeHtml(post.author_name || "AiGENCY Ltd")}</h2><p>${escapeHtml(post.ai_disclosure || "This article was researched and drafted with AI assistance, then checked against the cited sources.")}</p><a href="${siteUrl}/insights/archive/" class="btn-primary btn-bronze">Browse all Insights</a></aside></div></main>${siteFooter()}`;
   return documentShell({ title, description, canonical, image, type: "article", schema, body });
 }
 
 function archivePage(posts: InsightPost[], page: number, count: number) {
   const pageSize = 18;
   const pages = Math.max(1, Math.ceil(count / pageSize));
-  const cards = posts.map((post) => `<article class="bento-card span-6 ${post.category_slug === "ai-search" ? "warm-theme" : "hero-theme"}"><p class="eyebrow">${escapeHtml(`${dateLabel(post.published_at)} · ${categoryLabel(post.category_slug)}`)}</p><h2>${escapeHtml(post.title)}</h2><p>${escapeHtml(post.excerpt || "")}</p><a href="${siteUrl}/insights/${encodeURIComponent(post.slug)}/" class="btn-primary">Read the post</a></article>`).join("");
+  const cards = posts.map((post) => `<article class="bento-card span-6 ${post.category_slug === "ai-search" ? "warm-theme" : "hero-theme"} insight-card">${coverImageHtml(post, "insight-card-image")}<div class="insight-card-body"><p class="eyebrow">${escapeHtml(`${dateLabel(post.published_at)} · ${categoryLabel(post.category_slug)}`)}</p><h2>${escapeHtml(post.title)}</h2><p>${escapeHtml(post.excerpt || "")}</p><a href="${siteUrl}/insights/${encodeURIComponent(post.slug)}/" class="btn-primary">Read the Insight</a></div></article>`).join("");
   const previous = page > 1 ? `<a class="btn-primary" href="${siteUrl}/insights/archive/?page=${page - 1}">Newer posts</a>` : "";
   const next = page < pages ? `<a class="btn-primary btn-bronze" href="${siteUrl}/insights/archive/?page=${page + 1}">Older posts</a>` : "";
   const canonical = `${siteUrl}/insights/archive/${page > 1 ? `?page=${page}` : ""}`;

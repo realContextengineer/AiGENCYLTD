@@ -1054,10 +1054,20 @@
     groupedItems.forEach(function(item) {
       const link = item.querySelector(':scope > a[data-nav]');
       if (!link) return;
+      if (link.getAttribute('data-nav') === 'a2a') link.textContent = 'A2A Services';
       link.classList.add('nav-dropdown-link');
       panel.appendChild(link);
       item.remove();
     });
+
+    if (!panel.querySelector('[data-nav="a2a"]')) {
+      const a2aLink = document.createElement('a');
+      a2aLink.href = 'a2a.html';
+      a2aLink.setAttribute('data-nav', 'a2a');
+      a2aLink.className = 'nav-dropdown-link';
+      a2aLink.textContent = 'A2A Services';
+      panel.appendChild(a2aLink);
+    }
 
     details.appendChild(summary);
     details.appendChild(panel);
@@ -1067,6 +1077,55 @@
   }
 
   enhanceAiServicesDropdown();
+
+  function enhanceMobileServicesHierarchy() {
+    if (!navMobile || navMobile.querySelector('.nav-mobile-section-label')) return;
+
+    const serviceKeys = ['services', 'transparency', 'search', 'agents', 'a2a'];
+    const firstServiceItem = navMobile.querySelector('a[data-nav="services"]')?.closest('li');
+    if (!firstServiceItem) return;
+
+    const a2aItem = navMobile.querySelector('a[data-nav="a2a"]')?.closest('li');
+    if (!a2aItem) {
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = 'a2a.html';
+      link.setAttribute('data-nav', 'a2a');
+      link.textContent = 'A2A Services';
+      item.appendChild(link);
+      const agentsItem = navMobile.querySelector('a[data-nav="agents"]')?.closest('li');
+      if (agentsItem) agentsItem.insertAdjacentElement('afterend', item);
+      else firstServiceItem.insertAdjacentElement('afterend', item);
+    }
+
+    const label = document.createElement('li');
+    label.className = 'nav-mobile-section-label';
+    label.textContent = 'AI SERVICES';
+    firstServiceItem.insertAdjacentElement('beforebegin', label);
+
+    const serviceItems = serviceKeys.map(function(key) {
+      return navMobile.querySelector('a[data-nav="' + key + '"]')?.closest('li') || null;
+    });
+
+    serviceItems.forEach(function(item, index) {
+      const key = serviceKeys[index];
+      const link = item?.querySelector('a[data-nav]');
+      if (!link || !item) return;
+      item.classList.add('nav-mobile-ai-service');
+      if (key === 'services') {
+        item.classList.add('nav-mobile-service-overview');
+        link.textContent = 'AI Services overview';
+      } else if (key === 'a2a') {
+        link.textContent = 'A2A Services';
+      }
+    });
+
+    serviceItems.slice().reverse().forEach(function(item) {
+      if (item) label.insertAdjacentElement('afterend', item);
+    });
+  }
+
+  enhanceMobileServicesHierarchy();
 
   // Editorial imagery is disclosed at the point it is seen. Insights supply
   // their own badge while the rest of the site receives the same treatment

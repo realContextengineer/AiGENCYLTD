@@ -26,11 +26,15 @@
 - **Focus:** Sole traders, small businesses, individuals and charities. AiGENCY is not currently offering large corporate training programmes or office-based presentations.
 - **Ongoing AI Support:** Review automations and fix friction; improve prompts and agent behaviour; support staff as habits change.
 - **AI Business Audit:** Map admin bottlenecks and repeated tasks; spot safe automation opportunities; prioritise quick wins; plain-English recommendations.
-- **Article 50 AI Transparency Scan:** Public-surface Article 50 transparency signals for AI interaction disclosure, synthetic-content marking and human handover. Evidence-led and not legal advice. Available at https://aigency.ltd/ai-transparency.html.
+- **AI Transparency & Article 50 Readiness:** Human-led public-surface review of AI interaction disclosure, synthetic-content marking and human handover. The on-site scanner is marked coming soon; this is evidence-led consultancy, not legal advice. https://aigency.ltd/ai-transparency.html
+- **AI Search Visibility (SEO, AEO & GEO):** Human-led search and answer-engine visibility work for content, entities, technical signals and trustworthy citations. The on-site scanner is marked coming soon. https://aigency.ltd/seo-ai-search-visibility.html
+- **Hermes AI Agents:** Design and delivery support for human-supervised agent experiences, with boundaries, escalation and useful workflow design. https://aigency.ltd/hermes-agents.html
+- **A2A Agent Integration:** Design and build support for agent-to-agent and MCP integrations with permissions, security and human approval. AiGENCY does not claim to operate a public A2A network or endpoint. https://aigency.ltd/a2a.html
+- **Creative Design:** Human-centred websites, mobile interfaces and agent-facing systems. https://aigency.ltd/creative-design.html
 
 ## Credentials
 
-- **Experience:** 25+ years in applied psychology, computing, and design.
+- **Experience:** 30+ years in applied psychology, computing, and design.
 - **Education:** Master of Arts in Sound Design for the Moving Image from Bournemouth Media School.
 - **Recognition:** Local Bournemouth AI consultancy; verify current search positions independently.
 

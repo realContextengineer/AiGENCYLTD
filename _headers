@@ -1,6 +1,6 @@
 /insights/*
   Content-Type: text/html; charset=utf-8
-  Content-Security-Policy: default-src 'self'; style-src 'self' https://fonts.googleapis.com; img-src 'self' data: https:; script-src 'self'; base-uri 'self'; frame-ancestors 'self'
+  Content-Security-Policy: default-src 'self'; connect-src 'self' https://wewucfgrtxpolxlxmitq.supabase.co; style-src 'self' https://fonts.googleapis.com; img-src 'self' data: https:; script-src 'self'; base-uri 'self'; frame-ancestors 'self'
   X-Robots-Tag: index, follow
 
 /insights-sitemap.xml

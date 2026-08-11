@@ -7675,7 +7675,8 @@ a:hover, a:focus-visible {
     padding-inline: 0;
   }
 
-  .page-intro h1 {
+  .page-intro h1,
+  .page-intro .insight-detail-status-title {
     max-width: 17ch;
     font-size: clamp(2.35rem, 10vw, 3.5rem);
     line-height: 1.08;
@@ -8422,7 +8423,8 @@ a:hover, a:focus-visible {
   text-align: center;
 }
 
-.page-intro h1 {
+.page-intro h1,
+.page-intro .insight-detail-status-title {
   max-width: 20ch;
   margin: 0.55rem auto 1.1rem;
   font-size: clamp(2.65rem, 5.2vw, 4.6rem);

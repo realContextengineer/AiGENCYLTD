@@ -1,0 +1,50 @@
+{
+  "name": "ACT 50",
+  "description": "An evidence-led AI Transparency Review Agent that inspects public-facing AI interactions, disclosure quality, synthetic-content signals and Article 50 review questions.",
+  "provider": {
+    "organization": "AIGENCY Ltd",
+    "url": "https://aigency.ltd"
+  },
+  "version": "0.2.0-demo",
+  "documentationUrl": "http://127.0.0.1:8797/10-ai-transparency-scanner/#agent",
+  "supportedInterfaces": [
+    {
+      "url": "http://127.0.0.1:8797/10-ai-transparency-scanner/",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.0",
+      "transport": "static-preview"
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "authentication": {
+    "schemes": ["none-local-demo"],
+    "productionNote": "A live deployment requires authenticated task handling."
+  },
+  "defaultInputModes": ["text/plain", "application/json"],
+  "defaultOutputModes": ["text/plain", "application/json"],
+  "skills": [
+    {"id":"inspect_ai_transparency","name":"Inspect AI transparency","description":"Review public-facing AI interactions, disclosures and observable transparency signals."},
+    {"id":"find_ai_interactions","name":"Find AI interactions","description":"Identify candidate chatbots, assistants, voice interfaces and conversational entry points."},
+    {"id":"review_disclosure_quality","name":"Review disclosure quality","description":"Assess presence, clarity, timing, accessibility and human handover language."},
+    {"id":"identify_public_interest_content","name":"Identify public-interest content","description":"Flag pages that may require owner questions about AI-generated or materially manipulated text."},
+    {"id":"inspect_machine_signals","name":"Inspect machine signals","description":"Check inspectable metadata, provenance, structured information and machine-readable labels."},
+    {"id":"prepare_article50_review","name":"Prepare Article 50 review","description":"Map observable questions to plain-language EU AI Act Article 50 review areas."},
+    {"id":"generate_transparency_recommendations","name":"Generate transparency recommendations","description":"Prioritise evidence-led improvements without issuing legal or compliance verdicts."},
+    {"id":"request_owner_input","name":"Request owner input","description":"Ask for authorship, editorial-control, responsibility and provider-context information."},
+    {"id":"request_human_review","name":"Request human review","description":"Escalate contextual, editorial or legal interpretation to an appropriate human reviewer."}
+  ],
+  "metadata": {
+    "endpointStatus": "ui-only-no-live-a2a-task-endpoint",
+    "sourceGrounded": true,
+    "humanReview": true,
+    "legalAdvice": false,
+    "complianceCertification": false,
+    "secretsExposed": false,
+    "externalWrites": "approval-required",
+    "sourceBoundary": "public-evidence-and-authorised-workspace-only",
+    "article50Lens": "Article 50 transparency rules apply from 2 August 2026; transitional arrangements may matter for some systems."
+  }
+}

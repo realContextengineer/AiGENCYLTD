@@ -1,0 +1,46 @@
+{
+  "name": "Northstar",
+  "description": "A fictional adaptive SEND support portal demo for Bournemouth, Christchurch and Poole.",
+  "url": "https://aigency.ltd/demos/northstar/",
+  "version": "0.1.0-demo",
+  "protocol": "A2A-ready static agent contract",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "skills": [
+    {
+      "id": "plain-language-rewrite",
+      "name": "Plain-language explanation",
+      "description": "Rewrites supplied text into simpler, shorter or step-by-step wording; never diagnoses or decides eligibility.",
+      "inputModes": ["text"],
+      "outputModes": ["text"],
+      "humanReviewRequired": true
+    },
+    {
+      "id": "meeting-prep",
+      "name": "Meeting preparation",
+      "description": "Helps organise questions and next steps for a SEND review.",
+      "inputModes": ["text"],
+      "outputModes": ["text"],
+      "humanReviewRequired": true
+    },
+    {
+      "id": "local-signposting",
+      "name": "Local signposting",
+      "description": "Points people toward official BCP/Dorset information and independent advice.",
+      "inputModes": ["text"],
+      "outputModes": ["text"],
+      "humanReviewRequired": true
+    }
+  ],
+  "safety": {
+    "diagnosis": false,
+    "eligibilityDecisions": false,
+    "medicalAdvice": false,
+    "humanRoute": true
+  },
+  "demo": true,
+  "notOfficialService": true,
+  "createdBy": "AIGENCY Ltd"
+}

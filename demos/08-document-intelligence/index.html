@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Explore DOSSIER, AIGENCY's source-grounded document intelligence workspace for comparing agreements, finding obligations and answering questions across authorised documents.">
+  <meta name="theme-color" content="#171821">
+  <title>AI Document Intelligence &amp; Comparison | DOSSIER Demo | AIGENCY</title>
+  <link rel="stylesheet" href="dossier.css?v=10">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"DOSSIER Document Intelligence Workspace",
+    "applicationCategory":"BusinessApplication",
+    "description":"A source-grounded document intelligence workspace for comparing documents, extracting obligations and answering questions with citations.",
+    "creator":{"@type":"Organization","name":"AIGENCY Ltd"},
+    "featureList":["AI document comparison","Source-grounded question answering","Structured extraction","Obligation and action finding","Human review workflows"]
+  }
+  </script>
+</head>
+<body class="dossier-app">
+  <div class="dossier-shell">
+    <aside class="source-library" id="sourceLibrary">
+      <div class="library-brand">
+        <a href="#library" class="dossier-brand" data-special-view="library" aria-label="DOSSIER library">
+          <span class="dossier-mark">D</span>
+          <span><strong>DOSSIER</strong><small>document intelligence</small></span>
+        </a>
+        <span class="demo-chip">Demo</span>
+      </div>
+      <button class="source-drawer-close" id="closeSources" aria-label="Close sources">← Back to document</button>
+
+      <div class="workspace-identity">
+        <span class="workspace-kicker">Workspace</span>
+        <strong>Harbour House Review</strong>
+        <span class="workspace-status"><i></i>9 sources indexed</span>
+      </div>
+
+      <nav class="library-nav" aria-label="DOSSIER workspace">
+        <span class="nav-section-label">Workspace</span>
+        <button class="library-nav-item active" data-special-view="library"><span class="nav-glyph">▦</span>Library</button>
+        <button class="library-nav-item" data-panel-tab="ask"><span class="nav-glyph">⌕</span>Ask</button>
+        <button class="library-nav-item" data-mode="compare"><span class="nav-glyph">⇄</span>Compare</button>
+        <button class="library-nav-item" data-panel-tab="insights"><span class="nav-glyph">◈</span>Extract</button>
+        <button class="library-nav-item" data-panel-tab="actions"><span class="nav-glyph">☷</span>Actions<span class="nav-badge amber">3</span></button>
+        <button class="library-nav-item" data-special-view="connections"><span class="nav-glyph">⛓</span>Connections</button>
+        <button class="library-nav-item" data-special-view="agent"><span class="nav-glyph">↗</span>Agent access</button>
+      </nav>
+
+      <div class="source-groups" id="sourceGroups">
+        <div class="source-group">
+          <div class="source-group-head"><span>Project documents</span><span>6</span></div>
+          <button class="source-item selected" data-source="agreement-v2"><span class="file-icon pdf">PDF</span><span class="source-item-copy"><strong>Service Agreement v2</strong><small>18 pages · updated today</small></span><i class="source-state review"></i></button>
+          <button class="source-item" data-source="agreement-v1"><span class="file-icon pdf">PDF</span><span class="source-item-copy"><strong>Service Agreement v1</strong><small>16 pages · 03 Aug</small></span><i class="source-state archived"></i></button>
+          <button class="source-item" data-source="proposal"><span class="file-icon docx">DOCX</span><span class="source-item-copy"><strong>Project Proposal</strong><small>8 pages · 01 Aug</small></span><i class="source-state indexed"></i></button>
+          <button class="source-item" data-source="meeting-notes"><span class="file-icon docx">DOCX</span><span class="source-item-copy"><strong>Meeting Notes</strong><small>4 pages · 04 Aug</small></span><i class="source-state indexed"></i></button>
+          <button class="source-item" data-source="delivery-plan"><span class="file-icon pdf">PDF</span><span class="source-item-copy"><strong>Delivery Plan</strong><small>6 pages · 06 Aug</small></span><i class="source-state indexed"></i></button>
+          <button class="source-item" data-source="pricing"><span class="file-icon xlsx">XLSX</span><span class="source-item-copy"><strong>Pricing &amp; Milestones</strong><small>1 sheet · 02 Aug</small></span><i class="source-state indexed"></i></button>
+        </div>
+        <div class="source-group">
+          <div class="source-group-head"><span>Policies</span><span>2</span></div>
+          <button class="source-item" data-source="data-policy"><span class="file-icon pdf">PDF</span><span class="source-item-copy"><strong>Data Protection Policy</strong><small>12 pages · 19 Jul</small></span><i class="source-state indexed"></i></button>
+          <button class="source-item" data-source="accessibility-policy"><span class="file-icon pdf">PDF</span><span class="source-item-copy"><strong>Accessibility Policy</strong><small>7 pages · 18 Jul</small></span><i class="source-state indexed"></i></button>
+        </div>
+        <div class="source-group">
+          <div class="source-group-head"><span>Email / communications</span><span>1</span></div>
+          <button class="source-item" data-source="client-email"><span class="file-icon eml">EML</span><span class="source-item-copy"><strong>Client Brief</strong><small>4 Aug · 3 attachments</small></span><i class="source-state review"></i></button>
+        </div>
+      </div>
+
+      <button class="add-source" id="addSource"><span>＋</span>Add source</button>
+      <div class="library-footer"><span><i class="secure-dot"></i>Demo data stays local</span><button class="trust-link" data-special-view="trust">Trust &amp; permissions</button></div>
+    </aside>
+
+    <main class="workspace-main">
+      <header class="workspace-topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Open sources">☰</button>
+        <div class="mobile-brand"><span class="mobile-brand-mark">D</span><span><strong>DOSSIER</strong><small>Harbour House Review</small></span></div>
+        <div class="workspace-breadcrumb"><span>Document Lab</span><b>/</b><strong>Harbour House Review</strong></div>
+        <div class="workspace-tools">
+          <button class="topbar-search" id="sourceSearch" aria-label="Search all sources"><span>⌕</span>Search all sources<kbd>⌘ K</kbd></button>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode"><span class="theme-icon">◐</span><span class="theme-label">Dark</span></button>
+          <span class="topbar-avatar">KH</span>
+        </div>
+      </header>
+
+      <div class="workspace-stage" id="workspaceStage">
+        <section class="research-workspace" id="researchWorkspace">
+          <div class="canvas-column">
+            <div class="canvas-toolbar">
+              <div class="canvas-document-label"><span class="file-icon pdf">PDF</span><span><strong id="canvasSourceName">Service Agreement v2</strong><small id="canvasSourceMeta">Selected source · 18 pages</small></span></div>
+              <span class="mobile-page-context">Page <strong id="mobilePageNumber">4</strong> / <span id="mobilePageTotal">18</span></span>
+              <div class="mobile-canvas-controls"><button data-mobile-view="sources">Sources</button><button data-mode="compare">Compare</button><button data-mobile-view="ask">Ask</button><button data-mode="focus">Focus</button></div>
+              <div class="canvas-mode-tabs" role="tablist" aria-label="Document view modes">
+                <button class="canvas-mode active" data-mode="document">Document</button>
+                <button class="canvas-mode" data-mode="compare">Compare</button>
+                <button class="canvas-mode" data-mode="focus">Focus</button>
+                <button class="canvas-mode" data-mode="source-map">Source map</button>
+              </div>
+              <div class="canvas-actions"><button class="plain-icon" id="canvasSearch" aria-label="Search document">⌕</button><button class="plain-icon" id="canvasMore" aria-label="More document actions">•••</button></div>
+            </div>
+            <div class="document-stage" id="documentStage"></div>
+            <div class="canvas-footer"><span>Page <strong id="pageNumber">4</strong> / <span id="pageTotal">18</span></span><span class="zoom-control"><button id="zoomOut">−</button><strong id="zoomValue">100%</strong><button id="zoomIn">＋</button></span><span class="canvas-hint">Citations open the source passage</span></div>
+            <button class="mobile-ask-fab" id="mobileAskFab" data-mobile-view="ask"><span>✦</span><strong>Ask DOSSIER</strong></button>
+            <button class="focus-exit" id="focusExit">← Exit focus</button>
+          </div>
+
+          <aside class="intelligence-panel" id="intelligencePanel">
+            <button class="sheet-grabber" id="sheetGrabber" aria-label="Expand intelligence panel"></button>
+            <div class="intelligence-head"><div><span class="panel-kicker">Intelligence layer</span><h2 id="panelTitle">Ask the workspace</h2></div><span class="grounded-badge"><i></i>Source-grounded</span></div>
+            <div class="intelligence-tabs" role="tablist" aria-label="Intelligence modes"><button class="intelligence-tab active" data-panel-tab="ask">Ask</button><button class="intelligence-tab" data-panel-tab="insights">Insights</button><button class="intelligence-tab" data-panel-tab="actions">Actions</button><button class="intelligence-tab" data-panel-tab="sources">Sources</button></div>
+            <div class="intelligence-content" id="intelligenceContent"></div>
+          </aside>
+        </section>
+
+        <section class="special-view hidden" id="connectionsView"></section>
+        <section class="special-view hidden" id="agentView"></section>
+        <section class="special-view hidden" id="trustView"></section>
+      </div>
+
+      <nav class="mobile-bottom-nav" aria-label="Mobile workspace navigation"><button data-mobile-view="sources"><span>▦</span>Sources</button><button class="active" data-mobile-view="document"><span>▤</span>Document</button><button data-mobile-view="ask"><span>⌕</span>Ask</button><button data-mobile-view="review"><span>☷</span>Review</button></nav>
+    </main>
+  </div>
+  <div class="citation-sheet hidden" id="citationSheet" aria-hidden="true"><div class="citation-sheet-backdrop" data-close-citation></div><section class="citation-sheet-panel" role="dialog" aria-label="Source citation"><button class="citation-sheet-close" data-close-citation aria-label="Close source citation">×</button><span class="special-eyebrow">Source <strong id="citationSheetLetter">A</strong></span><h2 id="citationSheetTitle">Service Agreement v2</h2><span class="citation-sheet-section" id="citationSheetSection">Clause 4.2</span><blockquote id="citationSheetQuote">“Invoices are payable within 14 days of receipt.”</blockquote><p>Used in: <strong id="citationSheetUse">Payment terms analysis</strong></p><button class="primary-action" id="viewCitationContext">View source context</button></section></div>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="../shared.js"></script>
+  <script src="app.js?v=7"></script>
+</body>
+</html>

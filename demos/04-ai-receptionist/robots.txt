@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aigency.ltd/demos/ai-receptionist/sitemap.xml

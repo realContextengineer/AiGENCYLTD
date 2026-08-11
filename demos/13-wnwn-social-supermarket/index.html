@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#21332d" />
+    <meta name="description" content="A warm, simple member app concept for Poole Waste Not Want Not." />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css?v=39" />
+    <title>WNWN Member App — Demo</title>
+  </head>
+  <body class="soft-dark">
+    <div class="demo-ribbon">WNWN member app concept · demo mode · 01202 402818</div>
+
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true"><span>W</span><span>N</span></div>
+          <div>
+            <p class="brand-name">Waste Not<br />Want Not</p>
+            <p class="brand-subtitle">Poole social supermarket</p>
+          </div>
+        </div>
+
+        <div class="member-mini-card">
+          <div class="avatar">J</div>
+          <div>
+            <p class="member-name">Jamie Morgan</p>
+            <p class="member-status"><span class="status-dot"></span> Active member</p>
+          </div>
+        </div>
+
+        <nav class="nav-list" id="main-nav">
+          <button class="nav-item active" data-view="home" type="button"><span class="nav-icon">⌂</span><span>Home</span></button>
+          <button class="nav-item" data-view="card" type="button"><span class="nav-icon">▥</span><span>Membership</span></button>
+          <button class="nav-item" data-view="updates" type="button"><span class="nav-icon">◔</span><span>Specials</span><span class="nav-count">3</span></button>
+          <button class="nav-item" data-view="busy-times" type="button"><span class="nav-icon">☰</span><span>Busiest times</span></button>
+          <button class="nav-item" data-view="visitors" type="button"><span class="nav-icon">♡</span><span>Visitors</span></button>
+          <button class="nav-item" data-view="cafe" type="button"><span class="nav-icon">☕</span><span>Café</span></button>
+          <button class="nav-item" data-view="support" type="button"><span class="nav-icon">+</span><span>Support</span></button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="quiet-note">
+            <span class="quiet-icon">☼</span>
+            <div>
+              <strong>Take your time</strong>
+              <p>Stock is refreshed through the day.</p>
+            </div>
+          </div>
+          <button class="staff-button" id="staff-toggle" type="button"><span>⚙</span> Staff update preview</button>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="mobile-brand">
+            <div class="brand-mark small" aria-hidden="true"><span>W</span><span>N</span></div>
+            <span>WNWN</span>
+          </div>
+          <div class="topbar-context">
+            <span class="eyebrow">Saturday 1 August 2026</span>
+            <span class="secure-label"><span class="secure-dot"></span> Private member area</span>
+          </div>
+          <div class="topbar-actions">
+            <button class="topbar-control" id="notification-button" type="button" aria-label="View updates"><span class="control-label">Updates</span><span class="control-count">3</span></button>
+            <button class="topbar-control" id="theme-toggle" type="button" aria-label="Use light display" aria-pressed="true"><span class="control-label">Light view</span></button>
+            <button class="profile-button" id="profile-button" type="button"><span class="avatar small-avatar">J</span><span class="profile-label">Jamie</span><span class="chevron">⌄</span></button>
+          </div>
+        </header>
+
+        <div class="content-wrap">
+          <section class="view active" id="view-home" aria-labelledby="home-title">
+            <div class="welcome-row">
+              <div class="welcome-copy">
+                <div>
+          <h1 id="home-title">Hey Jamie<span class="heading-period">!</span></h1>
+                </div>
+              </div>
+              <div class="welcome-actions">
+                <button class="outline-button" data-open-card type="button"><span class="button-icon" aria-hidden="true">▥</span> Show my card</button>
+              </div>
+            </div>
+
+            <div class="stock-update-strip" id="stock-update-strip" role="status" aria-live="polite">
+              <span class="stock-update-mark" aria-hidden="true">↻</span>
+              <div class="stock-update-track">
+                <span class="stock-update-label">A note about stock</span>
+        <p class="stock-update-message" id="stock-update-message">Stock is replenished throughout the day, just like in a supermarket, and good bargains can come in later in the afternoon too!</p>
+              </div>
+              <span class="stock-update-time" id="stock-update-time">Updated 8:42 am</span>
+            </div>
+
+            <div class="hero-card">
+              <div class="hero-copy">
+                <span class="soft-badge"><span>✦</span> For the community</span>
+                <h2>Your social<br /><em>supermarket.</em></h2>
+                <p>A member-based community shop helping local people access good food at a fair price.</p>
+                <button class="primary-button" data-view-target="updates" type="button">See this week’s specials <span>→</span></button>
+              </div>
+              <details class="home-barcode-tile" open>
+                <summary><span class="barcode-summary-copy"><span class="eyebrow accent">Membership barcode</span><strong id="home-barcode-title">Show this at the till</strong></span><span class="barcode-chevron" aria-hidden="true">⌄</span></summary>
+                <div class="barcode-expand-content">
+                  <div class="barcode" id="home-barcode" aria-label="Demo membership barcode"></div>
+                  <div class="barcode-number">5830471296</div>
+                  <span class="barcode-demo-label">Demo card</span>
+                  <p class="barcode-note">This is a demo number. Your real membership number would appear here.</p>
+                  <button class="secondary-button" data-open-card type="button">Show my card <span>→</span></button>
+                </div>
+              </details>
+            </div>
+
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow accent">At the shop today</p>
+                <h2>What’s available</h2>
+              </div>
+              <span class="freshness"><span class="fresh-dot"></span> Updated 8:42 am</span>
+            </div>
+
+            <div class="availability-grid">
+              <article class="availability-card green-card">
+                <div class="availability-top"><span class="food-icon">🥬</span><span class="availability-status available">Available now</span></div>
+                <h3>Fresh vegetables</h3>
+                <p>Leafy greens, salad items and a few lovely surprises.</p>
+                <span class="availability-foot">More may be added later <span>↗</span></span>
+              </article>
+              <article class="availability-card peach-card">
+                <div class="availability-top"><span class="food-icon">🍞</span><span class="availability-status limited">Limited this morning</span></div>
+                <h3>Bread</h3>
+                <p>Some bread is out now. Further supplies may arrive later.</p>
+                <span class="availability-foot">Please consider visiting later if you can <span>↗</span></span>
+              </article>
+              <article class="availability-card blue-card">
+                <div class="availability-top"><span class="food-icon">🧺</span><span class="availability-status coming">Replenishing</span></div>
+                <h3>Everyday essentials</h3>
+                <p>Household and cupboard items are being refreshed today.</p>
+                <span class="availability-foot">Next update around midday <span>↗</span></span>
+              </article>
+            </div>
+
+            <div class="lower-grid">
+              <article class="mini-card visit-card">
+                <div class="mini-card-heading"><span class="mini-icon">⌖</span><span>Visit WNWN</span></div>
+                <h3>70 High Street, Poole</h3>
+                <p>Open today until 2:00 pm</p>
+                <div class="visit-map" aria-label="Map showing Waste Not Want Not at 70 High Street, Poole">
+                  <iframe title="Map of Waste Not Want Not, 70 High Street, Poole" src="https://www.google.com/maps?q=70%20High%20Street%2C%20Poole%2C%20Dorset%20BH15%201DA&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=70%20High%20Street%2C%20Poole%2C%20Dorset%20BH15%201DA" target="_blank" rel="noreferrer">Open in Maps <span>↗</span></a>
+                </div>
+                <button class="text-button" data-view-target="visitors" type="button">View access details <span>→</span></button>
+              </article>
+              <article class="mini-card card-preview">
+                <div class="mini-card-heading"><span class="mini-icon">▥</span><span>Your membership</span><span class="verified">✓ Active</span></div>
+                <div class="mini-card-member"><div class="avatar">▥</div><div><h3>Membership barcode</h3><p>Ready to show at the till</p></div></div>
+                <button class="secondary-button" data-view-target="card" type="button">Open membership <span>→</span></button>
+              </article>
+            </div>
+            <div class="show-card-banner">
+              <div><p class="eyebrow">Going to the shop?</p><h3>Have your membership ready</h3><p>Open your barcode before you reach the till.</p></div>
+              <button class="primary-button" data-open-card type="button">Show my card <span>→</span></button>
+            </div>
+          </section>
+
+          <section class="view" id="view-card" aria-labelledby="card-title">
+            <div class="page-heading">
+              <div><p class="eyebrow accent">Your membership</p><h1 id="card-title">My membership card</h1><p class="lede">Show this code to the WNWN team when you visit.</p></div>
+              <span class="active-pill"><span class="status-dot"></span> Active member</span>
+            </div>
+            <div class="digital-card-wrap">
+              <div class="digital-card">
+                <div class="digital-card-top"><div class="brand-lockup card-brand"><div class="brand-mark" aria-hidden="true"><span>W</span><span>N</span></div><div><p class="brand-name">Waste Not<br />Want Not</p></div></div><span class="card-chip">MEMBER</span></div>
+                <div class="digital-card-main"><div><p class="card-label">MEMBER NAME</p><h2>Jamie Morgan</h2></div><div class="card-leaf">✦</div></div>
+                <div class="digital-card-bottom"><span>004 812 72</span><span>Poole · BCP</span></div>
+              </div>
+              <div class="barcode-panel"><p class="eyebrow accent">Scan at the till</p><div class="barcode" id="barcode" aria-label="Demo membership barcode"></div><div class="barcode-number">5830471296</div><p class="barcode-note">This is a demo number. Your real membership number would appear here.</p></div>
+            </div>
+            <div class="card-help"><div class="card-help-icon">?</div><div><h3>Having trouble showing your card?</h3><p>Ask a member of the WNWN team. They can help you find your membership using your approved details.</p></div><button class="secondary-button" data-view-target="support" type="button">Get help <span>→</span></button></div>
+          </section>
+
+          <section class="view" id="view-updates" aria-labelledby="updates-title">
+            <div class="page-heading"><div><p class="eyebrow accent">From the team</p><h1 id="updates-title">This week’s specials</h1><p class="lede">Useful shop information from WNWN, in one simple place.</p></div><button class="notification-toggle" id="notification-toggle" type="button"><span>◔</span> Notifications on</button></div>
+            <div class="updates-layout"><div class="updates-list" id="updates-list">
+              <article class="update-card featured-update"><div class="update-meta"><span class="update-tag food-tag">Food update</span><span>Today · 8:42 am</span></div><h2>Fresh vegetables are available today</h2><p>We have leafy greens, salad items and some lovely fresh produce in the shop. More may be added later.</p><div class="update-footer"><span>From the WNWN team</span><button class="text-button" type="button">Save update <span>♡</span></button></div></article>
+              <article class="update-card"><div class="update-meta"><span class="update-tag gentle-tag">A gentle reminder</span><span>Today · 8:18 am</span></div><h2>There is no need to rush</h2><p>The shop is friendly throughout the day. If busy spaces are not your thing, after 10:45 is often calmer. Stock is brought out through the day, so the early rush is not the only time to find good food.</p><div class="update-footer"><span>From the WNWN team</span><button class="text-button" type="button">Save update <span>♡</span></button></div></article>
+              <article class="update-card"><div class="update-meta"><span class="update-tag community-tag">Community</span><span>Yesterday</span></div><h2>Wednesday wellbeing is back next week</h2><p>Come along for a friendly walk, a hot lunch and good conversation. Everyone is welcome.</p><div class="update-footer"><span>From the WNWN team</span><button class="text-button" type="button">View details <span>→</span></button></div></article>
+            </div><aside class="notification-side"><div class="notification-side-icon">◔</div><h3>Choose what reaches you</h3><p>Get the updates that are useful to you. You can change these choices at any time.</p><label class="check-row"><input type="checkbox" checked /> <span>Food and shop updates</span></label><label class="check-row"><input type="checkbox" checked /> <span>Community events</span></label><label class="check-row"><input type="checkbox" checked /> <span>Important changes</span></label><button class="secondary-button full-width" id="save-preferences" type="button">Save preferences</button></aside></div>
+          </section>
+
+          <section class="view" id="view-busy-times" aria-labelledby="busy-times-title">
+            <div class="page-heading"><div><p class="eyebrow accent">Choose your time</p><h1 id="busy-times-title">Busiest times</h1><p class="lede">WNWN is a friendly, welcoming shop. If busy spaces feel difficult, this guide can help you choose a calmer time to visit.</p></div><span class="active-pill"><span class="status-dot"></span> Guide only</span></div>
+            <div class="busy-times-page-card">
+              <div class="busy-times-heading">
+                <div><p class="eyebrow accent">A little more choice, a little less worry</p><h2>Choose the time that suits you</h2></div>
+                <span class="busy-times-people" aria-hidden="true">👥</span>
+              </div>
+              <p class="busy-times-intro">The morning rush is usually around 10:00–10:45. If you prefer fewer people around, after 10:45 is often calmer. Staff are here to help if you need a hand.</p>
+              <div class="busy-times-message">
+                <span class="busy-times-message-icon" aria-hidden="true">☼</span>
+                <div><strong>Prefer a quieter visit?</strong><p>After the morning rush, the shop can feel more relaxed. You are welcome to take your time and ask the team for help.</p></div>
+              </div>
+              <div class="busy-times-hours" aria-label="Opening hours">
+                <div><span class="eyebrow accent">Opens</span><strong>10:00 am</strong><span>Monday–Saturday</span></div>
+                <div><span class="eyebrow accent">Closes</span><strong>3:00 pm</strong><span>Monday–Friday · 2:00 pm Saturday</span></div>
+              </div>
+              <div class="busy-times-chart" aria-label="Rough guide to busy times">
+                <div class="busy-time-row">
+                  <span class="busy-time-label">Closed before 10:00</span>
+                  <span class="busy-time-bar"><span class="busy-time-fill closed"></span></span>
+                  <span class="busy-time-people" aria-label="Shop closed">—</span>
+                </div>
+                <div class="busy-time-row is-busiest">
+                  <span class="busy-time-label">10:00–10:45</span>
+                  <span class="busy-time-bar"><span class="busy-time-fill busy"></span></span>
+                  <span class="busy-time-people" aria-label="Often very busy">👥👥👥</span>
+                </div>
+                <div class="busy-time-row">
+                  <span class="busy-time-label">After 10:45</span>
+                  <span class="busy-time-bar"><span class="busy-time-fill later"></span></span>
+                  <span class="busy-time-people" aria-label="Can be calmer">👥</span>
+                </div>
+              </div>
+              <div class="busy-times-stock"><strong>Stock comes out through the day</strong><p>New food and stock is brought out throughout the day, just like in a supermarket. What is available at 10:00 is not the whole day’s stock, and good bargains can appear later too.</p></div>
+              <p class="busy-times-note">To help everyone get a fair chance, the team may sometimes limit popular items.</p>
+            </div>
+          </section>
+
+          <section class="view" id="view-visitors" aria-labelledby="visitors-title">
+            <div class="page-heading"><div><p class="eyebrow accent">For visitors</p><h1 id="visitors-title">Visitors</h1><p class="lede">Opening times, directions and a simple way to ask the WNWN team for help.</p></div></div>
+            <div class="support-grid"><article class="support-card large-support"><span class="support-icon">⌖</span><p class="eyebrow accent">Find us</p><h2>Poole High Street</h2><p>70 High Street, Poole, Dorset BH15 1DA. The community shop entrance is at the rear, via Hill Street.</p><div class="hours"><strong>Opening hours</strong><span>Monday–Friday · 10:00 am–3:00 pm</span><span>Saturday · 10:00 am–2:00 pm</span></div><button class="primary-button" type="button" id="directions-button">Open directions <span>→</span></button></article><article class="support-card"><span class="support-icon">☏</span><p class="eyebrow accent">Talk to someone</p><h2>01202 402818</h2><p>Call the team if you have questions about membership, visiting or the support available.</p><button class="secondary-button" type="button" id="call-button">Call WNWN <span>→</span></button></article><article class="support-card"><span class="support-icon">♡</span><p class="eyebrow accent">No smartphone?</p><h2>Your physical card still works</h2><p>This app is here to make membership easier, not to replace the way you already access support.</p><button class="secondary-button" type="button" id="print-button">Print this page <span>→</span></button></article></div>
+          </section>
+
+          <section class="view" id="view-cafe" aria-labelledby="cafe-title">
+            <div class="page-heading"><div><p class="eyebrow accent">A warm welcome</p><h1 id="cafe-title">Community Coffee Shop</h1><p class="lede">Hot drinks, snacks and light meals at a very low cost, with free options available for people in severe need.</p></div><span class="active-pill"><span class="status-dot"></span> Open today</span></div>
+            <div class="cafe-layout">
+              <article class="cafe-intro-card">
+                <div class="cafe-icon" aria-hidden="true">☕</div>
+                <p class="eyebrow accent">At WNWN</p>
+                <h2>Something warm and welcoming</h2>
+                <p>The Community Coffee Shop offers hot drinks, snacks and light hot meals in a friendly setting. Prices are kept extremely low, and free options may be available if you are in severe need.</p>
+                <div class="cafe-price-note"><strong>Very low cost</strong><span>Ask the team about free options and today’s menu.</span></div>
+              </article>
+              <div class="cafe-details">
+                <article class="cafe-detail-card"><span class="cafe-detail-icon" aria-hidden="true">☕</span><div><p class="eyebrow accent">What’s available</p><h3>Hot drinks, snacks and light hot meals</h3><p>Today’s hot meal and snack choices can change. Please ask the team when you arrive.</p></div></article>
+                <article class="cafe-detail-card"><span class="cafe-detail-icon" aria-hidden="true">⌖</span><div><p class="eyebrow accent">Find the café</p><h3>70 High Street, Poole</h3><p>Poole, Dorset BH15 1DA</p></div></article>
+                <article class="cafe-detail-card"><span class="cafe-detail-icon" aria-hidden="true">◷</span><div><p class="eyebrow accent">Opening hours</p><h3>Monday–Friday · 10:00 am–3:00 pm</h3><p>Saturday · 10:00 am–2:00 pm · Closed Sunday</p></div></article>
+              </div>
+            </div>
+            <div class="cafe-help-card"><div class="cafe-help-icon" aria-hidden="true">?</div><div><p class="eyebrow accent">Dietary questions?</p><h3>Call the WNWN team before you visit</h3><p>Ask what hot meals are being served today and whether a suitable option is available.</p></div><a class="primary-button" href="tel:+441202402818">Call 01202 402818 <span>→</span></a></div>
+          </section>
+
+          <section class="view" id="view-support" aria-labelledby="support-title">
+            <div class="page-heading"><div><p class="eyebrow accent">Help when you need it</p><h1 id="support-title">Support</h1><p class="lede">Clear numbers for WNWN and trusted local services.</p></div></div>
+            <div class="support-directory">
+              <article class="support-directory-card support-directory-primary"><span class="support-directory-icon" aria-hidden="true">☏</span><p class="eyebrow">WNWN team</p><h2>01202 402818</h2><p>Ask about membership, food, visiting or the support available at WNWN.</p><a class="primary-button support-link" href="tel:01202402818">Call WNWN <span>→</span></a></article>
+              <article class="support-directory-card"><span class="support-directory-icon" aria-hidden="true">⚡</span><p class="eyebrow">Energy and bills</p><h2>01929 775500</h2><p>Citizens Advice Dorset Energy Unit can help with bills, meters and supplier problems.</p><a class="secondary-button support-link" href="tel:01929775500">Call Citizens Advice <span>→</span></a></article>
+              <article class="support-directory-card"><span class="support-directory-icon" aria-hidden="true">♡</span><p class="eyebrow">Someone to talk to</p><h2>116 123</h2><p>Samaritans is free to call, day or night, if you need someone to listen.</p><a class="secondary-button support-link" href="tel:116123">Call Samaritans <span>→</span></a></article>
+              <article class="support-directory-card"><span class="support-directory-icon" aria-hidden="true">+</span><p class="eyebrow">Urgent health help</p><h2>111</h2><p>Call NHS 111 for urgent physical or mental health help that is not an emergency.</p><a class="secondary-button support-link" href="tel:111">Call NHS 111 <span>→</span></a></article>
+              <article class="support-directory-card support-directory-emergency"><span class="support-directory-icon" aria-hidden="true">!</span><p class="eyebrow">Emergency</p><h2>999</h2><p>If someone is in danger or needs immediate help, call 999.</p><a class="primary-button support-link" href="tel:999">Call 999 <span>→</span></a></article>
+            </div>
+          </section>
+        </div>
+        <section class="partner-strip" aria-label="With support from local community partners">
+          <p>With support from local community partners</p>
+          <img src="assets/wnwn-partners-strip.png" alt="Community Fund, Garfield Weston Foundation, Dorset Community Foundation, Talbot Village Trust, AFC Bournemouth, Neighbourly and Arnold Clark" />
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="staff-modal" hidden>
+      <div class="staff-modal" role="dialog" aria-modal="true" aria-labelledby="staff-modal-title">
+        <div class="modal-header"><div><p class="eyebrow accent">Demo only</p><h2 id="staff-modal-title">Staff update preview</h2></div><button class="close-button" id="close-staff" type="button" aria-label="Close staff update preview">×</button></div>
+        <p class="modal-intro">This is the simple staff control behind the member app. In the real version, an approved team member would publish the update from a secure dashboard.</p>
+        <div class="staff-form"><label>Update type<select id="staff-type"><option value="food">Food update</option><option value="gentle">Gentle reminder</option><option value="community">Community</option></select></label><label>Message<textarea id="staff-message" rows="4">Fresh vegetables are available today. More may be added later.</textarea></label><label class="check-row"><input type="checkbox" checked /> Send a push notification to members</label><button class="primary-button" id="publish-update" type="button">Publish demo update <span>→</span></button></div>
+        <div class="staff-preview"><span class="eyebrow accent">Preview</span><div class="preview-notification"><span class="preview-bell">◔</span><div><strong>WNWN update</strong><p id="preview-message">Fresh vegetables are available today. More may be added later.</p></div></div></div>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="member-card-modal" hidden>
+      <div class="member-card-modal" role="dialog" aria-modal="true" aria-labelledby="member-card-modal-title">
+        <div class="modal-header"><div><p class="eyebrow accent">At the till</p><h2 id="member-card-modal-title">Show my card</h2></div><button class="close-button" id="close-member-card" type="button" aria-label="Close membership card">×</button></div>
+        <p class="modal-intro">Show this barcode to the WNWN team when you visit.</p>
+        <div class="member-card-barcode"><p class="eyebrow accent">Membership number</p><div class="barcode" id="modal-barcode" aria-label="Demo membership barcode"></div><div class="barcode-number">5830471296</div></div>
+        <button class="primary-button full-width" id="close-member-card-bottom" type="button">Close <span>×</span></button>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-check">✓</span><span id="toast-message">Saved</span></div>
+    <script src="app.js?v=38"></script>
+  </body>
+</html>

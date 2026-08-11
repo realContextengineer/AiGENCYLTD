@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d14">
+  <meta name="description" content="Explore AIGENCY's AI receptionist demo for Bournemouth and Dorset businesses — voice AI for answering calls, booking appointments, qualifying enquiries and human handover.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://aigency.ltd/demos/ai-receptionist/">
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
+  <link rel="icon" type="image/png" href="assets/harbor-house-logo.png?v=2026-08-08-calla-compressed">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AIGENCY">
+  <meta property="og:title" content="AI Receptionist Bournemouth & Dorset | Voice AI Demo | AIGENCY">
+  <meta property="og:description" content="See a dark, human-governed AI receptionist answer calls, take action and hand over with context.">
+  <meta property="og:url" content="https://aigency.ltd/demos/ai-receptionist/">
+  <meta property="og:image" content="https://aigency.ltd/demos/ai-receptionist/social-preview.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Receptionist Bournemouth & Dorset | AIGENCY">
+  <meta name="twitter:description" content="A live voice-agent design demonstration for Bournemouth and Dorset businesses.">
+  <meta name="twitter:image" content="https://aigency.ltd/demos/ai-receptionist/social-preview.svg">
+  <title>AI Receptionist Bournemouth &amp; Dorset | Voice AI Demo | AIGENCY</title>
+  <link rel="stylesheet" href="../shared.css">
+  <link rel="stylesheet" href="receptionist.css?v=2026-08-08-transparent-logo-left">
+  <link rel="stylesheet" href="receptionist-polish.css?v=2026-08-07-parallax-2">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["WebApplication", "CreativeWork"],
+    "name": "AIGENCY AI Receptionist Demo",
+    "alternateName": "Digital Front Desk",
+    "description": "A static interactive design demonstration showing how an AI receptionist can answer calls, take routine actions and hand over to a human.",
+    "url": "https://aigency.ltd/demos/ai-receptionist/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "isAccessibleForFree": true,
+    "creator": {"@type":"Organization", "name":"AIGENCY", "url":"https://aigency.ltd/" },
+    "areaServed": ["Bournemouth", "Poole", "Christchurch", "Dorset", "United Kingdom"],
+    "featureList": ["AI phone answering", "Appointment scheduling", "Business question answering", "Human handover with context"],
+    "offers": {"@type":"Offer", "price":"0", "priceCurrency":"GBP", "description":"Portfolio demonstration only"}
+  }
+  </script>
+</head>
+<body class="receptionist-page">
+  <a class="skip-link" href="#demo">Skip to live receptionist demo</a>
+  <div class="desk-shell">
+    <header class="desk-header" aria-label="Demo header">
+      <a class="desk-brand" href="." aria-label="CALLA home">
+        <img class="brand-logo" src="assets/harbor-house-logo.png?v=2026-08-08-calla-compressed" alt="CALLA AI receptionist">
+      </a>
+      <div class="desk-title"><span>AI RECEPTIONIST</span><small>Digital front desk</small></div>
+      <div class="desk-status"><span class="status-dot"></span><span>AIGENCY DEMO</span><strong>Human available</strong></div>
+    </header>
+
+    <main>
+      <section class="arrival" aria-labelledby="pageTitle">
+        <div class="arrival-copy">
+          <p class="overline">FICTIONAL BUSINESS · LIVE DESIGN DEMO BY AIGENCY</p>
+          <h1 id="pageTitle">Every call has<br><em>somewhere to go.</em></h1>
+          <p class="arrival-lede">A voice-first receptionist that can answer, understand, book, qualify and hand over — without trapping callers in a phone menu.</p>
+          <div class="arrival-actions">
+            <button class="desk-button primary" id="tryCall" type="button">Try a live call <span aria-hidden="true">↗</span></button>
+            <button class="desk-button quiet" id="seeHandover" type="button">See how it hands over <span aria-hidden="true">↓</span></button>
+          </div>
+          <p class="arrival-note"><span class="amber-line"></span> Designed for Bournemouth, Poole, Christchurch and Dorset businesses.</p>
+        </div>
+        <aside class="arrival-aside" aria-label="Receptionist capabilities">
+          <span class="aside-label">AVA / ONLINE</span>
+          <p>“You’re speaking with Harbor House’s AI receptionist. I can help with most enquiries or put you through to someone.”</p>
+          <div class="aside-meta"><span>09:00–17:30</span><span>Mon–Fri</span><span>AI disclosed</span></div>
+          <div class="arrival-proof" aria-label="What Ava does"><div><span>01</span><strong>Answers</strong><small>Clear from the first hello.</small></div><div><span>02</span><strong>Acts</strong><small>Books, qualifies, prepares.</small></div><div><span>03</span><strong>Hands over</strong><small>Context follows the caller.</small></div></div>
+        </aside>
+      </section>
+
+      <section class="demo-section" id="demo" aria-labelledby="demoTitle">
+        <div class="section-intro-row">
+          <div>
+            <p class="overline">THE FRONT DESK / 01</p>
+            <h2 id="demoTitle">A call that gets somewhere.</h2>
+          </div>
+          <div class="view-switch" role="tablist" aria-label="Demo view">
+            <button class="view-tab active" id="callerTab" role="tab" aria-selected="true" aria-controls="callerView" type="button">Caller view</button>
+            <button class="view-tab" id="businessTab" role="tab" aria-selected="false" aria-controls="businessView" type="button">Business view</button>
+          </div>
+        </div>
+        <div class="demo-statusline" aria-label="Demo operating status"><span><i class="status-dot"></i> SIMULATED CALL ROUTES <b>07</b></span><span><i class="status-dot cyan-status"></i> APPROVED ACTIONS <b>04</b></span><span><i class="status-dot coral-status"></i> HUMAN GATE <b>ALWAYS ON</b></span></div>
+
+        <div class="view-pane" id="callerView" role="tabpanel" aria-labelledby="callerTab">
+          <div class="console-grid">
+            <aside class="scenario-rail" aria-label="Call scenarios">
+              <div class="rail-heading"><span>Choose a route</span><span class="mono">07 / DEMO</span></div>
+              <div class="scenario-nudge" id="demoNudge" role="note"><span>TRY THE DEMO</span><i aria-hidden="true">↓</i></div>
+              <div class="scenario-list">
+                <button class="scenario active" data-scenario="new" type="button"><span class="scenario-index">01</span><span><strong>New customer</strong><small>First enquiry</small></span><span class="scenario-arrow">↗</span></button>
+                <button class="scenario" data-scenario="booking" type="button"><span class="scenario-index">02</span><span><strong>Book an appointment</strong><small>Find a slot</small></span><span class="scenario-arrow">↗</span></button>
+                <button class="scenario" data-scenario="existing" type="button"><span class="scenario-index">03</span><span><strong>Existing customer</strong><small>Current work</small></span><span class="scenario-arrow">↗</span></button>
+                <button class="scenario" data-scenario="urgent" type="button"><span class="scenario-index">04</span><span><strong>Urgent problem</strong><small>Escalate safely</small></span><span class="scenario-arrow">↗</span></button>
+                <button class="scenario" data-scenario="pricing" type="button"><span class="scenario-index">05</span><span><strong>Pricing question</strong><small>Service detail</small></span><span class="scenario-arrow">↗</span></button>
+                <button class="scenario" data-scenario="supplier" type="button"><span class="scenario-index">06</span><span><strong>Supplier</strong><small>Operations route</small></span><span class="scenario-arrow">↗</span></button>
+                <button class="scenario" data-scenario="human" type="button"><span class="scenario-index">07</span><span><strong>Speak to a person</strong><small>Human handover</small></span><span class="scenario-arrow">↗</span></button>
+              </div>
+              <div class="rail-footer"><span class="small-light"></span><span>AI disclosed · transfer always available</span></div>
+            </aside>
+
+            <article class="call-console" aria-label="Live call console">
+              <div class="console-topline"><span class="call-id">CALL ID <strong id="callId">HH-2408-001</strong></span><span class="console-state" id="consoleState">READY</span><span class="call-duration" id="duration">00:00</span></div>
+              <div class="call-identity">
+                <div class="caller-avatar" id="callerAvatar">JT</div>
+                <div><p class="identity-label">INCOMING CALL</p><h3 id="callerName">Unknown caller</h3><p id="callerNumber">01202 xxx xxx <span>·</span> Bournemouth</p></div>
+                <div class="receptionist-identity"><span class="ava-ring">A</span><span><small>RECEPTIONIST</small><strong>AVA</strong></span></div>
+              </div>
+              <div class="audio-instrument" aria-label="Voice activity visualisation"><div class="audio-halo"></div><div class="audio-bars" id="audioBars"></div><span class="audio-caption" id="audioCaption">READY FOR A CALL</span></div>
+              <div class="console-disclosure"><span class="cyan-dot"></span> AI receptionist · Human transfer available</div>
+
+              <div class="conversation-window" id="conversation" aria-live="polite">
+                <div class="conversation-empty"><span class="empty-mark">✦</span><p>Choose a route to let Ava handle a realistic enquiry.</p><small>Nothing is sent — this is a simulated design demonstration.</small></div>
+              </div>
+
+              <div class="console-controls">
+                <button class="control-button" id="voiceDemo" type="button"><span>◉</span> Voice demo</button>
+                <button class="control-button" id="typeInstead" type="button"><span>⌕</span> Type instead</button>
+                <button class="control-button human-control" id="humanButton" type="button"><span>↗</span> Talk to a person</button>
+                <button class="control-button end-control" id="endCall" type="button" disabled><span>□</span> End</button>
+              </div>
+              <div class="text-entry hidden" id="textEntry"><label for="replyInput">Type a reply to Ava</label><div><input id="replyInput" type="text" placeholder="e.g. Tuesday afternoon would work" autocomplete="off"><button class="desk-button primary small" id="sendReply" type="button">Send</button></div></div>
+            </article>
+
+            <aside class="action-rail" aria-label="Operational events">
+              <div class="rail-heading"><span>Operational events</span><span class="live-pulse">LIVE</span></div>
+              <div class="action-log" id="actionLog"><div class="action-empty">Actions will appear here as Ava works.</div></div>
+              <div class="action-summary hidden" id="actionSummary"><span id="actionCount">0</span> actions completed <button type="button" id="expandActions">View log</button></div>
+              <div class="knowledge-card"><span class="knowledge-icon">⌁</span><div><strong>Harbor House knowledge</strong><small>Hours · services · staff · Bournemouth</small></div></div>
+            </aside>
+          </div>
+        </div>
+
+        <div class="view-pane hidden" id="businessView" role="tabpanel" aria-labelledby="businessTab">
+          <div class="business-head"><div><p class="overline">COMPACT OPERATIONS / TODAY</p><h3>The desk, at a glance.</h3></div><span class="business-date">Thursday · 07 August 2026</span></div>
+          <div class="metric-strip"><div><span>Calls today</span><strong>12</strong></div><div><span>Resolved by receptionist</span><strong>8</strong></div><div><span>Human handovers</span><strong>3</strong></div><div><span>Bookings</span><strong>4</strong></div><div><span>Waiting for follow-up</span><strong>1</strong></div></div>
+          <div class="recent-calls"><div class="table-heading"><span>Recent calls</span><span class="mono">SIMULATED ACTIVITY</span></div><div class="call-table"><div class="call-row call-row-heading"><span>Caller</span><span>Intent</span><span>Outcome</span><span>Duration</span><span>Status</span></div><div class="call-row"><span><strong>Jamie Turner</strong><small>01202 xxx xxx</small></span><span>Residential enquiry</span><span>Viewing booked</span><span>02:14</span><span class="table-status complete">Complete</span></div><div class="call-row"><span><strong>Priya Shah</strong><small>01202 xxx xxx</small></span><span>Existing customer</span><span>Callback created</span><span>01:06</span><span class="table-status follow">Follow-up</span></div><div class="call-row"><span><strong>Alex Morgan</strong><small>01202 xxx xxx</small></span><span>Urgent problem</span><span>Sarah transferred</span><span>00:48</span><span class="table-status handover">Handover</span></div><div class="call-row"><span><strong>Sam Reed</strong><small>01202 xxx xxx</small></span><span>Pricing question</span><span>Information sent</span><span>00:36</span><span class="table-status complete">Complete</span></div></div></div>
+          <div class="business-note"><span class="amber-line"></span><p><strong>Every record is simulated.</strong> This portfolio demo shows the shape of an operational interface; it does not connect to a live CRM, calendar or phone line.</p></div>
+        </div>
+      </section>
+
+      <section class="handover-section" id="handover" aria-labelledby="handoverTitle">
+        <div class="handover-copy"><p class="overline">WHEN JUDGEMENT MATTERS / 02</p><h2 id="handoverTitle">Ava knows when to make room.</h2><p>Complex, emotional, consequential or explicitly requested situations stay human. The caller gets a warm transfer and the team gets the useful beginning of the conversation.</p><button class="desk-button quiet" id="handoverDemo" type="button">Play handover moment <span aria-hidden="true">↗</span></button></div>
+        <div class="handover-card" id="handoverCard"><div class="handover-card-top"><span class="handover-live"><i></i> TRANSFER IN PROGRESS</span><span class="mono">HH-2408-004</span></div><div class="handover-people"><div class="person-block"><span class="person-avatar ava">A</span><div><small>AVA</small><strong>AI receptionist</strong></div></div><span class="transfer-arrow">→</span><div class="person-block"><span class="person-avatar human">SM</span><div><small>NOW JOINING</small><strong>Sarah Mitchell</strong><em>Client team</em></div></div></div><div class="handover-quote" id="handoverQuote">“I can bring Sarah into the call. I’ll give her a short summary first so you don’t have to repeat everything.”</div><div class="context-sent"><span>✓</span><div><strong>Context sent</strong><small>Residential enquiry · Westbourne · prefers afternoon</small></div><span class="context-time">just now</span></div></div>
+      </section>
+
+      <section class="summary-section hidden" id="summarySection" aria-labelledby="summaryTitle">
+        <div class="summary-header"><div><p class="overline">AFTER THE CALL / 03</p><h2 id="summaryTitle">A useful end to the conversation.</h2></div><div class="summary-actions"><button class="desk-button quiet" id="viewTranscript" type="button">View transcript</button><button class="desk-button quiet" id="viewActionLog" type="button">View action log</button><button class="desk-button primary small" id="runAgain" type="button">Run another call</button></div></div>
+        <div class="post-call-card"><div class="post-call-title"><span class="complete-mark">✓</span><div><span class="overline">CALL COMPLETE</span><h3 id="summaryCaller">Jamie Turner</h3></div><span class="summary-call-id" id="summaryCallId">HH-2408-001 · <strong>02:14</strong></span></div><div class="summary-grid"><div><span>Intent</span><strong id="summaryIntent">Residential property enquiry</strong></div><div><span>Outcome</span><strong id="summaryOutcome">Viewing consultation booked</strong></div><div><span>Appointment</span><strong id="summaryAppointment">Tuesday · 14:30</strong></div><div><span>Human follow-up</span><strong class="green-text" id="summaryFollowup">Not required</strong></div></div><div class="summary-lower"><div><span class="summary-label">Important context</span><ul id="summaryContext"><li>Westbourne property</li><li>Residential</li><li>Prefers afternoon</li><li>First enquiry</li></ul></div><div><span class="summary-label">Actions completed</span><ul class="check-list" id="summaryActionsList"><li>Calendar checked</li><li>Appointment booked</li><li>CRM record prepared</li><li>Confirmation generated</li></ul></div></div></div>
+      </section>
+
+      <section class="capability-section" aria-labelledby="capabilityTitle">
+        <div class="section-intro-row"><div><p class="overline">BEHIND THE FRONT DESK</p><h2 id="capabilityTitle">Useful work, clearly bounded.</h2></div><p class="section-note">The best receptionist demos make the boundary visible: routine work can move quickly, while judgement stays human.</p></div>
+        <div class="capability-grid"><article><span class="capability-number">01</span><h3>What it can handle</h3><ul><li>Answer calls and common questions</li><li>Qualify new enquiries</li><li>Book appointments</li><li>Route urgent calls safely</li><li>Send a structured summary</li></ul></article><article class="human-card"><span class="capability-number">02</span><h3>What stays human</h3><ul><li>Judgement and sensitive conversations</li><li>Exceptions and complaints</li><li>Consequential decisions</li><li>Anything the caller asks to escalate</li></ul></article><article><span class="capability-number">03</span><h3>What happens after</h3><div class="mini-flow"><span>CALL</span><i>→</i><span>UNDERSTAND</span><i>→</i><span>ACT</span><i>→</i><span>SUMMARISE</span><i>→</i><span>HUMAN IF NEEDED</span></div></article></div>
+      </section>
+
+      <section class="connections-section" aria-labelledby="connectionsTitle"><div><p class="overline">CONNECTIONS / DEMO STATES</p><h2 id="connectionsTitle">A front desk that can join the workflow.</h2><p class="section-note">These are deliberately labelled as simulated. A real build would connect them through approved business systems.</p></div><div class="connection-list"><span><i>▦</i> Calendar <b>simulated</b></span><span><i>⌁</i> CRM <b>simulated</b></span><span><i>✉</i> Email <b>simulated</b></span><span><i>⌁</i> SMS <b>simulated</b></span><span><i>◌</i> Knowledge base <b>local</b></span><span><i>↗</i> Human team <b>available</b></span></div></section>
+
+      <section class="answer-section" aria-labelledby="answerTitle"><div class="section-intro-row"><div><p class="overline">CLEAR ANSWERS / BOURNEMOUTH · DORSET</p><h2 id="answerTitle">Questions a business should be able to answer quickly.</h2></div><p class="section-note">Short, self-contained answers help people, search engines and future agents understand the service.</p></div><div class="answer-grid"><details open><summary>What is an AI receptionist?</summary><p>An AI receptionist is a disclosed voice agent that answers calls, understands routine requests and either completes an approved task or hands the caller to a person.</p></details><details><summary>Can it book appointments?</summary><p>It can check a connected calendar and prepare or make an appointment when the business has approved that action. This demo simulates the booking.</p></details><details><summary>Can it transfer a caller to a real person?</summary><p>Yes. Human handover should remain visible and easy to request. Ava sends a concise context summary before Sarah joins this demonstration.</p></details><details><summary>Does it replace staff?</summary><p>No. It can reduce repetitive call handling, while judgement, sensitive conversations and exceptions remain with the human team.</p></details><details><summary>Could a Bournemouth small business use one?</summary><p>A Bournemouth, Poole, Christchurch or wider Dorset business could use a voice agent for opening hours, service questions, appointment requests and structured callbacks.</p></details><details><summary>Can it work with a CRM or calendar?</summary><p>Yes, with the right permissions and integrations. The cards above show demo states only; no live CRM, calendar or phone data is connected here.</p></details></div></section>
+
+      <section class="agent-section" id="agentAccess" aria-labelledby="agentTitle"><div class="agent-copy"><p class="overline">AGENT ACCESS / A2A-READY</p><h2 id="agentTitle">Human-friendly on the surface. Legible to agents underneath.</h2><p>This static demo exposes a truthful Agent Card at <code>/.well-known/agent-card.json</code>. It describes narrow simulated skills rather than pretending to be a live remote receptionist.</p><button class="desk-button primary small" id="agentButton" type="button">Inspect agent card</button></div><div class="agent-inspector"><div class="inspector-top"><span>AGENT REQUEST</span><span class="mono">SIMULATED</span></div><pre id="agentPreview">“Find an appointment next Tuesday afternoon for a residential enquiry.”
+
+receptionist service
+  availability found
+  booking request prepared
+  human approval policy checked</pre><a href=".well-known/agent-card.json" target="_blank" rel="noopener">Open Agent Card ↗</a></div></section>
+    </main>
+
+    <footer class="desk-footer"><span>HARBOR HOUSE / FICTIONAL BUSINESS</span><span>AI receptionist · Bournemouth &amp; Dorset design demonstration by AIGENCY</span><a href="#agentAccess">Agent access ↗</a></footer>
+  </div>
+  <div class="desk-toast" id="deskToast" role="status" aria-live="polite"></div>
+  <dialog class="transcript-dialog" id="transcriptDialog" aria-labelledby="dialogTitle"><form method="dialog"><button class="dialog-close" value="cancel" aria-label="Close">×</button><p class="overline">CALL RECORD / SIMULATED</p><h2 id="dialogTitle">Transcript</h2><div id="transcriptBody"></div></form></dialog>
+  <dialog class="transcript-dialog" id="agentDialog" aria-labelledby="agentDialogTitle"><form method="dialog"><button class="dialog-close" value="cancel" aria-label="Close">×</button><p class="overline">A2A / AGENT CARD</p><h2 id="agentDialogTitle">Receptionist contract</h2><pre id="agentBody">Loading card…</pre></form></dialog>
+  <script src="../shared.js"></script>
+  <script src="app.js?v=2026-08-07-parallax-2"></script>
+</body>
+</html>

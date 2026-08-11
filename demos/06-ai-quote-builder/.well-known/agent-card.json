@@ -1,0 +1,52 @@
+{
+  "name": "AIGENCY Quote Agent",
+  "description": "A structured scoping and indicative quotation service for digital, AI and automation projects.",
+  "provider": {
+    "organization": "AIGENCY Ltd",
+    "url": "https://aigency.ltd"
+  },
+  "version": "0.1.0",
+  "protocolVersion": "A2A-demo/1.0",
+  "url": "/06-ai-quote-builder/",
+  "authentication": {
+    "schemes": ["bearer"],
+    "description": "Authenticated operation is required for private commercial quoting. Public demo mode is seeded and read-only."
+  },
+  "defaultInputModes": ["text/plain", "application/json"],
+  "defaultOutputModes": ["text/html", "application/json", "application/pdf"],
+  "skills": [
+    {"id":"request_quote","name":"Request a quote","description":"Parse a project brief and return a structured indicative quote artifact."},
+    {"id":"clarify_requirements","name":"Clarify requirements","description":"Ask only for missing information that changes scope or pricing."},
+    {"id":"revise_quote","name":"Revise a quote","description":"Update an existing quote when authorised requirements change."},
+    {"id":"fit_scope_to_budget","name":"Fit scope to budget","description":"Return controlled options within configured commercial boundaries."},
+    {"id":"compare_quote_options","name":"Compare quote options","description":"Compare full scope and value-engineered routes."},
+    {"id":"get_quote_status","name":"Get quote status","description":"Return the current status of a quote task or artifact."},
+    {"id":"request_human_review","name":"Request human review","description":"Mark a quote or consequential action for human approval."},
+    {"id":"get_service_catalog","name":"Get service catalog","description":"Return configured AIGENCY service packages and optional modules."},
+    {"id":"get_pricing_constraints","name":"Get pricing constraints","description":"Return the commercial policy boundaries available to the quoting agent."}
+  ],
+  "capabilities": {
+    "streaming": false,
+    "artifacts": true,
+    "humanApproval": true,
+    "negotiation": "controlled-options-only",
+    "futureTransport": "server-sent-events"
+  },
+  "endpoints": {
+    "health": "GET /v1/health",
+    "models": "GET /v1/models",
+    "capabilities": "GET /v1/capabilities",
+    "responses": "POST /v1/responses",
+    "chatCompletions": "POST /v1/chat/completions",
+    "runs": "POST /v1/runs",
+    "runStatus": "GET /v1/runs/{run_id}",
+    "runEvents": "GET /v1/runs/{run_id}/events",
+    "runApproval": "POST /v1/runs/{run_id}/approval"
+  },
+  "demo": {
+    "mode": "seeded-read-only",
+    "humanReviewRequired": true,
+    "secretsExposed": false,
+    "liveConnectorsEnabled": false
+  }
+}

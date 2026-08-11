@@ -44,12 +44,60 @@
     return response.json();
   }
 
-  const insightThemes = {
-    'ai-governance': 'hero-theme',
-    'ai-workflows': 'training-theme',
-    'ai-search': 'warm-theme',
-    'human-centred-ai': 'bronze-theme'
+  const insightColourThemes = {
+    emerald: 'training-theme',
+    green: 'training-theme',
+    orange: 'warm-theme',
+    'burnt-orange': 'warm-theme',
+    blue: 'hero-theme',
+    cobalt: 'hero-theme',
+    plum: 'bronze-theme',
+    ruby: 'bronze-theme'
   };
+
+  // Covers generated retrospectively for the existing public archive. A
+  // Supabase cover_image_* value still wins when an editor has supplied one.
+  const insightLocalImages = {
+    'ai-agents-identities-wallets-small-businesses': 'assets/generated/insight-ai-agents-identities-wallets-v1.png',
+    'legacy-governance': 'assets/generated/insight-ai-governance-sneeze-v1.png',
+    'legacy-ai-act': 'assets/generated/insight-ai-act-chatbots-v1.png',
+    'legacy-gdpr': 'assets/generated/insight-gdpr-ai-workflows-v1.png',
+    'legacy-content': 'assets/generated/insight-ai-content-search-v1.png',
+    'legacy-web-readiness': 'assets/generated/insight-ai-agent-web-readiness-v1.png',
+    'legacy-less-ai': 'assets/generated/insight-less-ai-v1.png',
+    'legacy-bournemouth': 'assets/generated/insight-small-business-bournemouth-v1.png',
+    'legacy-oversight': 'assets/generated/insight-human-oversight-v1.png',
+    'legacy-ethical-agents': 'assets/generated/insight-ethical-agents-v1.png'
+  };
+
+  const insightColourKeys = ['emerald', 'orange', 'blue', 'plum'];
+
+  function insightStoredColour(post) {
+    const raw = String(post && (post.tile_colour || post.tile_color || post.colour || '')).trim().toLowerCase();
+    return insightColourThemes[raw] ? raw : '';
+  }
+
+  function insightFallbackColour(post) {
+    // A slug hash gives each new post a random-looking colour once, without
+    // reshuffling the archive on every reload. Telegram/Supabase can override
+    // it later by persisting tile_colour on the post record.
+    const source = String(post && (post.slug || post.title || 'insight'));
+    let hash = 0;
+    for (let index = 0; index < source.length; index += 1) {
+      hash = ((hash << 5) - hash + source.charCodeAt(index)) | 0;
+    }
+    return insightColourKeys[Math.abs(hash) % insightColourKeys.length];
+  }
+
+  function insightThemeFor(post, variant) {
+    const stored = insightStoredColour(post);
+    if (stored) return insightColourThemes[stored];
+    // Every card, including the pinned/latest cards, gets the same
+    // random-looking palette assignment. A saved tile_colour remains the
+    // authoritative choice; the slug hash only supplies a stable fallback
+    // for older posts so colours do not reshuffle on every reload.
+    return insightColourThemes[insightFallbackColour(post)];
+  }
 
   // The original, still-public AiGENCY articles remain in the library while
   // Arthur's Supabase collection grows. New database articles lead the page;
@@ -100,7 +148,8 @@
   }
 
   function insightImage(post) {
-    const candidate = post && (post.cover_image_path || post.featured_image_path || post.cover_image_url);
+    const candidate = (post && (post.cover_image_path || post.featured_image_path || post.cover_image_url))
+      || (post && insightLocalImages[post.slug]);
     if (!candidate) return null;
     try {
       const url = new URL(candidate, window.location.origin);
@@ -110,10 +159,15 @@
     }
   }
 
+  function insightImageDisclosure(post) {
+    const supplied = String(post && post.ai_image_disclosure || '').trim();
+    return supplied || 'AI-generated image';
+  }
+
   function renderInsightCard(card, post, variant) {
     const isLatest = variant === 'latest';
     const isFeatured = variant === 'featured';
-    const theme = isFeatured ? 'hero-theme' : isLatest ? 'warm-theme' : (insightThemes[post.category_slug] || 'bronze-theme');
+    const theme = insightThemeFor(post, variant);
     const isLibrary = variant === 'library';
     card.className = 'bento-card ' + (isLibrary ? 'span-3 ' : 'span-6 ') + theme + ' insight-card' + (isLatest || isFeatured ? ' insight-card--lead' : '') + (isLibrary ? ' insight-card--library' : '') + (isLatest ? ' insight-card--latest' : '') + (isFeatured ? ' insight-card--featured' : '');
     card.hidden = false;
@@ -134,6 +188,7 @@
       image.alt = post.cover_image_alt || post.title || '';
       image.loading = isLatest ? 'eager' : 'lazy';
       media.appendChild(image);
+      media.appendChild(createInsightElement('span', insightImageDisclosure(post), 'insight-image-disclosure'));
       card.replaceChildren(media, body);
     } else {
       card.replaceChildren(body);
@@ -595,6 +650,7 @@
     const excerpt = document.querySelector('[data-insight-detail-excerpt]');
     const body = document.querySelector('[data-insight-detail-body]');
     const image = document.querySelector('[data-insight-detail-image]');
+    const imageDisclosure = document.querySelector('[data-insight-detail-image-disclosure]');
     const sourcesSection = document.querySelector('[data-insight-detail-sources]');
     const sourcesList = document.querySelector('[data-insight-detail-sources-list]');
     const author = document.querySelector('[data-insight-detail-author]');
@@ -621,10 +677,15 @@
       image.src = imageUrl;
       image.alt = post.cover_image_alt || post.title || '';
       image.hidden = false;
+      if (imageDisclosure) {
+        imageDisclosure.textContent = insightImageDisclosure(post);
+        imageDisclosure.hidden = false;
+      }
     } else if (image) {
       image.removeAttribute('src');
       image.alt = '';
       image.hidden = true;
+      if (imageDisclosure) imageDisclosure.hidden = true;
     }
     body.replaceChildren();
     const structuredSources = Array.isArray(post.sources) ? post.sources : [];
@@ -966,7 +1027,7 @@
     const desktopNav = document.querySelector('.nav-desktop');
     if (!desktopNav || desktopNav.querySelector('.nav-dropdown')) return;
 
-    const groupedKeys = ['services', 'transparency', 'search', 'agents'];
+    const groupedKeys = ['services', 'transparency', 'search', 'agents', 'a2a'];
     const items = Array.from(desktopNav.children);
     const groupedItems = items.filter(function(item) {
       const link = item.querySelector(':scope > a[data-nav]');
@@ -1007,6 +1068,39 @@
 
   enhanceAiServicesDropdown();
 
+  // Editorial imagery is disclosed at the point it is seen. Insights supply
+  // their own badge while the rest of the site receives the same treatment
+  // from this shared page enhancement.
+  function enhanceEditorialImageDisclosures() {
+    const main = document.querySelector('main');
+    if (!main) return;
+    main.querySelectorAll('img').forEach(function(image) {
+      if (image.closest('.insight-card-media, .insight-detail-media, .ai-image-frame, .ai-search-hero-visual')) return;
+      if (image.classList.contains('logo-img') || image.closest('.logo, [data-no-ai-disclosure]')) return;
+
+      let frame = image.parentElement;
+      if (!frame) return;
+      if (frame.tagName === 'PICTURE') frame = frame.parentElement;
+      if (!frame || frame.closest('.insight-card-media, .insight-detail-media')) return;
+
+      const canUseParent = frame.children.length === 1;
+      if (!canUseParent) {
+        const wrapper = document.createElement('span');
+        image.parentNode.insertBefore(wrapper, image);
+        wrapper.appendChild(image);
+        frame = wrapper;
+      }
+
+      frame.classList.add('ai-image-frame');
+      const disclosure = document.createElement('span');
+      disclosure.className = 'insight-image-disclosure';
+      disclosure.textContent = 'AI-generated image';
+      frame.appendChild(disclosure);
+    });
+  }
+
+  enhanceEditorialImageDisclosures();
+
   // ========== CURRENT NAVIGATION STATE ==========
   const navPath = window.location.pathname.split('/').pop() || 'index.html';
   const insightPages = [
@@ -1037,6 +1131,8 @@
         ? 'search'
       : navPath === 'hermes-agents.html'
         ? 'agents'
+      : navPath === 'a2a.html'
+        ? 'a2a'
       : navPath === 'aria.html'
         ? 'agents'
       : insightPages.indexOf(navPath) !== -1
@@ -1624,6 +1720,154 @@
         });
       });
     });
+  }
+
+  // ========== PORTFOLIO PRAYER-WHEEL CAROUSEL ==========
+  // Each portfolio tile opens its dedicated local demo once it reaches the front.
+  // Swipe or drag to rotate the wheel and reveal the next capability.
+  const portfolioCarousel = document.querySelector('.portfolio-carousel');
+  if (portfolioCarousel) {
+    const portfolioStage = portfolioCarousel.querySelector('.portfolio-stage');
+    const portfolioTiles = Array.from(portfolioCarousel.querySelectorAll('[data-portfolio-tile]'));
+    const portfolioStatus = portfolioCarousel.querySelector('[data-portfolio-status]');
+    const portfolioBillboard = portfolioCarousel.querySelector('[data-portfolio-billboard]');
+    const soundToggle = document.querySelector('.portfolio-sound-toggle');
+    const reducedPortfolioMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let activePortfolioTile = 0;
+    let pointerStartX = null;
+    let didPortfolioSwipe = false;
+    let portfolioSoundEnabled = false;
+    let portfolioAudioContext = null;
+    let turnTimer = null;
+
+    function portfolioPosition(index) {
+      const distance = (index - activePortfolioTile + portfolioTiles.length) % portfolioTiles.length;
+      if (distance === 0) return 'front';
+      if (distance === 1) return 'next';
+      if (distance === 2) return 'next-far';
+      if (distance === portfolioTiles.length - 1) return 'previous';
+      if (distance === portfolioTiles.length - 2) return 'previous-far';
+      return 'hidden';
+    }
+
+    function renderPortfolioWheel() {
+      portfolioTiles.forEach(function(tile, index) {
+        const position = portfolioPosition(index);
+        const isActive = position === 'front';
+        tile.dataset.position = position;
+        tile.classList.toggle('is-active', isActive);
+        if (isActive) tile.setAttribute('aria-current', 'true');
+        else tile.removeAttribute('aria-current');
+      });
+      if (portfolioStatus) portfolioStatus.textContent = 'Portfolio tile ' + (activePortfolioTile + 1) + ' of ' + portfolioTiles.length;
+      if (portfolioBillboard) {
+        const activeTitle = portfolioTiles[activePortfolioTile].querySelector('.portfolio-tile-title');
+        portfolioBillboard.classList.remove('is-visible');
+        portfolioBillboard.textContent = activeTitle ? activeTitle.textContent.trim() : '';
+        void portfolioBillboard.offsetWidth;
+        portfolioBillboard.classList.add('is-visible');
+      }
+    }
+
+    function playPortfolioTurnSound() {
+      if (!portfolioSoundEnabled || reducedPortfolioMotion || !window.AudioContext && !window.webkitAudioContext) return;
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!portfolioAudioContext) portfolioAudioContext = new AudioContextClass();
+      const now = portfolioAudioContext.currentTime;
+      const gain = portfolioAudioContext.createGain();
+      const oscillator = portfolioAudioContext.createOscillator();
+      oscillator.type = 'sine';
+      oscillator.frequency.setValueAtTime(168, now);
+      oscillator.frequency.exponentialRampToValueAtTime(128, now + 0.16);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.026, now + 0.018);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+      oscillator.connect(gain);
+      gain.connect(portfolioAudioContext.destination);
+      oscillator.start(now);
+      oscillator.stop(now + 0.2);
+    }
+
+    function turnPortfolioWheel(direction) {
+      activePortfolioTile = (activePortfolioTile + direction + portfolioTiles.length) % portfolioTiles.length;
+      portfolioCarousel.classList.remove('is-turning');
+      void portfolioCarousel.offsetWidth;
+      portfolioCarousel.classList.add('is-turning');
+      clearTimeout(turnTimer);
+      turnTimer = setTimeout(function() { portfolioCarousel.classList.remove('is-turning'); }, reducedPortfolioMotion ? 0 : 720);
+      renderPortfolioWheel();
+      playPortfolioTurnSound();
+    }
+
+    portfolioStage.addEventListener('pointerdown', function(event) {
+      pointerStartX = event.clientX;
+      didPortfolioSwipe = false;
+      portfolioStage.classList.add('is-dragging');
+      portfolioStage.setPointerCapture(event.pointerId);
+    });
+
+    portfolioStage.addEventListener('pointerup', function(event) {
+      if (pointerStartX === null) return;
+      const distance = event.clientX - pointerStartX;
+      if (Math.abs(distance) > 42) {
+        didPortfolioSwipe = true;
+        turnPortfolioWheel(distance < 0 ? 1 : -1);
+      }
+      pointerStartX = null;
+      portfolioStage.classList.remove('is-dragging');
+    });
+
+    portfolioStage.addEventListener('pointercancel', function() {
+      pointerStartX = null;
+      portfolioStage.classList.remove('is-dragging');
+    });
+
+    portfolioTiles.forEach(function(tile, index) {
+      tile.addEventListener('click', function(event) {
+        if (didPortfolioSwipe) {
+          didPortfolioSwipe = false;
+          return;
+        }
+        const distance = (index - activePortfolioTile + portfolioTiles.length) % portfolioTiles.length;
+        if (distance === 0) return;
+        event.preventDefault();
+        turnPortfolioWheel(distance === portfolioTiles.length - 1 ? -1 : distance);
+      });
+    });
+
+    portfolioCarousel.querySelectorAll('[data-portfolio-direction]').forEach(function(control) {
+      control.addEventListener('click', function() {
+        turnPortfolioWheel(control.dataset.portfolioDirection === 'next' ? 1 : -1);
+      });
+    });
+
+    portfolioCarousel.addEventListener('keydown', function(event) {
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        turnPortfolioWheel(1);
+      }
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        turnPortfolioWheel(-1);
+      }
+    });
+
+    if (soundToggle) {
+      soundToggle.addEventListener('click', function() {
+        portfolioSoundEnabled = !portfolioSoundEnabled;
+        soundToggle.setAttribute('aria-pressed', String(portfolioSoundEnabled));
+        soundToggle.textContent = portfolioSoundEnabled ? 'Sound on' : 'Sound off';
+        if (portfolioSoundEnabled && !reducedPortfolioMotion) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (AudioContextClass) {
+            if (!portfolioAudioContext) portfolioAudioContext = new AudioContextClass();
+            portfolioAudioContext.resume().then(playPortfolioTurnSound).catch(function() {});
+          }
+        }
+      });
+    }
+
+    renderPortfolioWheel();
   }
 
   // ========== KEYBOARD NAVIGATION ==========

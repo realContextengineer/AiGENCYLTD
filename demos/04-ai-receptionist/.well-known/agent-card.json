@@ -1,0 +1,29 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "Harbor House AI Receptionist Demo",
+  "description": "A fictional, static AIGENCY demonstration of a disclosed AI receptionist for Bournemouth and Dorset businesses. Skills simulate answering business questions, scheduling requests, qualification and human handover; no live phone, CRM or calendar transaction is exposed.",
+  "url": "https://aigency.ltd/demos/ai-receptionist/",
+  "provider": {
+    "organization": "AIGENCY",
+    "url": "https://aigency.ltd/"
+  },
+  "version": "2026.08.07",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "skills": [
+    {"id":"answer_business_question","name":"Answer a business question","description":"Answer a routine question using the fictional Harbor House knowledge base.","input":"A concise caller question.","output":"A cautious answer or a request for human follow-up."},
+    {"id":"check_business_hours","name":"Check business hours","description":"Return the published simulated opening hours.","input":"A request for opening hours.","output":"Opening hours and a human-availability note."},
+    {"id":"request_appointment_slots","name":"Request appointment slots","description":"Simulate finding suitable appointment slots.","input":"Service type and preferred date or time window.","output":"Candidate slot(s), clearly labelled as simulated."},
+    {"id":"create_booking_request","name":"Create a booking request","description":"Prepare a simulated booking request after the caller confirms a slot.","input":"Caller context and confirmed slot.","output":"A booking request summary; no live booking is made."},
+    {"id":"qualify_new_enquiry","name":"Qualify a new enquiry","description":"Capture the intent and useful context for a first enquiry.","input":"Caller description of their need.","output":"Intent, context and suggested next step."},
+    {"id":"request_human_handover","name":"Request human handover","description":"Prepare a concise context summary for a human team member.","input":"Caller request or situation requiring judgement.","output":"Handover context and human-approval status."},
+    {"id":"get_service_information","name":"Get service information","description":"Return cautious information about a fictional Harbor House service.","input":"Service question.","output":"Service information without an invented quote."},
+    {"id":"create_callback_request","name":"Create a callback request","description":"Prepare a simulated callback for the relevant team.","input":"Caller name, intent and preferred callback window.","output":"Callback request summary; no message is sent."}
+  ],
+  "authentication": {"schemes": [], "description": "No authentication is required for this static design demonstration."},
+  "endpoints": [{"url":"https://aigency.ltd/demos/ai-receptionist/", "transport":"static-web-demo", "description":"Human-facing demonstration and Agent Card only; no remote A2A service endpoint is claimed."}],
+  "contact": {"humanHandoverAvailable": true, "note":"The demo keeps human handover visible and does not impersonate a person."}
+}

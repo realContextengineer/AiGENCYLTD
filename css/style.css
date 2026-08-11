@@ -2141,15 +2141,25 @@ a:hover, a:focus-visible {
 }
 
 .design-page > .page-intro .design-intro-eyebrow {
-  color: #c7e3de;
-  text-shadow: 0 0 0.55rem rgba(163, 219, 211, 0.14);
+  color: var(--color-panel-heading);
+  text-shadow: 0 0 0.55rem rgba(175, 193, 207, 0.14);
 }
 
-/* The small route label at the top of each main page is a quiet orienting
-   marker, so it uses pale jade rather than competing with the rose-gold H1. */
+/* The small route label at the top of each main page shares the soft
+   blue-grey of the homepage's principal heading. */
 .page-intro > .eyebrow {
-  color: #c7e3de;
-  text-shadow: 0 0 0.55rem rgba(163, 219, 211, 0.14);
+  color: var(--color-panel-heading) !important;
+  text-shadow: 0 0 0.55rem rgba(175, 193, 207, 0.14);
+  text-align: center;
+}
+
+/* Article 50 and AI Search use custom hero layouts rather than .page-intro.
+   Their top route labels belong to the same calm, centred system. */
+.scan-product-copy > .eyebrow,
+.ai-search-hero-copy > .eyebrow {
+  color: var(--color-panel-heading) !important;
+  text-align: center;
+  text-shadow: 0 0 0.55rem rgba(175, 193, 207, 0.14);
 }
 
 .design-page .bento-card p {
@@ -6081,10 +6091,11 @@ a:hover, a:focus-visible {
 }
 
 .hero-kicker {
-  color: var(--color-video-green-light) !important;
+  color: var(--color-panel-heading) !important;
   font-family: var(--font-mono);
   font-size: 0.72rem !important;
   letter-spacing: 0.13em;
+  text-align: center;
   text-transform: uppercase;
 }
 
